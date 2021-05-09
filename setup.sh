@@ -56,6 +56,8 @@ sudo apt-get install xutils-dev -y > /dev/null
 lndir -silent ~/dotfiles/.config/ ~/.config/
 lndir -silent ~/dotfiles/.doom.d/ ~/.doom.d/
 ln -sf ~/dotfiles/.bashrc ~/.bashrc
+ln -sf ~/dotfiles/.bash_aliases .bash_aliases
+ln -sf ~/dotfiles/.config/starship/starship.toml ~/.config/starship.toml
 success "Installed lndir and all configuration files" "installing lndir and all configuration files"
 
 checkpoint "Proceeding with browser installation..."
@@ -164,6 +166,11 @@ sudo apt-get update -y > /dev/null
 sudo apt-get install fish -y > /dev/null
 success "Installed fish" "installing fish"
 
+# Install starship
+process "Installing starship..."
+yes y | sudo sh -c "$(curl -fsSL https://starship.rs/install.sh)"
+success "Installed starship" "installing starship"
+
 # Install neovim
 process "Installing neovim..."
 sudo add-apt-repository ppa:neovim-ppa/stable -y > /dev/null
@@ -171,10 +178,39 @@ sudo apt-get update -y > /dev/null
 sudo apt-get install neovim -y > /dev/null
 success "Installed neovim" "installing neovim"
 
+# Install pacstall
+process "Installing pacstall..."
+sudo bash -c "$(curl -fsSL https://git.io/JfHDM)" > /dev/null
+success "Installed pacstall" "installing pacstall"
+
 # Install neofetch
 process "Installing neofetch..."
-sudo apt-get install neofetch -y > /dev/null
-success "Neofetch installed" "installing neofetch..."
+sudo pacstall -P -I neofetch > /dev/null
+success "Installed neofetch" "installing neofetch"
+
+# Install bemenu
+process "Installing bemenu..."
+yes 2 | sudo pacstall -P -I bemenu-git > /dev/null
+success "Installed bemenu" "installing bemenu"
+# Purge dmenu
+process "Purging dmenu..."
+sudo apt-get purge suckless-tools -y > /dev/null
+success "Purged dmenu" "purging dmenu"
+
+# Install exa
+process "Installing exa..."
+(
+mkdir exa/
+cd exa/
+curl -s https://api.github.com/repos/ogham/exa/releases/latest | grep "browser_download_url" | grep "exa-linux-x86_64-v" | cut -d '"' -f 4 | wget -qi -
+unzip -q exa*
+sudo mv bin/exa /usr/local/bin
+sudo mv man/exa.1 /usr/share/man/man1/
+sudo mv completions/exa.fish /usr/share/fish/vendor_completions.d/
+sudo mv completions/exa.bash /etc/bash_completion.d/
+)
+rm -r exa/
+success "Installed exa" "installing exa"
 
 checkpoint "Proceeding with git configuration..."
 # Add SSH and GPG Keys
@@ -184,7 +220,7 @@ sudo cp /media/pop-os/S\ BASAK/github.asc ~/github.asc
 sudo chown "$USER":"$USER" ~/.ssh/id_ed25519*
 chmod 600 ~/.ssh/id_ed25519
 chmod 644 ~/.ssh/id_ed25519.pub
-ssh-agent bash
+eval "$(ssh-agent)"
 ssh-add ~/.ssh/id_ed25519
 gpg --import ~/github.asc
 success "SSH and GPG keys added" "adding SSH and GPG Keys"
@@ -195,8 +231,9 @@ git config --global user.name "Sourajyoti Basak"
 git config --global user.email "basak.sb2006@gmail.com"
 git config --global user.signingkey CFF8C32DEBE58AB4
 git config --global commit.gpgsign true
+# Aliases
+git config --global alias.logline "log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit"
 # Setup SSH
-sudo touch ~/.ssh/known_hosts
 git remote set-url origin git@github.com:wizard-28/dotfiles.git
 success "Git configured" "configuring git"
 
