@@ -51,6 +51,18 @@ window#waybar {
   text-shadow: inherit;
 }
 
+@keyframes cblink {
+  to {
+      background-color:#f53c3c;
+      color: #ffffff;
+    }
+}
+@keyframes wblink {
+  to {
+    color: #ffffff
+  }
+}
+
 #pulseaudio {
   color: #268bd2;
 }
@@ -59,8 +71,42 @@ window#waybar {
   color: #2aa198;
 }
 
+#memory.warning {
+    animation-name: wblink;
+    animation-duration: 0.5s;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+}
+
+#memory.critical {
+    color: #f53c3c;
+    animation-name: cblink;
+    animation-duration: 0.5s;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+}
+
 #cpu {
   color: #6c71c4;
+}
+
+#cpu.warning {
+    animation-name: wblink;
+    animation-duration: 0.5s;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+}
+
+#cpu.critical {
+    color: #f53c3c;
+    animation-name: cblink;
+    animation-duration: 0.5s;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
 }
 
 #temperature {
@@ -71,7 +117,15 @@ window#waybar {
   color: #859900;
 }
 
-#idle_inhibitor,
+#battery.critical:not(.charging) {
+    color: #f53c3c;
+    animation-name: cblink;
+    animation-duration: 0.5s;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+}
+
 #pulseaudio,
 #memory,
 #cpu,
@@ -80,5 +134,12 @@ window#waybar {
 #battery,
 #disk {
   padding: 0 10px;
+}
+
+#clock.1,
+#idle_inhibitor,
+#custom-weather,
+#clock.2 {
+  padding: 0 5px;
 }
 

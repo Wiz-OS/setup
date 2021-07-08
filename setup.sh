@@ -1,6 +1,6 @@
 #!/bin/bash
 
-defaultBrowser="brave"
+defaultBrowser="firefox"
 
 # Color functions
 function error() {
@@ -53,10 +53,13 @@ success "Apt updated" "updating apt"
 # Install lndir
 process "Install lndir and install all configuration files"
 sudo apt-get install xutils-dev -y > /dev/null
+mkdir -p ~/.doom.d ~/.weechat ~/.SpaceVim.d
 lndir -silent ~/dotfiles/.config/ ~/.config/
 lndir -silent ~/dotfiles/.doom.d/ ~/.doom.d/
+lndir -silent ~/dotfiles/.weechat/ ~/.weechat/
+lndir -silent ~/dotfiles/.SpaceVim.d/ ~/.SpaceVim.d/
 ln -sf ~/dotfiles/.bashrc ~/.bashrc
-ln -sf ~/dotfiles/.bash_aliases .bash_aliases
+ln -sf ~/dotfiles/.bash_aliases ~/.bash_aliases
 ln -sf ~/dotfiles/.config/starship/starship.toml ~/.config/starship.toml
 success "Installed lndir and all configuration files" "installing lndir and all configuration files"
 
@@ -180,7 +183,7 @@ success "Installed neovim" "installing neovim"
 
 # Install pacstall
 process "Installing pacstall..."
-sudo bash -c "$(curl -fsSL https://git.io/JfHDM)" > /dev/null
+sudo bash -c "$(curl -fsSL https://git.io/JsADh || wget -q https://git.io/JsADh -O -)"
 success "Installed pacstall" "installing pacstall"
 
 # Install neofetch
@@ -212,6 +215,12 @@ sudo mv completions/exa.bash /etc/bash_completion.d/
 rm -r exa/
 success "Installed exa" "installing exa"
 
+# Install clipman
+process "Installing clipman..."
+sudo cp /media/pop-os/S\ BASAK/clipman /bin/
+sudo chmod 775 /bin/clipman
+success "Installed clipman" "installing clipman"
+
 checkpoint "Proceeding with git configuration..."
 # Add SSH and GPG Keys
 process "Adding SSH and GPG keys..."
@@ -228,8 +237,8 @@ success "SSH and GPG keys added" "adding SSH and GPG Keys"
 # Configure git
 process "Configuring git..."
 git config --global user.name "Sourajyoti Basak"
-git config --global user.email "basak.sb2006@gmail.com"
-git config --global user.signingkey CFF8C32DEBE58AB4
+git config --global user.email "wiz28@protonmail.com"
+git config --global user.signingkey BB60A61ECF3DCDDB
 git config --global commit.gpgsign true
 # Aliases
 git config --global alias.logline "log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit"
