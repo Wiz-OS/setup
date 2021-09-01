@@ -177,7 +177,7 @@ success "Shellcheck installed" "installing shellcheck"
 
 # Install python utils
 process "Installing python utils..."
-sudo pip3 install python3.8-venv pynvim black pipenv > /dev/null
+sudo pip3 install pynvim black pipenv > /dev/null
 success "Python utils installed" "installing python utils"
 
 # Install alacritty
@@ -206,7 +206,7 @@ success "Installed starship" "installing starship"
 process "Installing neovim..."
 sudo add-apt-repository ppa:neovim-ppa/unstable -y > /dev/null
 sudo apt-get update -y > /dev/null
-sudo apt-get install neovim -y > /dev/null
+sudo apt-get install neovim python3.8-venv universal-ctags -y > /dev/null
 success "Installed neovim" "installing neovim"
 
 # Install pacstall
