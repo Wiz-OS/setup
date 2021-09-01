@@ -168,12 +168,13 @@ return require('packer').startup(function(use)
 		end
 	}
 	use {
-		'hrsh7th/nvim-compe',
-		event = 'InsertEnter',
-		config = function()
-			require('plugin.compe')
-		end,
+		'ms-jpq/coq_nvim',
+		branch = 'coq',
 		requires = {
+			{
+				'ms-jpq/coq.artifacts',
+				branch= 'artifacts'
+			},
 			'L3MON4D3/LuaSnip',
 			{
 				'rafamadriz/friendly-snippets',

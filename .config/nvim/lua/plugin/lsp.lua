@@ -1,3 +1,5 @@
+local coq = require('coq')
+
 -- keymaps
 local on_attach = function(client, bufnr)
 	local function buf_set_option(...) vim.api.nvim_buf_set_option(bufnr, ...) end
@@ -52,7 +54,7 @@ local function setup_servers()
 				lspconfig = make_config()
 			})
 		end
-		require'lspconfig'[server].setup(config)
+		require'lspconfig'[server].setup(coq.lsp_ensure_capabilities(config))
 	end
 end
 
