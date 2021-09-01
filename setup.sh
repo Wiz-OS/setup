@@ -23,7 +23,6 @@ function success() {
 	fi
 }
 
-
 checkpoint "Starting preconfigurations..."
 # Timezone and sources changes
 process "Changing the timezone to Asia/Kolkata..."
@@ -92,7 +91,6 @@ if [ $defaultBrowser = "brave" ]; then
 	process "Installing brave..."
 	sudo apt-get install brave-browser -y > /dev/null
 	success "Brave installed" "installing brave"
-
 fi
 
 
@@ -115,13 +113,31 @@ process "Cleaning up..."
 sudo apt-get autoremove --purge -y > /dev/null
 success "Cleaned up" "cleaning up"
 
+# Install QOL programs
+process "Installing QOL programs..."
+# HACK: work-around for https://github.com/sharkdp/bat/issues/938
+sudo apt-get install -o Dpkg::Options::="--force-overwrite" lua5.3 bat ripgrep fd-find fzf zram-config zram-tools gnome-tweaks gstreamer1.0-plugins-bad -y > /dev/null
+sudo swapoff -a > /dev/null
+sudo zramctl /dev/zram0 --size 750M > /dev/null
+sudo zramctl /dev/zram1 --size 750M > /dev/null
+sudo zramctl /dev/zram2 --size 750M > /dev/null
+sudo zramctl /dev/zram3 --size 750M > /dev/null
+sudo zramswap start > /dev/null
+sudo sysctl -w kernel.sysrq=1
+sudo curl -sfLo "/bin/z" https://raw.githubusercontent.com/skywind3000/z.lua/master/z.lua 
+sudo chmod +x /bin/z
+success "Installed QOL programs" "installing QOL programs"
+
 checkpoint "Proceeding with window manager installation and configuring them"
 # Install dependencies for swaywm
 process "Installing dependencies for swaywm"
 sudo add-apt-repository ppa:nschloe/sway-backports -y > /dev/null
 sudo apt-get update > /dev/null
-sudo apt-get install light grim slurp htop wl-clipboard mako-notifier xwayland libgdk-pixbuf2.0-common libgdk-pixbuf2.0-bin gir1.2-gdkpixbuf-2.0 python3-pip -y > /dev/null
+sudo apt-get install libnotify-bin jq light grim slurp playerctl htop wl-clipboard mako-notifier xwayland libgdk-pixbuf2.0-common libgdk-pixbuf2.0-bin gir1.2-gdkpixbuf-2.0 python3-pip -y > /dev/null
+sudo curl -sfLo "/home/pop-os/.local/bin/grimshot" https://raw.githubusercontent.com/swaywm/sway/master/contrib/grimshot
+sudo chmod +x .local/bin/grimshot
 pip3 install autotiling > /dev/null
+sudo echo -e 'EDITOR="nvim"\nMOZ_ENABLE_WAYLAND=1' | sudo tee -a /etc/environment > /dev/null
 success "Installed dependencies for swaywm" "installing dependencies for swaywm"
 
 # Install swaywm
@@ -149,10 +165,20 @@ success "Fonts installed for waybar" "installing fonts for waybar"
 
 
 checkpoint "Proceeding with programming utility installation..."
+# Install node
+process "Installing node..."
+curl -sL install-node.now.sh/lts | sudo bash
+success "Node installed" "installing node"
+
 # Install shellcheck
 process "Installing shellcheck..."
 sudo apt-get install shellcheck -y > /dev/null
 success "Shellcheck installed" "installing shellcheck"
+
+# Install python utils
+process "Installing python utils..."
+sudo pip3 install pynvim black pipenv > /dev/null
+success "Python utils installed" "installing python utils"
 
 # Install alacritty
 process "Installing alacritty..."
@@ -160,13 +186,15 @@ sudo apt-get install alacritty -y > /dev/null
 success "Alacritty installed" "installing alacritty"
 # Install fonts for alacritty
 process "Installing JetBrains NL Mono Nerd Font for alacritty..."
-sudo curl -sfLo "/usr/share/fonts/truetype/JetBrainsMono Nerd Font Complete.ttf" https://github.com/ryanoasis/nerd-fonts/raw/master/patched-fonts/JetBrainsMono/NoLigatures/Regular/complete/JetBrains%20Mono%20NL%20Regular%20Nerd%20Font%20Complete%20Mono.ttf
+sudo curl -sfLo "/usr/share/fonts/truetype/JetBrains Mono NL Regular Nerd Font Complete Mono.ttf" https://github.com/ryanoasis/nerd-fonts/raw/master/patched-fonts/JetBrainsMono/NoLigatures/Regular/complete/JetBrains%20Mono%20NL%20Regular%20Nerd%20Font%20Complete%20Mono.ttf
+sudo curl -sfLo "/usr/share/fonts/truetype/JetBrains Mono NL Italic Nerd Font Complete Mono.ttf" https://github.com/ryanoasis/nerd-fonts/raw/master/patched-fonts/JetBrainsMono/NoLigatures/Italic/complete/JetBrains%20Mono%20NL%20Italic%20Nerd%20Font%20Complete%20Mono.ttf
 success "Installed JetBrains NL Mono Nerd Font for alacritty" "installing JetBrains NL Mono Nerd Font for alacritty"
 # Install fish
 process "Installing fish..."
 sudo apt-add-repository ppa:fish-shell/release-3 -y > /dev/null
 sudo apt-get update -y > /dev/null
 sudo apt-get install fish -y > /dev/null
+chsh -s /usr/bin/fish
 success "Installed fish" "installing fish"
 
 # Install starship
@@ -176,7 +204,7 @@ success "Installed starship" "installing starship"
 
 # Install neovim
 process "Installing neovim..."
-sudo add-apt-repository ppa:neovim-ppa/stable -y > /dev/null
+sudo add-apt-repository ppa:neovim-ppa/unstable -y > /dev/null
 sudo apt-get update -y > /dev/null
 sudo apt-get install neovim -y > /dev/null
 success "Installed neovim" "installing neovim"
@@ -188,7 +216,7 @@ success "Installed pacstall" "installing pacstall"
 
 # Install neofetch
 process "Installing neofetch..."
-sudo pacstall -P -I neofetch > /dev/null
+sudo pacstall -P -I fastfetch-git > /dev/null
 success "Installed neofetch" "installing neofetch"
 
 # Install bemenu
@@ -204,7 +232,7 @@ success "Purged dmenu" "purging dmenu"
 process "Installing exa..."
 (
 mkdir exa/
-cd exa/
+cd exa/ || exit
 curl -s https://api.github.com/repos/ogham/exa/releases/latest | grep "browser_download_url" | grep "exa-linux-x86_64-v" | cut -d '"' -f 4 | wget -qi -
 unzip -q exa*
 sudo mv bin/exa /usr/local/bin
@@ -240,6 +268,9 @@ git config --global user.name "Sourajyoti Basak"
 git config --global user.email "wiz28@protonmail.com"
 git config --global user.signingkey BB60A61ECF3DCDDB
 git config --global commit.gpgsign true
+git config --global merge.conflictstyle diff3
+git config --global merge.tool vim_mergetool
+git config --global mergetool.vim_mergetool.cmd 'nvim -c "MergetoolStart" "$MERGED" "$BASE" "$LOCAL" "$REMOTE"'
 # Aliases
 git config --global alias.logline "log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit"
 # Setup SSH
@@ -258,6 +289,5 @@ systemctl --user --now disable  pulseaudio.{socket,service} > /dev/null
 systemctl --user mask pulseaudio > /dev/null
 systemctl --user --now enable pipewire{,-pulse}{.socket,.service} pipewire-media-session.service > /dev/null
 success "Pipewire installed" "installing pipewire"
-
 
 checkpoint "Setup complete. Enjoy your laptop now! "
