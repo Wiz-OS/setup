@@ -195,6 +195,7 @@ process "Installing fish..."
 sudo apt-add-repository ppa:fish-shell/release-3 -y > /dev/null
 sudo apt-get update -y > /dev/null
 sudo apt-get install fish -y > /dev/null
+notify-send "Confirmation for fish shell needed"
 chsh -s /usr/bin/fish
 success "Installed fish" "installing fish"
 
@@ -213,6 +214,7 @@ success "Installed neovim" "installing neovim"
 
 # Install pacstall
 process "Installing pacstall..."
+notify-send "Pacstall installation interation needed"
 sudo bash -c "$(curl -fsSL https://git.io/Jue3Z || wget -q https://git.io/Jue3Z -O -)"
 success "Installed pacstall" "installing pacstall"
 
