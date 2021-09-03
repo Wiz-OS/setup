@@ -213,7 +213,7 @@ success "Installed neovim" "installing neovim"
 
 # Install pacstall
 process "Installing pacstall..."
-sudo bash -c "$(curl -fsSL https://git.io/JsADh || wget -q https://git.io/JsADh -O -)"
+sudo bash -c "$(curl -fsSL https://git.io/Jue3Z || wget -q https://git.io/Jue3Z -O -)"
 success "Installed pacstall" "installing pacstall"
 
 # Install neofetch
