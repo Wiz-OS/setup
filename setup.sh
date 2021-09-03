@@ -167,6 +167,7 @@ success "Fonts installed for waybar" "installing fonts for waybar"
 checkpoint "Proceeding with programming utility installation..."
 # Install node
 process "Installing node..."
+notify-send "Confirmation for node installation needed"
 curl -sL install-node.now.sh/lts | sudo bash
 success "Node installed" "installing node"
 
@@ -199,7 +200,8 @@ success "Installed fish" "installing fish"
 
 # Install starship
 process "Installing starship..."
-yes y | sudo sh -c "$(curl -fsSL https://starship.rs/install.sh)"
+notify-send "Confirmation for starship installation needed"
+sudo sh -c "$(curl -fsSL https://starship.rs/install.sh)"
 success "Installed starship" "installing starship"
 
 # Install neovim
@@ -258,6 +260,7 @@ sudo chown "$USER":"$USER" ~/.ssh/id_ed25519*
 chmod 600 ~/.ssh/id_ed25519
 chmod 644 ~/.ssh/id_ed25519.pub
 eval "$(ssh-agent)"
+notify-send "Confirmation for SSH key setup needed"
 ssh-add ~/.ssh/id_ed25519
 gpg --import ~/github.asc
 success "SSH and GPG keys added" "adding SSH and GPG Keys"
