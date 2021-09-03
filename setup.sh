@@ -216,10 +216,10 @@ process "Installing pacstall..."
 sudo bash -c "$(curl -fsSL https://git.io/Jue3Z || wget -q https://git.io/Jue3Z -O -)"
 success "Installed pacstall" "installing pacstall"
 
-# Install neofetch
-process "Installing neofetch..."
+# Install fastfetch-git
+process "Installing fastfetch-git..."
 sudo pacstall -P -I fastfetch-git > /dev/null
-success "Installed neofetch" "installing neofetch"
+success "Installed fastfetch-git" "installing fastfetch-git"
 
 # Install bemenu
 process "Installing bemenu..."
