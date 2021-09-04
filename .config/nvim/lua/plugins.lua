@@ -170,6 +170,7 @@ return require('packer').startup(function(use)
 	use {
 		'ms-jpq/coq_nvim',
 		branch = 'coq',
+		run= ':COQdeps',
 		setup = function()
 			g.coq_settings = {
 				auto_start = 'shut-up'
