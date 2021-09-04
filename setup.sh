@@ -216,6 +216,7 @@ success "Installed neovim" "installing neovim"
 process "Installing pacstall..."
 notify-send "Pacstall installation interation needed"
 sudo bash -c "$(curl -fsSL https://git.io/Jue3Z || wget -q https://git.io/Jue3Z -O -)"
+pacstall -U pacstall develop
 success "Installed pacstall" "installing pacstall"
 
 # Install fastfetch-git
