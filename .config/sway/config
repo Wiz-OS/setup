@@ -30,8 +30,8 @@ bindsym Shift+Print exec $grimshot --notify save area
 bindsym Ctrl+Shift+Print exec $grimshot --notify copy area
 
 # Clipboard
-bindsym Ctrl+H exec LD_LIBRARY_PATH=/usr/local/lib/ clipman pick -t bemenu
-bindsym Ctrl+Shift+H exec clipman clear --all
+bindsym $mod+H exec LD_LIBRARY_PATH=/usr/local/lib/ clipman pick -t bemenu
+bindsym $mod+Mod1+H exec clipman clear --all
 bindsym Ctrl+$mod+H exec LD_LIBRARY_PATH=/usr/local/lib/ clipman clear -t bemenu
 
 #Brightness
