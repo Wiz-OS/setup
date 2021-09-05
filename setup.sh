@@ -221,12 +221,12 @@ success "Installed pacstall" "installing pacstall"
 
 # Install fastfetch-git
 process "Installing fastfetch-git..."
-sudo pacstall -P -I fastfetch-git > /dev/null
+pacstall -P -I fastfetch-git > /dev/null
 success "Installed fastfetch-git" "installing fastfetch-git"
 
 # Install bemenu
 process "Installing bemenu..."
-yes 2 | sudo pacstall -P -I bemenu-git > /dev/null
+pacstall -P -I bemenu-git > /dev/null
 success "Installed bemenu" "installing bemenu"
 # Purge dmenu
 process "Purging dmenu..."
