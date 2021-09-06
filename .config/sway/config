@@ -189,7 +189,7 @@ smart_gaps on
 exec GDK_BACKEND=wayland
 exec CLUTTER_BACKEND=wayland
 exec mako
-exec wl-paste -t text --watch clipman store 1
+exec wl-paste -t text --watch clipman store
 exec clipman restore
 exec nm-applet
 
