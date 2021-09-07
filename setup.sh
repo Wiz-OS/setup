@@ -50,7 +50,7 @@ sudo apt-get install apt -y > /dev/null
 success "Apt updated" "updating apt"
 
 # Install lndir
-process "Install lndir and install all configuration files"
+process "Install lndir and install all configuration files..."
 sudo apt-get install xutils-dev -y > /dev/null
 mkdir -p ~/.doom.d ~/.weechat ~/.SpaceVim.d
 lndir -silent ~/dotfiles/.config/ ~/.config/
