@@ -81,6 +81,12 @@ return require('packer').startup(function(use)
 		end
 	}
 	use {
+		'jghauser/mkdir.nvim',
+		config = function()
+			require('mkdir')
+		end
+	}
+	use {
 		'mbbill/undotree',
 		cmd = 'UndotreeToggle',
 		setup = function()
