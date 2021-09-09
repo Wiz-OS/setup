@@ -1,5 +1,19 @@
 #!/bin/bash
 
+# =============================================================================
+#  __      __________   ______
+# /  \    /  \_____  \ /  __  \
+# \   \/\/   //  ____/ >      <
+#  \        //       \/   --   \
+#   \__/\  / \_______ \______  /
+#        \/          \/      \/
+# setup.sh --- Bootstrapping script
+# Copyright (c) 2021-present Sourajyoti Basak
+# Author: Sourajyoti Basak < wiz28@protonmail.com >
+# URL: https://github.com/wizard-28/dotfiles/
+# License: MIT
+# =============================================================================
+
 defaultBrowser="firefox"
 
 # Color functions
