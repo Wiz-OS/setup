@@ -39,9 +39,9 @@ tput sgr0
 # =============================================================================
 
 # =============================================================================
-# Stage 1: Configure the system
+# Stage 1: Preconfigurations
 # =============================================================================
-stage "Configuring the system..."
+stage "Starting preconfigurations..."
 
 info "Configuring timezone"
 sudo timedatectl set-timezone Asia/Kolkata
@@ -79,7 +79,7 @@ ln -sf ~/dotfiles/.bash_aliases ~/.bash_aliases
 ln -sf ~/dotfiles/.config/starship/starship.toml ~/.config/starship.toml
 
 info "Configuring environment variables"
-echo 'EDITOR="nvim"\nMOZ_ENABLE_WAYLAND=1' | sudo tee -a /etc/environment > /dev/null
+echo 'EDITOR="nvim"\nMOZ_ENABLE_WAYLAND=1' | sudo tee -a /etc/environment > /dev/null &
 # =============================================================================
 
 # =============================================================================
@@ -101,3 +101,70 @@ sudo apt-get install -o Dpkg::Options::="--force-overwrite" -y \
 	libfdk-aac1 libldacbt-abr2 libldacbt-enc2 libopenaptx0 \
 	gstreamer1.0-pipewire libpipewire-0.3-0 libpipewire-0.3-dev libpipewire-0.3-modules libspa-0.2-bluetooth libspa-0.2-dev libspa-0.2-jack libspa-0.2-modules pipewire pipewire-audio-client-libraries pipewire-bin pipewire-locales pipewire-tests > /dev/null
 
+info "Installing PIP applications"
+sudo pip3 install \
+	autotiling \
+	pynvim black pipenv \
+	cmake > /dev/null &
+
+info "Installing applications from USB"
+(
+sudo cp /media/pop-os/S\ BASAK/swaylock /usr/local/bin/
+sudo chmod a+x+s /usr/local/bin/swaylock
+) &
+(
+sudo cp /media/pop-os/S\ BASAK/clipman /bin/
+sudo chmod 775 /bin/clipman
+) &
+
+info "Installing CURL applications"
+# Fonts
+sudo curl -sfLo "/usr/share/fonts/truetype/JetBrains Mono NL Regular Nerd Font Complete Mono.ttf" https://github.com/ryanoasis/nerd-fonts/raw/master/patched-fonts/JetBrainsMono/NoLigatures/Regular/complete/JetBrains%20Mono%20NL%20Regular%20Nerd%20Font%20Complete%20Mono.ttf &
+sudo curl -sfLo "/usr/share/fonts/truetype/JetBrains Mono NL Italic Nerd Font Complete Mono.ttf" https://github.com/ryanoasis/nerd-fonts/raw/master/patched-fonts/JetBrainsMono/NoLigatures/Italic/complete/JetBrains%20Mono%20NL%20Italic%20Nerd%20Font%20Complete%20Mono.ttf &
+
+# Application
+sudo curl -sfLo "/bin/z" https://raw.githubusercontent.com/skywind3000/z.lua/master/z.lua &
+curl -sfLo ~/.local/bin/grimshot https://raw.githubusercontent.com/swaywm/sway/master/contrib/grimshot &
+
+(
+mkdir exa/
+cd exa/ || exit
+curl -s https://api.github.com/repos/ogham/exa/releases/latest | grep "browser_download_url" | grep "exa-linux-x86_64-v" | cut -d '"' -f 4 | wget -qi -
+unzip -q exa*
+sudo mv bin/exa /usr/local/bin
+sudo mv man/exa.1 /usr/share/man/man1/
+sudo mv completions/exa.fish /usr/share/fish/vendor_completions.d/
+sudo mv completions/exa.bash /etc/bash_completion.d/
+cd .. && rm -r exa/
+) &
+
+notify-send "Interaction required"
+curl -sL install-node.now.sh/lts | sudo bash
+curl -fsSL https://starship.rs/install.sh | sudo sh
+curl -fsSL https://git.io/Jue3Z | sudo bash # Pacstall (develop branch)
+
+info "Installing Pacstall applications"
+(
+pacstall -U pacstall develop > /dev/null
+pacstall -PI bemenu-git hyperfine-bin > /dev/null 2>&1
+) &
+
+info "Configuring applications"
+fc-cache -f &
+sudo chmod +x /bin/z &
+sudo chmod 775 /bin/clipman &
+chmod +x ~/.local/bin/grimshot &
+sudo chmod a+x+s /usr/local/bin/swaylock &
+yes "$(cat /media/pop-os/S\ BASAK/passwd)" |sudo passwd "$(logname)" > /dev/null 2>&1
+yes "$(cat /media/pop-os/S\ BASAK/passwd)" | chsh -s /usr/bin/fish > /dev/null 2>&1
+# =============================================================================
+
+# =============================================================================
+# Stage 3: Purge bloat
+# =============================================================================
+stage "Purging bloat"
+
+info "Purging APT bloat"
+sudo apt-get purge libreoffice-common geary totem suckless-tools -y > /dev/null
+sudo apt-get autoremove --purge -y > /dev/null
+# =============================================================================
