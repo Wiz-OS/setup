@@ -14,5 +14,6 @@ end
 alias l="exa --icons -F"
 alias la="exa --icons -aF"
 alias ll="exa --icons -Flah"
+alias bcat="batcat"
 
 starship init fish | source
