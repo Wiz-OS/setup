@@ -58,6 +58,8 @@ deb cdrom:[Pop_OS 20.04 _Focal Fossa_ - Release amd64 (20200702)]/ focal main re
 deb http://apt.pop-os.org/proprietary focal main" | sudo tee /etc/apt/sources.list > /dev/null
 
 info "Adding PPAs"
+echo 'deb http://download.opensuse.org/repositories/home:/Head_on_a_Stick:/azote/xUbuntu_20.04/ /' | sudo tee /etc/apt/sources.list.d/home:Head_on_a_Stick:azote.list > /dev/null
+curl -fsSL https://download.opensuse.org/repositories/home:Head_on_a_Stick:azote/xUbuntu_20.04/Release.key | gpg --dearmor | sudo tee /etc/apt/trusted.gpg.d/home_Head_on_a_Stick_azote.gpg > /dev/null
 sudo add-apt-repository ppa:nschloe/sway-backports -y > /dev/null
 sudo add-apt-repository ppa:nschloe/waybar -y > /dev/null
 sudo apt-add-repository ppa:fish-shell/release-3 -y > /dev/null
@@ -94,7 +96,7 @@ sudo apt-get install -o Dpkg::Options::="--force-overwrite" -y \
 	firefox \
 	lua5.3 bat ripgrep fd-find fzf zram-config zram-tools gnome-tweaks gstreamer1.0-plugins-bad \
 	libnotify-bin jq light grim slurp playerctl htop wl-clipboard mako-notifier xwayland libgdk-pixbuf2.0-common libgdk-pixbuf2.0-bin gir1.2-gdkpixbuf-2.0 python3-pip \
-	sway swayidle sway-backgrounds \
+	sway swayidle sway-backgrounds azote \
 	waybar fonts-font-awesome \
 	shellcheck \
 	alacritty \
