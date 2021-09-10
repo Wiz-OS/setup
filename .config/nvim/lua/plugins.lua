@@ -91,7 +91,7 @@ return require('packer').startup(function(use)
 		config = function ()
 			require('autosave').setup(
 				{
-					enabled = true,
+					enabled = false,
 					execution_message = "AutoSave: saved at " .. fn.strftime("%H:%M:%S"),
 					events = {"InsertLeave", "TextChanged"},
 					conditions = {
@@ -143,10 +143,7 @@ return require('packer').startup(function(use)
 	}
 	use {
 		'beauwilliams/statusline.lua',
-		requires = {
-			'kosayoda/nvim-lightbulb',
-			'kyazdani42/nvim-web-devicons'
-		}
+		requires = 'kyazdani42/nvim-web-devicons'
 	}
 	-- Git
 	use {
