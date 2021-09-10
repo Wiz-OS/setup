@@ -1,3 +1,3 @@
 #!/usr/bin/env bash
 pkill swaybg
-swaybg -o 'eDP-1' -i '/usr/share/backgrounds/pop/nasa-89127.jpg' -m fill &
+swaybg -o 'eDP-1' -i '/usr/share/backgrounds/pop/kate-hazen-pop-m3lvin.png' -m fill &
