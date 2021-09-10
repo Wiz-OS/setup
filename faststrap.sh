@@ -44,10 +44,10 @@ tput sgr0
 stage "Starting preconfigurations..."
 
 info "Configuring timezone"
-sudo timedatectl set-timezone Asia/Kolkata
+sudo timedatectl set-timezone Asia/Kolkata &
 
 info "Setting up SysRq"
-sudo sysctl -w kernel.sysrq=1 > /dev/null
+sudo sysctl -w kernel.sysrq=1 > /dev/null &
 
 info "Optimizing APT sources"
 echo "deb mirror://mirrors.ubuntu.com/mirrors.txt focal main restricted universe multiverse
@@ -69,6 +69,7 @@ sudo apt-get install apt -y > /dev/null
 
 info "Installing configuration files"
 sudo apt-get install xutils-dev -y > /dev/null
+(
 mkdir -p ~/.doom.d/ ~/.weechat/ ~/.SpaceVim.d/
 lndir -silent ~/dotfiles/.config/ ~/.config/
 lndir -silent ~/dotfiles/.doom.d/ ~/.doom.d/
@@ -77,6 +78,7 @@ lndir -silent ~/dotfiles/.SpaceVim.d/ ~/.SpaceVim.d/
 ln -sf ~/dotfiles/.bashrc ~/.bashrc
 ln -sf ~/dotfiles/.bash_aliases ~/.bash_aliases
 ln -sf ~/dotfiles/.config/starship/starship.toml ~/.config/starship.toml
+) &
 
 info "Configuring environment variables"
 echo 'EDITOR="nvim"\nMOZ_ENABLE_WAYLAND=1' | sudo tee -a /etc/environment > /dev/null &
@@ -108,23 +110,27 @@ sudo pip3 install \
 	cmake > /dev/null &
 
 info "Installing applications from USB"
-(
-sudo cp /media/pop-os/S\ BASAK/swaylock /usr/local/bin/
-sudo chmod a+x+s /usr/local/bin/swaylock
-) &
-(
-sudo cp /media/pop-os/S\ BASAK/clipman /bin/
-sudo chmod 775 /bin/clipman
-) &
+sudo install -Dm6755 /media/pop-os/S\ BASAK/swaylock /usr/local/bin/ &
+sudo install -Dm755 /media/pop-os/S\ BASAK/clipman /bin/ &
+
 
 info "Installing CURL applications"
 # Fonts
-sudo curl -sfLo "/usr/share/fonts/truetype/JetBrains Mono NL Regular Nerd Font Complete Mono.ttf" https://github.com/ryanoasis/nerd-fonts/raw/master/patched-fonts/JetBrainsMono/NoLigatures/Regular/complete/JetBrains%20Mono%20NL%20Regular%20Nerd%20Font%20Complete%20Mono.ttf &
-sudo curl -sfLo "/usr/share/fonts/truetype/JetBrains Mono NL Italic Nerd Font Complete Mono.ttf" https://github.com/ryanoasis/nerd-fonts/raw/master/patched-fonts/JetBrainsMono/NoLigatures/Italic/complete/JetBrains%20Mono%20NL%20Italic%20Nerd%20Font%20Complete%20Mono.ttf &
+(
+sudo curl -sfLo "/usr/share/fonts/truetype/JetBrains Mono NL Regular Nerd Font Complete Mono.ttf" https://github.com/ryanoasis/nerd-fonts/raw/master/patched-fonts/JetBrainsMono/NoLigatures/Regular/complete/JetBrains%20Mono%20NL%20Regular%20Nerd%20Font%20Complete%20Mono.ttf
+sudo curl -sfLo "/usr/share/fonts/truetype/JetBrains Mono NL Italic Nerd Font Complete Mono.ttf" https://github.com/ryanoasis/nerd-fonts/raw/master/patched-fonts/JetBrainsMono/NoLigatures/Italic/complete/JetBrains%20Mono%20NL%20Italic%20Nerd%20Font%20Complete%20Mono.ttf
+fc-cache -f
+) &
 
 # Application
-sudo curl -sfLo "/bin/z" https://raw.githubusercontent.com/skywind3000/z.lua/master/z.lua &
-curl -sfLo ~/.local/bin/grimshot https://raw.githubusercontent.com/swaywm/sway/master/contrib/grimshot &
+(
+sudo curl -sfLo "/bin/z" https://raw.githubusercontent.com/skywind3000/z.lua/master/z.lua
+sudo chmod +x /bin/z
+) &
+(
+sudo curl -sfLo /usr/local/bin/grimshot https://raw.githubusercontent.com/swaywm/sway/master/contrib/grimshot
+sudo chmod +x /usr/local/bin/grimshot
+) &
 
 (
 mkdir exa/
@@ -148,23 +154,76 @@ info "Installing Pacstall applications"
 pacstall -U pacstall develop > /dev/null
 pacstall -PI bemenu-git hyperfine-bin > /dev/null 2>&1
 ) &
-
-info "Configuring applications"
-fc-cache -f &
-sudo chmod +x /bin/z &
-sudo chmod 775 /bin/clipman &
-chmod +x ~/.local/bin/grimshot &
-sudo chmod a+x+s /usr/local/bin/swaylock &
-yes "$(cat /media/pop-os/S\ BASAK/passwd)" |sudo passwd "$(logname)" > /dev/null 2>&1
-yes "$(cat /media/pop-os/S\ BASAK/passwd)" | chsh -s /usr/bin/fish > /dev/null 2>&1
 # =============================================================================
 
 # =============================================================================
 # Stage 3: Purge bloat
 # =============================================================================
-stage "Purging bloat"
+stage "Purging bloat..."
 
 info "Purging APT bloat"
+(
 sudo apt-get purge libreoffice-common geary totem suckless-tools -y > /dev/null
 sudo apt-get autoremove --purge -y > /dev/null
+) &
 # =============================================================================
+
+# =============================================================================
+# Stage 4: Postconfigurations
+# =============================================================================
+stage "Starting postconfigurations..."
+
+info "Changing default shell"
+(
+yes "$(cat /media/pop-os/S\ BASAK/passwd)" | sudo passwd "$(logname)" > /dev/null 2>&1
+yes "$(cat /media/pop-os/S\ BASAK/passwd)" | chsh -s /usr/bin/fish > /dev/null 2>&1
+) &
+
+info "Setting up ZSWAP"
+(
+sudo swapoff -a > /dev/null
+sudo zramctl /dev/zram0 --size 750M > /dev/null 2>&1
+sudo zramctl /dev/zram1 --size 750M > /dev/null 2>&1
+sudo zramctl /dev/zram2 --size 750M > /dev/null 2>&1
+sudo zramctl /dev/zram3 --size 750M > /dev/null 2>&1
+sudo zramswap start > /dev/null 2>&1
+) &
+
+info "Setting up Pipewire"
+(
+systemctl --user --now disable pulseaudio.socket pulseaudio.service > /dev/null 2>&1
+systemctl --user mask pulseaudio > /dev/null 2>&1
+systemctl --user --now enable pipewire.socket pipewire-pulse.socket pipewire.service pipewire-pulse.service pipewire-media-session.service > /dev/null 2>&1
+) &
+
+info "Setting up git"
+(
+git config --global user.name "Sourajyoti Basak"
+git config --global user.email "wiz28@protonmail.com"
+git config --global user.signingkey BB60A61ECF3DCDDB
+git config --global commit.gpgsign true
+git config --global merge.conflictstyle diff3
+git config --global merge.tool vim_mergetool
+git config --global mergetool.vim_mergetool.cmd 'nvim -c "MergetoolStart" "$MERGED" "$BASE" "$LOCAL" "$REMOTE"'
+# Aliases
+git config --global alias.logline "log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit"
+# Setup remote
+cd ~/dotfiles || exit
+git remote set-url origin git@github.com:wizard-28/dotfiles.git
+) &
+
+info "Setting up SSH and GPG keys"
+sudo cp -r /media/pop-os/S\ BASAK/.ssh/ ~
+sudo cp /media/pop-os/S\ BASAK/github.asc ~/github.asc
+sudo chown "$USER":"$USER" ~/.ssh/id_ed25519*
+chmod 600 ~/.ssh/id_ed25519
+chmod 644 ~/.ssh/id_ed25519.pub
+eval "$(ssh-agent)" > /dev/null
+
+notify-send "Enter password for SSH and GPG key"
+xclip -selection c < /media/pop-os/S\ BASAK/SSH
+ssh-add ~/.ssh/id_ed25519
+xclip -selection c < /media/pop-os/S\ BASAK/GPG
+gpg --import ~/github.asc
+# =============================================================================
+wait
