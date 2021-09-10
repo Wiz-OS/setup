@@ -80,6 +80,7 @@ lndir -silent ~/dotfiles/.SpaceVim.d/ ~/.SpaceVim.d/
 ln -sf ~/dotfiles/.bashrc ~/.bashrc
 ln -sf ~/dotfiles/.bash_aliases ~/.bash_aliases
 ln -sf ~/dotfiles/.config/starship/starship.toml ~/.config/starship.toml
+ln -sf ~/dotfiles/.azotebg ~/.azotebg
 ) &
 
 info "Configuring environment variables"
