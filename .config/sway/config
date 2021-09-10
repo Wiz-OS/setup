@@ -121,7 +121,7 @@ input "2:7:SynPS/2_Synaptics_TouchPad" {
     bindsym $mod+e layout toggle split
 
     # Fibbonacci layout
-    exec_always --no-startup-id ~/.local/bin/autotiling
+    exec_always --no-startup-id autotiling
 
     bindsym $mod+f fullscreen
 
