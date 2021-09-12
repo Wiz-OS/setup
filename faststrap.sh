@@ -93,9 +93,22 @@ echo 'EDITOR="nvim"\nMOZ_ENABLE_WAYLAND=1' | sudo tee -a /etc/environment > /dev
 # =============================================================================
 stage "Installing applications..."
 
+info "Installing Misc. applications"
+notify-send "Interaction required"
+curl -sL install-node.now.sh/lts | sudo bash
+curl -fsSL https://starship.rs/install.sh | sudo sh
+curl -fsSL https://git.io/Jue3Z | sudo bash # Pacstall (develop branch)
+
+info "Installing Pacstall applications"
+(
+pacstall -U pacstall develop > /dev/null
+pacstall -PI bemenu-git > /dev/null 2>&1
+pacstall -PI hyperfine-bin > /dev/null 2>&1
+pacstall -PI librewolf-app > /dev/null 2>&1
+)
+
 info "Installing APT applications"
 sudo apt-get install -o Dpkg::Options::="--force-overwrite" -y \
-	firefox \
 	lua5.3 bat ripgrep fd-find fzf zram-config zram-tools gnome-tweaks gstreamer1.0-plugins-bad \
 	libnotify-bin jq light grim slurp playerctl htop wl-clipboard mako-notifier xwayland libgdk-pixbuf2.0-common libgdk-pixbuf2.0-bin gir1.2-gdkpixbuf-2.0 python3-pip \
 	sway swayidle sway-backgrounds azote \
@@ -146,17 +159,6 @@ sudo mv man/exa.1 /usr/share/man/man1/
 sudo mv completions/exa.fish /usr/share/fish/vendor_completions.d/
 sudo mv completions/exa.bash /etc/bash_completion.d/
 cd .. && rm -r exa/
-) &
-
-notify-send "Interaction required"
-curl -sL install-node.now.sh/lts | sudo bash
-curl -fsSL https://starship.rs/install.sh | sudo sh
-curl -fsSL https://git.io/Jue3Z | sudo bash # Pacstall (develop branch)
-
-info "Installing Pacstall applications"
-(
-pacstall -U pacstall develop > /dev/null
-pacstall -PI bemenu-git hyperfine-bin > /dev/null 2>&1
 ) &
 # =============================================================================
 
