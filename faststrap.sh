@@ -93,19 +93,11 @@ echo 'EDITOR="nvim"\nMOZ_ENABLE_WAYLAND=1' | sudo tee -a /etc/environment > /dev
 # =============================================================================
 stage "Installing applications..."
 
-info "Installing Misc. applications"
+info "Installing Pacstall applications. Part 1"
 notify-send "Interaction required"
-curl -sL install-node.now.sh/lts | sudo bash
-curl -fsSL https://starship.rs/install.sh | sudo sh
-curl -fsSL https://git.io/Jue3Z | sudo bash # Pacstall (develop branch)
-
-info "Installing Pacstall applications"
-(
+curl -fsSL https://git.io/Jue3Z | sudo bash # Pacstall (develop branch installer)
 pacstall -U pacstall develop > /dev/null
-pacstall -PI bemenu-git > /dev/null 2>&1
-pacstall -PI hyperfine-bin > /dev/null 2>&1
 pacstall -PI librewolf-app > /dev/null 2>&1
-)
 
 info "Installing APT applications"
 sudo apt-get install -o Dpkg::Options::="--force-overwrite" -y \
@@ -160,6 +152,16 @@ sudo mv completions/exa.fish /usr/share/fish/vendor_completions.d/
 sudo mv completions/exa.bash /etc/bash_completion.d/
 cd .. && rm -r exa/
 ) &
+
+notify-send "Interaction required"
+curl -sL install-node.now.sh/lts | sudo bash
+curl -fsSL https://starship.rs/install.sh | sudo sh
+
+info "Installing Pacstall applications. Part 2"
+(
+pacstall -PI bemenu-git > /dev/null 2>&1
+pacstall -PI hyperfine-bin > /dev/null 2>&1
+) &
 # =============================================================================
 
 # =============================================================================
@@ -169,7 +171,7 @@ stage "Purging bloat..."
 
 info "Purging APT bloat"
 (
-sudo apt-get purge libreoffice-common geary totem suckless-tools -y > /dev/null
+sudo apt-get purge firefox libreoffice-common geary totem suckless-tools -y > /dev/null
 sudo apt-get autoremove --purge -y > /dev/null
 ) &
 # =============================================================================
