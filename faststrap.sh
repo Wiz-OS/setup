@@ -208,7 +208,7 @@ info "Setting up git"
 (
 git config --global user.name "Sourajyoti Basak"
 git config --global user.email "wiz28@protonmail.com"
-git config --global user.signingkey BB60A61ECF3DCDDB
+git config --global user.signingkey 51481E2CB03BF45A
 git config --global commit.gpgsign true
 git config --global merge.conflictstyle diff3
 git config --global merge.tool vim_mergetool
@@ -222,7 +222,7 @@ git remote set-url origin git@github.com:wizard-28/dotfiles.git
 
 info "Setting up SSH and GPG keys"
 sudo cp -r /media/pop-os/S\ BASAK/.ssh/ ~
-sudo cp /media/pop-os/S\ BASAK/github.asc ~/github.asc
+sudo cp /media/pop-os/S\ BASAK/GPG.asc ~/GPG.asc
 sudo chown "$USER":"$USER" ~/.ssh/id_ed25519*
 chmod 600 ~/.ssh/id_ed25519
 chmod 644 ~/.ssh/id_ed25519.pub
@@ -232,6 +232,6 @@ notify-send "Enter password for SSH and GPG key"
 xclip -selection c < /media/pop-os/S\ BASAK/SSH
 ssh-add ~/.ssh/id_ed25519
 xclip -selection c < /media/pop-os/S\ BASAK/GPG
-gpg --import ~/github.asc
+gpg --import ~/GPG.asc
 # =============================================================================
 wait
