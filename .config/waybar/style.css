@@ -30,7 +30,8 @@ window#waybar {
 #temperature,
 #network,
 #battery,
-#tray {
+#tray,
+#mpd {
   background: #1a1a1a;
 }
 

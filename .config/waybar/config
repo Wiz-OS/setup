@@ -1,161 +1,187 @@
 {
-    "modules-left": [
-        "sway/workspaces",
-        "custom/right-arrow-dark",
-        "sway/mode",
-        "custom/right-arrow-light",
-        "network",
-        "custom/right-arrow-dark"
-    ],
-    "modules-center": [
-        "custom/left-arrow-dark",
-        "clock#1",
-        "custom/left-arrow-light",
-        "custom/left-arrow-dark",
-        "idle_inhibitor",
-        "custom/weather",
-        "custom/right-arrow-dark",
-        "custom/right-arrow-light",
-        "clock#2",
-        "custom/right-arrow-dark"
-    ],
-    "modules-right": [
-        "custom/left-arrow-dark",
-        "pulseaudio",
-        "custom/left-arrow-light",
-        "custom/left-arrow-dark",
-        "memory",
-        "custom/left-arrow-light",
-        "custom/left-arrow-dark",
-        "cpu",
-        "custom/left-arrow-light",
-        "custom/left-arrow-dark",
-        "temperature",
-        "custom/left-arrow-light",
-        "custom/left-arrow-dark",
-        "battery",
-        "custom/left-arrow-light",
-        "custom/left-arrow-dark",
-        "tray"
-    ],
-    "custom/left-arrow-dark": {
-        "format": "",
-        "tooltip": false
-    },
-    "custom/left-arrow-light": {
-        "format": "",
-        "tooltip": false
-    },
-    "custom/right-arrow-dark": {
-        "format": "",
-        "tooltip": false
-    },
-    "custom/right-arrow-light": {
-        "format": "",
-        "tooltip": false
-    },
-    "network": {
-        "format": "{bandwidthUpBits} {bandwidthDownBits}",
-        "interval": 1,
-        "tooltip": false
-    },
-    "clock#1": {
-        "format": "{:%a %e}",
-        "tooltip": false
-    },
-    "custom/weather": {
-        "format": "{}",
-        "restart-interval": 3600,
-        "exec": "~/.config/waybar/modules/waybar-wttr.py",
-        "return-type": "json"
-    },
-    "clock#2": {
-        "format": "{:%I:%M}",
-        "tooltip": false
-    },
-    "sway/mode": {
-        "format": "<span style=\"italic\">{}</span>"
-    },
-    "idle_inhibitor": {
-        "format": "{icon}",
-        "format-icons": {
-            "activated": "",
-            "deactivated": ""
-        }
-    },
-    "tray": {
-        // "icon-size": 21,
-        "spacing": 10
-    },
-    "clock": {
-        // "timezone": "America/New_York",
-        "interval": 1,
-        "format": "{:%a %e %r}",
-        "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>"
-    },
-    "cpu": {
-        "interval": 5,
-        "format": "{usage}% ",
-        "states": {
-            "warning" : 80,
-            "critical": 95
-        },
-        "on-click": "exec alacritty -e htop"
-    },
-    "memory": {
-        "interval": 5,
-        "format": "{}% ",
-        "states": {
-            "warning": 90,
-            "critical": 95
-        },
-        "on-click": "exec alacritty -e htop"
-    },
-    "temperature": {
-        "thermal-zone": 4,
-        "critical-threshold": 90,
-        "interval": 5,
-        "format": "{icon} {temperatureC}°C",
-        "format-icons": [
-          "", // Icon: temperature-empty
-          "", // Icon: temperature-quarter
-          "", // Icon: temperature-half
-          "", // Icon: temperature-three-quarters
-          ""  // Icon: temperature-full
-      ]
-    },
-    "battery": {
-        "interval": 30,
-        "states": {
-            "warning": 30,
-            "critical": 15
-        },
-        "format-charging": " {icon} {capacity}%", // Icon: bolt
-        "format": "{icon} {capacity}%",
-        "format-icons": [
-            "", // Icon: battery-empty
-            "", // Icon: battery-quarter
-            "", // Icon: battery-half
-            "", // Icon: battery-three-quarters
-            ""  // Icon: battery-full
-        ]
-    },
-    "pulseaudio": {
-        "format": "{volume}% {icon} {format_source}",
-        "format-bluetooth": "{volume}% {icon} {format_source}",
-        "format-bluetooth-muted": " {icon} {format_source}",
-        "format-muted": " {format_source}",
-        "format-source": "{volume}% ",
-        "format-source-muted": "",
-        "format-icons": {
-            "headphone": "",
-            "hands-free": "",
-            "headset": "",
-            "phone": "",
-            "portable": "",
-            "car": "",
-            "default": ["", "", ""]
-        },
-        "on-click": "pavucontrol"
-    }
+	"modules-left": [
+		"sway/workspaces",
+		"custom/right-arrow-dark",
+		"custom/right-arrow-light",
+		"mpd",
+		"custom/right-arrow-light",
+		"custom/right-arrow-dark"
+	],
+	"modules-center": [
+		"custom/left-arrow-dark",
+		"clock#1",
+		"custom/left-arrow-light",
+		"custom/left-arrow-dark",
+		"idle_inhibitor",
+		"custom/weather",
+		"custom/right-arrow-dark",
+		"custom/right-arrow-light",
+		"clock#2",
+		"custom/right-arrow-dark"
+	],
+	"modules-right": [
+		"custom/left-arrow-dark",
+		"network",
+		"custom/left-arrow-light",
+		"custom/left-arrow-dark",
+		"pulseaudio",
+		"custom/left-arrow-light",
+		"custom/left-arrow-dark",
+		"memory",
+		"custom/left-arrow-light",
+		"custom/left-arrow-dark",
+		"cpu",
+		"custom/left-arrow-light",
+		"custom/left-arrow-dark",
+		"battery",
+		"custom/left-arrow-light",
+		"custom/left-arrow-dark",
+		"tray"
+	],
+	"custom/left-arrow-dark": {
+		"format": "",
+		"tooltip": false
+	},
+	"custom/left-arrow-light": {
+		"format": "",
+		"tooltip": false
+	},
+	"custom/right-arrow-dark": {
+		"format": "",
+		"tooltip": false
+	},
+	"custom/right-arrow-light": {
+		"format": "",
+		"tooltip": false
+	},
+	"network": {
+		"format": "{bandwidthUpBits} {bandwidthDownBits}",
+		"interval": 1,
+		"tooltip": false
+	},
+	"clock#1": {
+		"format": "{:%a %e}",
+		"tooltip": false
+	},
+	"custom/weather": {
+		"format": "{}",
+		"restart-interval": 3600,
+		"exec": "~/.config/waybar/modules/waybar-wttr.py",
+		"return-type": "json"
+	},
+	"clock#2": {
+		"format": "{:%I:%M}",
+		"tooltip": false
+	},
+	"sway/mode": {
+		"format": "<span style=\"italic\">{}</span>"
+	},
+	"idle_inhibitor": {
+		"format": "{icon}",
+		"format-icons": {
+			"activated": "",
+			"deactivated": ""
+		}
+	},
+	"tray": {
+		// "icon-size": 21,
+		"spacing": 10
+	},
+	"clock": {
+		// "timezone": "America/New_York",
+		"interval": 1,
+		"format": "{:%a %e %r}",
+		"tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>"
+	},
+	"cpu": {
+		"interval": 5,
+		"format": "{usage}% ",
+		"states": {
+			"warning" : 80,
+			"critical": 95
+		},
+		"on-click": "exec alacritty -e htop"
+	},
+	"memory": {
+		"interval": 5,
+		"format": "{}% ",
+		"states": {
+			"warning": 90,
+			"critical": 95
+		},
+		"on-click": "exec alacritty -e htop"
+	},
+	"temperature": {
+		"thermal-zone": 4,
+		"critical-threshold": 90,
+		"interval": 5,
+		"format": "{icon} {temperatureC}°C",
+		"format-icons": [
+			"", // Icon: temperature-empty
+			"", // Icon: temperature-quarter
+			"", // Icon: temperature-half
+			"", // Icon: temperature-three-quarters
+			""  // Icon: temperature-full
+		]
+	},
+	"battery": {
+		"interval": 30,
+		"states": {
+			"warning": 30,
+			"critical": 15
+		},
+		"format-charging": " {icon} {capacity}%", // Icon: bolt
+		"format": "{icon} {capacity}%",
+		"format-icons": [
+			"", // Icon: battery-empty
+			"", // Icon: battery-quarter
+			"", // Icon: battery-half
+			"", // Icon: battery-three-quarters
+			""  // Icon: battery-full
+		]
+	},
+	"pulseaudio": {
+		"format": "{volume}% {icon} {format_source}",
+		"format-bluetooth": "{volume}% {icon} {format_source}",
+		"format-bluetooth-muted": " {icon} {format_source}",
+		"format-muted": " {format_source}",
+		"format-source": "{volume}% ",
+		"format-source-muted": "",
+		"format-icons": {
+			"headphone": "",
+			"hands-free": "",
+			"headset": "",
+			"phone": "",
+			"portable": "",
+			"car": "",
+			"default": ["", "", ""]
+		},
+		"on-click": "pavucontrol"
+	},
+	"mpd": {
+		"format": " {singleIcon}{album} - {title}",
+		"format-disconnected": "Disconnected ",
+		"format-stopped": "{consumeIcon}{randomIcon}{repeatIcon}{singleIcon}Stopped ",
+		"interval": 10,
+		"consume-icons": {
+			"on": " " // Icon shows only when "consume" is on
+		},
+		"random-icons": {
+			"off": "<span color=\"#f53c3c\"></span> ", // Icon grayed out when "random" is off
+			"on": " "
+		},
+		"repeat-icons": {
+			"on": " "
+		},
+		"single-icons": {
+			"on": "1 "
+		},
+		"state-icons": {
+			"paused": "",
+			"playing": ""
+		},
+		"tooltip-format": "MPD (connected)",
+		"tooltip-format-disconnected": "MPD (disconnected)"
+	}
+
 }
