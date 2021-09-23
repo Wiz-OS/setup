@@ -59,8 +59,8 @@ mode "mpd" {
     bindsym $mod+Right   exec --no-startup-id notify-send -a mpd "Music Player Daemon" "Seeked forward 10 secs\nPlayed: $(mpc seek +00:00:10 | grep -oP '(?<=\\().+?(?=\\))')"
     bindsym $mod+Up      exec --no-startup-id notify-send -a mpd "Music Player Daemon" "Seeked forward 1 min\nPlayed: $(mpc seek +00:01:00 | grep -oP '(?<=\\().+?(?=\\))')"
     bindsym $mod+Down    exec --no-startup-id notify-send -a mpd "Music Player Daemon" "Seeked back 1 min\nPlayed: $(mpc seek -00:01:00 | grep -oP '(?<=\\().+?(?=\\))')"
-    bindsym $mod+minus   exec --no-startup-id mpc -q volume -5
-    bindsym $mod+equal   exec --no-startup-id mpc -q volume +5
+    bindsym $mod+minus   exec --no-startup-id notify-send -a mpd "Music Player Daemon" "Volume: $(mpc volume -5 | cut -d":" -f 2 | cut -d" " -f 2 | tail -n 1)"
+    bindsym $mod+equal   exec --no-startup-id notify-send -a mpd "Music Player Daemon" "Volume: $(mpc volume +5 | cut -d":" -f 2 | cut -d" " -f 2 | tail -n 1)"
 
     bindsym Return mode "default"
     bindsym Escape mode "default"
