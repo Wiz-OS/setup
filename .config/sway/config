@@ -44,6 +44,30 @@ set $laptop eDP-1
 bindswitch --reload --locked lid:on output $laptop disable
 bindswitch --reload --locked lid:off output $laptop enable
 
+# mpd mode
+mode "mpd" {
+    bindsym i       exec --no-startup-id notify-send -a mpd "Now playing" "$(mpc current -f '[[%artist% - ]%title%]|[%file%]')"
+    bindsym greater exec --no-startup-id mpc -q next
+    bindsym less    exec --no-startup-id mpc -q prev
+    bindsym space   exec --no-startup-id mpc -q toggle
+    bindsym r       exec --no-startup-id notify-send -a mpd "$(mpc repeat)"
+    bindsym z       exec --no-startup-id notify-send -a mpd "$(mpc random)"
+    bindsym y       exec --no-startup-id notify-send -a mpd "$(mpc single)"
+    bindsym Shift+r exec --no-startup-id notify-send -a mpd "$(mpc consume)"
+    bindsym u       exec --no-startup-id mpc -q update
+    bindsym Left    exec --no-startup-id mpc -q seek -00:00:10
+    bindsym Right   exec --no-startup-id mpc -q seek +00:00:10
+    bindsym Up      exec --no-startup-id mpc -q seek +00:01:00
+    bindsym Down    exec --no-startup-id mpc -q seek -00:01:00
+    bindsym minus   exec --no-startup-id mpc -q volume -5
+    bindsym plus    exec --no-startup-id mpc -q volume +5
+
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+}
+
+bindsym $mod+m mode "mpd"
+
 exec swayidle -w \
          timeout 300 'swaylock' \
          timeout 600 'swaymsg "output * dpms off"' \
