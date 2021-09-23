@@ -162,7 +162,7 @@
 		"format": " {singleIcon}{album} - {title}",
 		"format-disconnected": "Disconnected ",
 		"format-stopped": "{consumeIcon}{randomIcon}{repeatIcon}{singleIcon}Stopped ",
-		"interval": 10,
+		"interval": 5,
 		"consume-icons": {
 			"on": " " // Icon shows only when "consume" is on
 		},
