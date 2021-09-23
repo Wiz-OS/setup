@@ -4,7 +4,6 @@
 		"custom/right-arrow-dark",
 		"custom/right-arrow-light",
 		"mpd",
-		"custom/right-arrow-light",
 		"custom/right-arrow-dark"
 	],
 	"modules-center": [
@@ -159,7 +158,7 @@
 		"on-click": "pavucontrol"
 	},
 	"mpd": {
-		"format": " {singleIcon}{album} - {title}",
+		"format": "  {singleIcon}{album} - {title} ",
 		"format-disconnected": "Disconnected ",
 		"format-stopped": "{consumeIcon}{randomIcon}{repeatIcon}{singleIcon}Stopped ",
 		"interval": 5,
