@@ -46,21 +46,21 @@ bindswitch --reload --locked lid:off output $laptop enable
 
 # mpd mode
 mode "mpd" {
-    bindsym i       exec --no-startup-id notify-send -a mpd "Now playing" "$(mpc current -f '[[%artist% - ]%title%]|[%file%]')"
-    bindsym greater exec --no-startup-id mpc -q next
-    bindsym less    exec --no-startup-id mpc -q prev
+    bindsym $mod+i       exec --no-startup-id notify-send -a mpd "Now playing" "$(mpc current -f '[[%artist% - ]%title%]|[%file%]')"
+    bindsym greater exec --no-startup-id notify-send -a mpd "Now playing" "$(mpc -q next) $(mpc current -f '[[%artist% - ]%title%]|[%file%]')"
+    bindsym less    exec --no-startup-id notify-send -a mpd "Now playing" "$(mpc -q prev) $(mpc current -f '[[%artist% - ]%title%]|[%file%]')"
     bindsym space   exec --no-startup-id mpc -q toggle
-    bindsym r       exec --no-startup-id notify-send -a mpd "$(mpc repeat)"
-    bindsym z       exec --no-startup-id notify-send -a mpd "$(mpc random)"
-    bindsym y       exec --no-startup-id notify-send -a mpd "$(mpc single)"
-    bindsym Shift+r exec --no-startup-id notify-send -a mpd "$(mpc consume)"
-    bindsym u       exec --no-startup-id mpc -q update
-    bindsym Left    exec --no-startup-id mpc -q seek -00:00:10
-    bindsym Right   exec --no-startup-id mpc -q seek +00:00:10
-    bindsym Up      exec --no-startup-id mpc -q seek +00:01:00
-    bindsym Down    exec --no-startup-id mpc -q seek -00:01:00
-    bindsym minus   exec --no-startup-id mpc -q volume -5
-    bindsym plus    exec --no-startup-id mpc -q volume +5
+    bindsym $mod+r       exec --no-startup-id notify-send -a mpd "Music Player Daemon" "Repeat: $(mpc repeat | cut -d":" -f 3 | cut -d" " -f 2 | tail -n 1)"
+    bindsym $mod+z       exec --no-startup-id notify-send -a mpd "Music Player Daemon" "Random: $(mpc random | cut -d":" -f 4 | cut -d" " -f 2 | tail -n 1)"
+    bindsym $mod+y       exec --no-startup-id notify-send -a mpd "Music Player Daemon" "Single: $(mpc single | cut -d":" -f 5 | cut -d" " -f 2 | tail -n 1)"
+    bindsym $mod+Shift+r exec --no-startup-id notify-send -a mpd "Music Player Daemon" "Consume: $(mpc consume | cut -d":" -f 6 | cut -d" " -f 2 | tail -n 1)"
+    bindsym $mod+u       exec --no-startup-id mpc -q update
+    bindsym $mod+Left    exec --no-startup-id mpc -q seek -00:00:10
+    bindsym $mod+Right   exec --no-startup-id mpc -q seek +00:00:10
+    bindsym $mod+Up      exec --no-startup-id mpc -q seek +00:01:00
+    bindsym $mod+Down    exec --no-startup-id mpc -q seek -00:01:00
+    bindsym $mod+minus   exec --no-startup-id mpc -q volume -5
+    bindsym $mod+equal   exec --no-startup-id mpc -q volume +5
 
     bindsym Return mode "default"
     bindsym Escape mode "default"
