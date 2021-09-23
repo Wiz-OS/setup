@@ -20,6 +20,7 @@ window#waybar {
 }
 
 #workspaces,
+#mode,
 #clock.1,
 #idle_inhibitor,
 #custom-weather,
@@ -52,6 +53,9 @@ window#waybar {
 	text-shadow: inherit;
 }
 
+#mode {
+	color: #ffff00;
+}
 
 
 @keyframes cblink {
