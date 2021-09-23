@@ -12,6 +12,7 @@
 		"custom/left-arrow-light",
 		"custom/left-arrow-dark",
 		"idle_inhibitor",
+		"sway/mode",
 		"custom/weather",
 		"custom/right-arrow-dark",
 		"custom/right-arrow-light",
@@ -73,7 +74,7 @@
 		"tooltip": false
 	},
 	"sway/mode": {
-		"format": "<span style=\"italic\">{}</span>"
+		"format": "<span style=\"italic\"> {} </span>"
 	},
 	"idle_inhibitor": {
 		"format": "{icon}",
