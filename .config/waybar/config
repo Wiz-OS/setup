@@ -158,6 +158,7 @@
 		"on-click": "pavucontrol"
 	},
 	"mpd": {
+		"max-length": 50,
 		"format": "  {singleIcon}{album} - {title} ",
 		"format-disconnected": "Disconnected ",
 		"format-stopped": "{consumeIcon}{randomIcon}{repeatIcon}{singleIcon}Stopped ",
