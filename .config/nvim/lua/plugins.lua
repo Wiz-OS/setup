@@ -197,7 +197,10 @@ return require('packer').startup(function(use)
 		run= ':COQdeps',
 		setup = function()
 			g.coq_settings = {
-				auto_start = 'shut-up'
+				auto_start = 'shut-up',
+				keymap = {
+					pre_select = true
+				}
 			}
 		end,
 		requires = {

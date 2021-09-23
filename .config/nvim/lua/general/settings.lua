@@ -23,7 +23,6 @@ g.python3_host_prog = '/bin/python3' -- Python3
 -- Settings
 -- =============================================================================
 opt.termguicolors = true		-- Needed by gruvbox.lua
-opt.completeopt = 'menuone,noselect'	-- Needed by nvim-compe
 
 opt.timeoutlen = 500			-- Timeout
 opt.relativenumber = true		-- Relative numbers
