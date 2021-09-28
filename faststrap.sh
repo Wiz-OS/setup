@@ -110,7 +110,7 @@ sudo apt-get install -o Dpkg::Options::="--force-overwrite" -y \
 	alacritty \
 	fish \
 	neovim python3.8-venv universal-ctags \
-	mpd ncmpcpp \
+	mpd mpc ncmpcpp \
 	libfdk-aac1 libldacbt-abr2 libldacbt-enc2 libopenaptx0 \
 	gstreamer1.0-pipewire libpipewire-0.3-0 libpipewire-0.3-dev libpipewire-0.3-modules libspa-0.2-bluetooth libspa-0.2-dev libspa-0.2-jack libspa-0.2-modules pipewire pipewire-audio-client-libraries pipewire-bin pipewire-locales pipewire-tests > /dev/null
 
