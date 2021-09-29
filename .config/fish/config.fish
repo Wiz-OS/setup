@@ -10,6 +10,13 @@ function gsync
 	git push
 end
 
+# qrcode
+function qrcode
+          set input "$argv"
+          [ -z "$input" ] && local input="@/dev/stdin"
+          curl -d "$input" https://qrcode.show
+end
+
 # Aliases
 alias l="exa --icons -F"
 alias la="exa --icons -aF"
