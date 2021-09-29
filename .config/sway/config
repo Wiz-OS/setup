@@ -80,7 +80,7 @@ bindsym $mod+H exec LD_LIBRARY_PATH=/usr/local/lib/ clipman pick -t bemenu
 bindsym $mod+Mod1+H exec clipman clear --all
 bindsym Ctrl+$mod+H exec LD_LIBRARY_PATH=/usr/local/lib/ clipman clear -t bemenu
 
-#Brightness
+# Brightness
 bindsym --locked XF86MonBrightnessUp exec sudo light -S "$(light -G | awk '{ print int(($1 + .72) * 1.4) }')"
 bindsym --locked XF86MonBrightnessDown exec sudo light -S "$(light -G | awk '{ print int($1 / 1.4) }')"
 # =============================================================================
