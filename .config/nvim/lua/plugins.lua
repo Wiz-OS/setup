@@ -26,7 +26,9 @@ end
 return require('packer').startup(function(use)
 	use { 'wbthomason/packer.nvim' }
 
-	-- General
+-- =============================================================================
+-- General
+-- =============================================================================
 	use {
 		'sainnhe/gruvbox-material',
 		setup = function()
@@ -110,13 +112,6 @@ return require('packer').startup(function(use)
 		end
 	}
 	use {
-		'a-vrma/black-nvim',
-		ft = 'python',
-		config = function()
-			cmd("au FileType python au BufWritePre <buffer> call Black()")
-		end
-	}
-	use {
 		'andymass/vim-matchup',
 		event = 'CursorMoved',
 		setup = function()
@@ -133,7 +128,12 @@ return require('packer').startup(function(use)
 		'beauwilliams/statusline.lua',
 		requires = 'kyazdani42/nvim-web-devicons'
 	}
-	-- Git
+	use 'kshenoy/vim-signature'
+-- =============================================================================
+
+-- =============================================================================
+-- Git
+-- =============================================================================
 	use {
 		'lewis6991/gitsigns.nvim',
 		event = 'BufReadPost',
@@ -155,9 +155,11 @@ return require('packer').startup(function(use)
 		end
 	}
 	use 'samoshkin/vim-mergetool'
-	use 'kshenoy/vim-signature'
+-- =============================================================================
 
-	-- LSP
+-- =============================================================================
+-- LSP
+-- =============================================================================
 	use {
 		'neovim/nvim-lspconfig',
 		event = 'BufReadPre',
@@ -213,6 +215,13 @@ return require('packer').startup(function(use)
 		end
 	}
 	use {
+		'a-vrma/black-nvim',
+		ft = 'python',
+		config = function()
+			cmd("au FileType python au BufWritePre <buffer> call Black()")
+		end
+	}
+	use {
 		'nvim-treesitter/nvim-treesitter',
 		run = ':TSUpdate',
 		config = function()
@@ -222,4 +231,5 @@ return require('packer').startup(function(use)
 			'nvim-treesitter/nvim-treesitter-textobjects',
 		}
 	}
+-- =============================================================================
 end)
