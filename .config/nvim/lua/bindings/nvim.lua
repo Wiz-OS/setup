@@ -21,10 +21,10 @@ wk.register({
 
 -- Undo break points
 wk.register({
-	["."] = { ".<c-g>u" , "Insert . and set undo breakpoint" },
-	[","] = { ",<c-g>u" , "Insert , and set undo breakpoint" },
-	["!"] = { "!<c-g>u" , "Insert ! and set undo breakpoint" },
-	["?"] = { "?<c-g>u" , "Insert ? and set undo breakpoint" },
+	["."] = { ".<c-g>u", "Insert . and set undo breakpoint" },
+	[","] = { ",<c-g>u", "Insert , and set undo breakpoint" },
+	["!"] = { "!<c-g>u", "Insert ! and set undo breakpoint" },
+	["?"] = { "?<c-g>u", "Insert ? and set undo breakpoint" },
 }, { mode = "i" })
 
 -- Moving text
@@ -34,12 +34,12 @@ wk.register({
 }, { mode = "v" })
 
 wk.register({
-	["<c-k>"] = { "<esc><cmd>m .-2<cr>==i", "Move line up" },
+	["<c-k>"] = { "<esc><cmd>m .-2<cr>==i", "Move line up" },
 	["<c-j>"] = { "<esc><cmd>m .+1<cr>==i", "Move line down" },
 }, { mode = "i" })
 
 wk.register({
-	["<leader>k"] = { "<cmd>m .-2<cr>==", "Move line up" },
+	["<leader>k"] = { "<cmd>m .-2<cr>==", "Move line up" },
 	["<leader>j"] = { "<cmd>m .+1<cr>==", "Move line down" },
 })
 
