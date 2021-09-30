@@ -76,12 +76,6 @@ return require('packer').startup(function(use)
 		keys = { 's', 'S' }
 	}
 	use {
-		'lambdalisue/suda.vim',
-		setup = function()
-			g.suda_smart_edit = true
-		end
-	}
-	use {
 		'jghauser/mkdir.nvim',
 		config = function()
 			require('mkdir')
@@ -106,13 +100,6 @@ return require('packer').startup(function(use)
 					debounce_delay = 135
 				}
 			)
-		end
-	}
-	use {
-		'mbbill/undotree',
-		cmd = 'UndotreeToggle',
-		setup = function()
-			g.undotree_WindowLayout = 4
 		end
 	}
 	use {
@@ -209,13 +196,6 @@ return require('packer').startup(function(use)
 			{
 				'ms-jpq/coq.artifacts',
 				branch= 'artifacts'
-			},
-			'L3MON4D3/LuaSnip',
-			{
-				'rafamadriz/friendly-snippets',
-				config = function()
-					require("luasnip/loaders/from_vscode").lazy_load()
-				end
 			},
 			{
 				'windwp/nvim-autopairs',
