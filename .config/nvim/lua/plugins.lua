@@ -175,7 +175,7 @@ return require('packer').startup(function(use)
 		requires = {
 			'kabouzeid/nvim-lspinstall',
 			{
-				'glepnir/lspsaga.nvim',
+				'tami5/lspsaga.nvim',
 				event = 'BufReadPost',
 				config = function()
 					require('lspsaga').init_lsp_saga()
