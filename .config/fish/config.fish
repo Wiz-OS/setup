@@ -25,6 +25,15 @@ function gsync
 	git push
 end
 
+# Jump around in code bases
+function dev
+	set work_folders $HOME/dotfiles/ /media/pop-os/S\ BASAK/code
+	set file (fdfind --hidden --exclude ".git" --type f . $work_folders | fzf) && \
+	cd (dirname "$file") && \
+	nvim "$file" && \
+	commandline -f repaint
+end
+
 # qrcode
 function qrcode
           set input "$argv"
@@ -40,6 +49,14 @@ alias l="exa --icons -F"
 alias la="exa --icons -aF"
 alias ll="exa --icons -Flah"
 alias bcat="batcat"
+# =============================================================================
+
+# =============================================================================
+# Key bindings
+# =============================================================================
+function fish_user_key_bindings
+	bind --mode insert \co 'dev'
+end
 # =============================================================================
 
 # =============================================================================
