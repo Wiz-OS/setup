@@ -34,6 +34,7 @@ return require('packer').startup(function(use)
 			g.gruvbox_material_enable_bold = true
 			g.gruvbox_material_better_performance = true
 			g.gruvbox_material_palette = 'original'
+			g.gruvbox_material_background = 'hard'
 		end,
 		config = function()
 			cmd 'colorscheme gruvbox-material'
@@ -167,6 +168,7 @@ return require('packer').startup(function(use)
 		end
 	}
 	use 'samoshkin/vim-mergetool'
+	use 'kshenoy/vim-signature'
 
 	-- LSP
 	use {
