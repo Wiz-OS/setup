@@ -127,7 +127,7 @@ sudo install -Dm755 /media/pop-os/S\ BASAK/clipman /bin/ &
 # ncmpcpp 0.9.2
 (
 sudo cp /media/pop-os/S\ BASAK/ncmpcpp/lib*.so* /usr/lib/x86_64-linux-gnu/ # Install libs
-sudo apt install /media/pop-os/S\ BASAK/ncmpcpp/libicu67_67.1-7_amd64.deb # Install deb dependency
+sudo apt-get install -y /media/pop-os/S\ BASAK/ncmpcpp/libicu67_67.1-7_amd64.deb > /dev/null # Install deb dependency
 sudo install -D /media/pop-os/S\ BASAK/ncmpcpp/ncmpcpp /usr/bin # Install ncmpcpp binary
 ) &
 
