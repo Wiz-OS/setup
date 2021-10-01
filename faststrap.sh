@@ -241,5 +241,12 @@ xclip -selection c < /media/pop-os/S\ BASAK/SSH
 ssh-add ~/.ssh/id_ed25519
 xclip -selection c < /media/pop-os/S\ BASAK/GPG
 gpg --import /media/pop-os/S\ BASAK/GPG.asc 
-# =============================================================================
+
 wait
+# =============================================================================
+# Finish up
+# =============================================================================
+notify-send --urgency critical "Logging out in 10 secs"
+sleep 10
+sudo service gdm3 stop
+# =============================================================================
