@@ -7,6 +7,7 @@ wk.register({
 	['<leader>fh'] = { '<cmd>Telescope oldfiles<cr>', 'Find recent files' },
 	['<leader>fc'] = { '<cmd>Telescope colorscheme<cr>', 'Find color scheme' },
 	['<leader>fm'] = { '<cmd>Telescope marks<cr>', 'Find marks' },
+	['<leader>fl'] = { '<cmd>Telescope lsp_workspace_diagnostics<cr>', 'Find LSP diagnostics' },
 
 	['<leader>fv'] = { '<cmd>lua require("plugin.telescope").search_dotfiles()<cr>', 'Browse vim configuration' }
 })
