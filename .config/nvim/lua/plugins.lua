@@ -129,6 +129,14 @@ return require('packer').startup(function(use)
 		requires = 'kyazdani42/nvim-web-devicons'
 	}
 	use 'kshenoy/vim-signature'
+	use {
+		"nvim-neorg/neorg",
+		config = function()
+			require('plugin.neorg')
+		end,
+		requires = "nvim-lua/plenary.nvim",
+		 after = "nvim-treesitter"
+	}
 -- =============================================================================
 
 -- =============================================================================
