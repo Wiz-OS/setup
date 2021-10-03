@@ -20,6 +20,7 @@
 -- =============================================================================
 -- Settings
 -- =============================================================================
+local trouble = require("trouble.providers.telescope")
 require('telescope').setup {
 	defaults = {
 		file_sorter = require('telescope.sorters').get_fzy_sorter,
@@ -35,7 +36,11 @@ require('telescope').setup {
 		},
 		file_ignore_patterns = {
 			'.git/*'
-		}
+		},
+		mappings = {
+			i = { ["<c-t>"] = trouble.open_with_trouble },
+			n = { ["<c-t>"] = trouble.open_with_trouble },
+		},
 	},
 	extentions = {
 		fzf = {
