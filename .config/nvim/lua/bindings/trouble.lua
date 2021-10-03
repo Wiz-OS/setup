@@ -15,9 +15,9 @@
 wk.register({
 	['<leader>t'] = { name = "Trouble" },
 	['<leader>tt'] = { '<cmd>TroubleToggle<cr>', 'Toggle trouble' },
-	['<leader>tw'] = { '<cmd>TroubleToggle lsp_workspace_diagnostics<cr>', 'Toggle trouble LSP workspace diagnostics' },
-	['<leader>td'] = { '<cmd>TroubleToggle lsp_document_diagnostics<cr>', 'Toggle trouble LSP diagnostics diagnostics' },
-	['<leader>tq'] = { '<cmd>TroubleToggle quickfix<cr>', 'Toggle trouble quickfix list' },
-	['<leader>tl'] = { '<cmd>TroubleToggle loclist<cr>', 'Toggle trouble loclist list' },
-	['<leader>tr'] = { '<cmd>TroubleToggle lsp_references<cr>', 'Toggle trouble LSP references' },
+	['<leader>tw'] = { '<cmd>TroubleToggle lsp_workspace_diagnostics<cr>', 'LSP workspace diagnostics' },
+	['<leader>td'] = { '<cmd>TroubleToggle lsp_document_diagnostics<cr>', 'LSP diagnostics diagnostics' },
+	['<leader>tq'] = { '<cmd>TroubleToggle quickfix<cr>', 'quickfix' },
+	['<leader>tl'] = { '<cmd>TroubleToggle loclist<cr>', 'loclist' },
+	['<leader>tr'] = { '<cmd>TroubleToggle lsp_references<cr>', 'LSP references' },
 })
