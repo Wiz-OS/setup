@@ -111,6 +111,7 @@ return require('packer').startup(function(use)
 			require('plugin.blankline')
 		end
 	}
+	use 'rmagatti/auto-session'
 	use {
 		'andymass/vim-matchup',
 		event = 'CursorMoved',
