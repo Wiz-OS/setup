@@ -133,7 +133,7 @@ return require('packer').startup(function(use)
 	use {
 		'famiu/feline.nvim',
 		config = function()
-			require('feline').setup()
+			require('plugin.feline')
 		end
 	}
 	use 'kshenoy/vim-signature'
