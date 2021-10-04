@@ -117,7 +117,12 @@ return require('packer').startup(function(use)
 			require('plugin.blankline')
 		end
 	}
-	use 'rmagatti/auto-session'
+	use {
+		'rmagatti/auto-session',
+		config = function()
+			opt.sessionoptions="blank,buffers,curdir,folds,help,options,tabpages,winsize,resize,winpos,terminal"
+		end
+	}
 	use {
 		'andymass/vim-matchup',
 		event = 'CursorMoved',
