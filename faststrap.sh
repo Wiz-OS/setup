@@ -109,6 +109,7 @@ sudo apt-get install -o Dpkg::Options::="--force-overwrite" -y \
 	shellcheck \
 	alacritty \
 	fish \
+	newsboat \
 	neovim python3.8-venv universal-ctags \
 	mpd mpc ncmpcpp \
 	libfdk-aac1 libldacbt-abr2 libldacbt-enc2 libopenaptx0 \
