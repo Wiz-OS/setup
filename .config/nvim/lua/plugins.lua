@@ -132,8 +132,10 @@ return require('packer').startup(function(use)
 		end
 	}
 	use {
-		'beauwilliams/statusline.lua',
-		requires = 'kyazdani42/nvim-web-devicons'
+		'famiu/feline.nvim',
+		config = function()
+			require('feline').setup()
+		end
 	}
 	use 'kshenoy/vim-signature'
 	use {
