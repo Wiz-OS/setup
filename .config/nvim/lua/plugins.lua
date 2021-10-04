@@ -126,12 +126,6 @@ return require('packer').startup(function(use)
 		end
 	}
 	use {
-		'glepnir/dashboard-nvim',
-		setup = function()
-			require('plugin.dashboard')
-		end
-	}
-	use {
 		'famiu/feline.nvim',
 		config = function()
 			require('feline').setup()
