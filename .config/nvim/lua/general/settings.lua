@@ -25,7 +25,8 @@ g.python3_host_prog = '/bin/python3' -- Python3
 opt.termguicolors = true		-- Needed by gruvbox.lua
 
 opt.timeoutlen = 500			-- Timeout
-opt.relativenumber = true		-- Relative numbers
+opt.relativenumber = true		-- Hybrid numbers
+opt.number = true			-- Hybrid numbers
 opt.mouse = 'a'				-- Mouse support
 opt.wrap = false			-- No line wrapping
 opt.clipboard = 'unnamedplus'		-- Universal clipboard
