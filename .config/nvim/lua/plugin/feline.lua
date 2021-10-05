@@ -34,24 +34,24 @@ local colors = {
 
 
 local vi_mode_provider = function()
-    local mode_alias = {
-      n = 'NORMAL',
-      no = 'NORMAL',
-      i = 'INSERT',
-      v = 'VISUAL',
-      V = 'V-LINE',
-      [''] = 'V-BLOCK',
-      c = 'COMMAND',
-      cv = 'COMMAND',
-      ce = 'COMMAND',
-      R = 'REPLACE',
-      Rv = 'REPLACE',
-      s = 'SELECT',
-      S = 'SELECT',
-      [''] = 'SELECT',
-      t = 'TERMINAL',
-    }
-    return ' ' .. mode_alias[vim.fn.mode()]
+	local mode_alias = {
+		n = 'NORMAL',
+		no = 'NORMAL',
+		i = 'INSERT',
+		v = 'VISUAL',
+		V = 'V-LINE',
+		[''] = 'V-BLOCK',
+		c = 'COMMAND',
+		cv = 'COMMAND',
+		ce = 'COMMAND',
+		R = 'REPLACE',
+		Rv = 'REPLACE',
+		s = 'SELECT',
+		S = 'SELECT',
+		[''] = 'SELECT',
+		t = 'TERMINAL',
+	}
+	return ' ' .. mode_alias[vim.fn.mode()]
 end
 
 components.active[1][1] = {}
@@ -93,6 +93,6 @@ components.active[1][3] = {
 		}
 	},
 	right_sep = {'slant_right_2', ' '}
-	}
+}
 
 require('feline').setup()
