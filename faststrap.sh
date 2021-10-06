@@ -95,8 +95,12 @@ echo 'EDITOR="nvim"\nMOZ_ENABLE_WAYLAND=1' | sudo tee -a /etc/environment > /dev
 stage "Installing applications..."
 
 info "Installing Pacstall applications. Part 1"
-notify-send "Interaction required"
-curl -fsSL https://git.io/Jue3Z | sudo bash # Pacstall (develop branch installer)
+(
+curl -fsSL https://git.io/Jue3Z > pacstall-install.sh # Pacstall (develop branch installer)
+chmod +x ./pacstall-install.sh
+yes | sudo ./pacstall-install.sh > /dev/null 2>&1
+rm ./pacstall-install.sh
+)
 pacstall -U pacstall develop > /dev/null
 pacstall -PI librewolf-app > /dev/null 2>&1
 
