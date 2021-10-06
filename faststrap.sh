@@ -94,15 +94,13 @@ echo 'EDITOR="nvim"\nMOZ_ENABLE_WAYLAND=1' | sudo tee -a /etc/environment > /dev
 # =============================================================================
 stage "Installing applications..."
 
-info "Installing Pacstall applications. Part 1"
-(
+info "Installing Pacstall applications."
 curl -fsSL https://git.io/Jue3Z > pacstall-install.sh # Pacstall (develop branch installer)
 chmod +x ./pacstall-install.sh
 yes | sudo ./pacstall-install.sh > /dev/null 2>&1
 rm ./pacstall-install.sh
-)
 pacstall -U pacstall develop > /dev/null
-pacstall -PI librewolf-app > /dev/null 2>&1
+pacstall -PI librewolf-app bemenu-git > /dev/null 2>&1
 
 info "Installing APT applications"
 sudo apt-get install -o Dpkg::Options::="--force-overwrite" -y \
@@ -170,12 +168,6 @@ cd .. && rm -r exa/
 notify-send "Interaction required"
 curl -sL install-node.now.sh/lts | sudo bash
 curl -fsSL https://starship.rs/install.sh | sudo sh
-
-info "Installing Pacstall applications. Part 2"
-(
-pacstall -PI bemenu-git > /dev/null 2>&1
-pacstall -PI hyperfine-bin > /dev/null 2>&1
-) &
 # =============================================================================
 
 # =============================================================================
