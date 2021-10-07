@@ -165,7 +165,7 @@ sudo mv completions/exa.bash /etc/bash_completion.d/
 cd .. && rm -r exa/
 ) &
 
-notify-send "Interaction required"
+notify-send --urgency critical "Interaction required"
 curl -sL install-node.now.sh/lts | sudo bash
 curl -fsSL https://starship.rs/install.sh | sudo sh
 # =============================================================================
