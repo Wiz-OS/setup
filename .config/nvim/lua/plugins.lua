@@ -237,7 +237,7 @@ return require('packer').startup(function(use)
 		end
 	}
 	use {
-		'a-vrma/black-nvim',
+		'averms/black-nvim',
 		ft = 'python',
 		config = function()
 			cmd("au FileType python au BufWritePre <buffer> call Black()")
