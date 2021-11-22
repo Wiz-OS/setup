@@ -121,7 +121,7 @@ sudo apt-get install -o Dpkg::Options::="--force-overwrite" -y \
 info "Installing PIP applications"
 sudo pip3 install \
 	autotiling \
-	pynvim black pipenv \
+	pynvim black \
 	cmake > /dev/null &
 
 info "Installing applications from USB"
