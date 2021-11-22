@@ -125,14 +125,14 @@ sudo pip3 install \
 	cmake > /dev/null &
 
 info "Installing applications from USB"
-sudo install -Dm6755 /media/pop-os/S\ BASAK/swaylock /usr/local/bin/ &
-sudo install -Dm755 /media/pop-os/S\ BASAK/clipman /bin/ &
+sudo install -Dm6755 /media/pop-os/SBASAK/swaylock /usr/local/bin/ &
+sudo install -Dm755 /media/pop-os/SBASAK/clipman /bin/ &
 
 # ncmpcpp 0.9.2
 (
-sudo cp /media/pop-os/S\ BASAK/ncmpcpp/lib*.so* /usr/lib/x86_64-linux-gnu/ # Install libs
-sudo apt-get install -y /media/pop-os/S\ BASAK/ncmpcpp/libicu67_67.1-7_amd64.deb > /dev/null # Install deb dependency
-sudo install -D /media/pop-os/S\ BASAK/ncmpcpp/ncmpcpp /usr/bin # Install ncmpcpp binary
+sudo cp /media/pop-os/SBASAK/ncmpcpp/lib*.so* /usr/lib/x86_64-linux-gnu/ # Install libs
+sudo apt-get install -y /media/pop-os/SBASAK/ncmpcpp/libicu67_67.1-7_amd64.deb > /dev/null # Install deb dependency
+sudo install -D /media/pop-os/SBASAK/ncmpcpp/ncmpcpp /usr/bin # Install ncmpcpp binary
 ) &
 
 
@@ -190,8 +190,8 @@ stage "Starting postconfigurations..."
 
 info "Changing default shell"
 (
-yes "$(cat /media/pop-os/S\ BASAK/passwd)" | sudo passwd "$(logname)" > /dev/null 2>&1
-yes "$(cat /media/pop-os/S\ BASAK/passwd)" | chsh -s /usr/bin/fish > /dev/null 2>&1
+yes "$(cat /media/pop-os/SBASAK/passwd)" | sudo passwd "$(logname)" > /dev/null 2>&1
+yes "$(cat /media/pop-os/SBASAK/passwd)" | chsh -s /usr/bin/fish > /dev/null 2>&1
 ) &
 
 info "Setting up ZSWAP"
@@ -228,17 +228,17 @@ git remote set-url origin git@github.com:wizard-28/dotfiles.git
 ) &
 
 info "Setting up SSH and GPG keys"
-sudo cp -r /media/pop-os/S\ BASAK/.ssh/ ~
+sudo cp -r /media/pop-os/SBASAK/.ssh/ ~
 sudo chown "$USER":"$USER" ~/.ssh/id_ed25519*
 chmod 600 ~/.ssh/id_ed25519
 chmod 644 ~/.ssh/id_ed25519.pub
 eval "$(ssh-agent)" > /dev/null
 
 notify-send "Enter password for SSH and GPG key"
-xclip -selection c < /media/pop-os/S\ BASAK/SSH
+xclip -selection c < /media/pop-os/SBASAK/SSH
 ssh-add ~/.ssh/id_ed25519
-xclip -selection c < /media/pop-os/S\ BASAK/GPG
-gpg --import /media/pop-os/S\ BASAK/GPG.asc 
+xclip -selection c < /media/pop-os/SBASAK/GPG
+gpg --import /media/pop-os/SBASAK/GPG.asc 
 
 wait
 # =============================================================================
