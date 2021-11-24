@@ -153,10 +153,6 @@ sudo chmod +x /bin/z
 sudo curl -sfLo /usr/local/bin/grimshot https://raw.githubusercontent.com/swaywm/sway/master/contrib/grimshot
 sudo chmod +x /usr/local/bin/grimshot
 ) &
-(
-curl https://pyenv.run | bash
-tar -xf /media/pop-os/SBASAK/3.8.2.7z -C ~/.pyenv/versions/
-) &
 notify-send --urgency critical "Poetry installation"
 curl -sSL https://install.python-poetry.org | python3 -
 
