@@ -180,7 +180,7 @@ return require('packer').startup(function(use)
 		'neovim/nvim-lspconfig',
 		event = 'BufReadPre',
 		requires = {
-			'kabouzeid/nvim-lspinstall',
+			'williamboman/nvim-lsp-installer',
 			{
 				'tami5/lspsaga.nvim',
 				event = 'BufReadPost',
