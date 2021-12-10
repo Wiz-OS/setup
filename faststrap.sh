@@ -59,20 +59,20 @@ deb http://apt.pop-os.org/proprietary focal main" | sudo tee /etc/apt/sources.li
 
 info "Adding PPAs"
 echo 'deb http://download.opensuse.org/repositories/home:/Head_on_a_Stick:/azote/xUbuntu_20.04/ /' | sudo tee /etc/apt/sources.list.d/home:Head_on_a_Stick:azote.list > /dev/null
-curl -fsSL https://download.opensuse.org/repositories/home:Head_on_a_Stick:azote/xUbuntu_20.04/Release.key | gpg --dearmor | sudo tee /etc/apt/trusted.gpg.d/home_Head_on_a_Stick_azote.gpg > /dev/null
-sudo add-apt-repository ppa:git-core/ppa -yn > /dev/null
-sudo add-apt-repository ppa:nschloe/sway-backports -yn > /dev/null
-sudo add-apt-repository ppa:nschloe/waybar -yn > /dev/null
-sudo add-apt-repository ppa:dtl131/mpdbackport -yn > /dev/null
-sudo apt-add-repository ppa:fish-shell/release-3 -yn > /dev/null
-sudo add-apt-repository ppa:neovim-ppa/unstable -yn > /dev/null
-sudo add-apt-repository ppa:pipewire-debian/pipewire-upstream -y > /dev/null
+curl -fsSL https://download.opensuse.org/repositories/home:Head_on_a_Stick:azote/xUbuntu_20.04/Release.key | gpg --dearmor | sudo tee /etc/apt/trusted.gpg.d/home_Head_on_a_Stick_azote.gpg > /dev/null || ../setup.sh
+sudo add-apt-repository ppa:git-core/ppa -yn > /dev/null || ../setup.sh
+sudo add-apt-repository ppa:nschloe/sway-backports -yn > /dev/null || ../setup.sh
+sudo add-apt-repository ppa:nschloe/waybar -yn > /dev/null || ../setup.sh
+sudo add-apt-repository ppa:dtl131/mpdbackport -yn > /dev/null || ../setup.sh
+sudo apt-add-repository ppa:fish-shell/release-3 -yn > /dev/null || ../setup.sh
+sudo add-apt-repository ppa:neovim-ppa/unstable -yn > /dev/null || ../setup.sh
+sudo add-apt-repository ppa:pipewire-debian/pipewire-upstream -y > /dev/null || ../setup.sh
 
 info "Updating APT"
-sudo apt-get install apt -y > /dev/null
+sudo apt-get install apt -y > /dev/null || .../setup.sh
 
 info "Installing configuration files"
-sudo apt-get install xutils-dev -y > /dev/null
+sudo apt-get install xutils-dev -y > /dev/null || .../setup.sh
 (
 mkdir -p ~/.doom.d/ ~/.weechat/ ~/.SpaceVim.d/ ~/.librewolf/
 lndir -silent ~/dotfiles/.config/ ~/.config/
