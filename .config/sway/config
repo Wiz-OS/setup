@@ -18,7 +18,7 @@
 set $mod Mod4
 set $term x-terminal-emulator
 set $laptop eDP-1
-set $menu LD_LIBRARY_PATH=/usr/local/lib/ bemenu-run -H 25 | xargs swaymsg exec --
+set $menu LD_LIBRARY_PATH=/usr/local/lib/ bemenu-run -H 25 --hb "#D81860FF" --hf "#CACACAFF" | xargs swaymsg exec --
 # =============================================================================
 
 # =============================================================================
