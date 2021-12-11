@@ -329,7 +329,7 @@ GLOBAL_KEYS = gears.table.join(
     {description = "restore minimized", group = "client"}),
 
   -- Prompt
-  awful.key({ MOD },            "r",     function () awful.screen.focused().mypromptbox:run() end,
+  awful.key({ MOD }, "d", function () awful.util.spawn("bemenu-run -H 20") end,
     {description = "run prompt", group = "launcher"}),
 
   awful.key({ MOD }, "x",
