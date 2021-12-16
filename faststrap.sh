@@ -101,7 +101,7 @@ chmod +x ./pacstall-install.sh
 yes | sudo ./pacstall-install.sh > /dev/null 2>&1
 rm ./pacstall-install.sh
 pacstall -U pacstall develop > /dev/null
-pacstall -PI librewolf-app bemenu-git > /dev/null 2>&1
+pacstall -PI librewolf-app bemenu-git shfmt-bin > /dev/null 2>&1
 
 info "Installing APT applications"
 sudo apt-get install -o Dpkg::Options::="--force-overwrite" -y \
