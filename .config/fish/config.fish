@@ -35,7 +35,7 @@ end
 
 # Jump around in code bases
 function dev
-	set work_folders $HOME/dotfiles/ /media/pop-os/S\ BASAK/code
+	set work_folders $HOME/dotfiles/ /media/pop-os/SBASAK/code
 	set file (fdfind --hidden --exclude ".git" --type f . $work_folders | fzf) && \
 	cd (dirname "$file") && \
 	nvim "$file" && \
