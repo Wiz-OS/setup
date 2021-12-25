@@ -35,4 +35,5 @@ opt.splitright = true			-- Vertical splits will be right
 opt.cursorline = true			-- Highlight cursor horizontally
 opt.spell = true			-- Spell checking
 opt.undofile = true			-- Unlimited undoes
+opt.tabstop = 4
 -- =============================================================================
