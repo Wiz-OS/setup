@@ -214,13 +214,26 @@ return require('packer').startup(function(use)
 		run= ':COQdeps',
 		setup = function()
 			g.coq_settings = {
-				auto_start = 'shut-up'
+				auto_start = 'shut-up',
+				display = {
+					pum = {
+						fast_close = false
+					}
+				}
 			}
 		end,
 		requires = {
 			{
 				'ms-jpq/coq.artifacts',
 				branch= 'artifacts'
+			},
+			{
+				"ms-jpq/coq.thirdparty",
+				branch = "3p",
+				config = require("coq_3p") {
+					{ src = "copilot", short_name = "COP", tmp_accept_key = "<c-r>" }
+				},
+				requires = "github/copilot.vim"
 			},
 			{
 				'windwp/nvim-autopairs',
@@ -265,3 +278,4 @@ return require('packer').startup(function(use)
 	}
 -- =============================================================================
 end)
+-- vim:set ts=4 sw=4 noet:
