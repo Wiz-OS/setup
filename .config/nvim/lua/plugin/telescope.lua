@@ -35,7 +35,7 @@ require('telescope').setup {
 			'--smart-case'
 		},
 		file_ignore_patterns = {
-			'.git/*'
+			'$.git/*'
 		},
 		mappings = {
 			i = { ["<c-t>"] = trouble.open_with_trouble },
@@ -50,6 +50,8 @@ require('telescope').setup {
 		}
 	}
 }
+
+require("telescope").load_extension "file_browser"
 
 local M = {}
 M.search_dotfiles = function()

@@ -10,5 +10,6 @@ wk.register({
 	['<leader>fl'] = { '<cmd>Telescope lsp_workspace_diagnostics<cr>', 'Find LSP diagnostics' },
 	['<leader>fs'] = { '<cmd>Telescope spell_suggest<cr>', 'Find spell suggestions' },
 
-	['<leader>fv'] = { '<cmd>lua require("plugin.telescope").search_dotfiles()<cr>', 'Browse vim configuration' }
+	['<leader>fv'] = { '<cmd>lua require("plugin.telescope").search_dotfiles()<cr>', 'Browse vim configuration' },
+	['<leader>fk'] = { '<cmd>lua require("telescope").extensions.file_browser.file_browser()<cr>', "File browser"}
 })
