@@ -231,9 +231,11 @@ return require('packer').startup(function(use)
 			{
 				"ms-jpq/coq.thirdparty",
 				branch = "3p",
-				config = require("coq_3p") {
-					{ src = "copilot", short_name = "COP", tmp_accept_key = "<c-r>" }
-				},
+				config = function()
+					require("coq_3p") {
+						{ src = "copilot", short_name = "COP", tmp_accept_key = "<c-r>" }
+					}
+				end,
 				requires = "github/copilot.vim"
 			},
 			{
