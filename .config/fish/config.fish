@@ -12,6 +12,7 @@
 # License: MIT
 # =============================================================================
 
+if status --is-interactive
 # =============================================================================
 # Startup commands
 # =============================================================================
@@ -36,7 +37,7 @@ end
 # Jump around in code bases
 function dev
 	set work_folders $HOME/dotfiles/ /media/pop-os/SBASAK/code
-	set file (fdfind --hidden --exclude ".git" --type f . $work_folders | fzf) && \
+	set file (fdfind --hidden --exclude ".git" --type f . $work_folders | fzf --preview "bat --color=always --style=numbers --line-range=:500 {}") && \
 	cd (dirname "$file") && \
 	nvim "$file" && \
 	commandline -f repaint
@@ -66,5 +67,4 @@ function fish_user_key_bindings
 	bind --mode insert \co 'dev'
 end
 # =============================================================================
-
-
+end
