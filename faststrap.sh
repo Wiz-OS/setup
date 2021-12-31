@@ -192,6 +192,12 @@ sudo apt-get autoremove --purge -y > /dev/null
 # =============================================================================
 stage "Starting postconfigurations..."
 
+info "Adding bat symlink"
+(
+mkdir -p ~/.local/bin
+ln -s /usr/bin/batcat ~/.local/bin/bat
+) &
+
 info "Changing default shell"
 (
 yes "$(cat /media/pop-os/SBASAK/passwd)" | sudo passwd "$(logname)" > /dev/null 2>&1
