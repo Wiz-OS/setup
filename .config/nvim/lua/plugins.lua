@@ -155,7 +155,7 @@ return require('packer').startup(function(use)
 			{'nvim-lua/plenary.nvim'},
 		}
 	}
-	use 'editorconfig/editorconfig-vim'
+	use 'gpanders/editorconfig.nvim'
 -- =============================================================================
 
 -- =============================================================================
