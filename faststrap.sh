@@ -146,8 +146,7 @@ fc-cache -f
 
 # Application
 (
-sudo curl -sfLo "/bin/z" https://raw.githubusercontent.com/skywind3000/z.lua/master/z.lua
-sudo chmod +x /bin/z
+curl -sS https://webinstall.dev/zoxide | bash
 ) &
 (
 sudo curl -sfLo /usr/local/bin/grimshot https://raw.githubusercontent.com/swaywm/sway/master/contrib/grimshot

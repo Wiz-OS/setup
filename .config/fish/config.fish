@@ -18,6 +18,7 @@ if status --is-interactive
 # =============================================================================
 starship init fish | source &
 treefetch -xmas &
+zoxide init fish | source &
 # =============================================================================
 
 fish_vi_cursor
@@ -68,3 +69,7 @@ function fish_user_key_bindings
 end
 # =============================================================================
 end
+
+# Generated for envman. Do not edit.
+test -s "$HOME/.config/envman/load.fish"; and source "$HOME/.config/envman/load.fish"
+
