@@ -225,16 +225,6 @@ systemctl --user --now enable pipewire.socket pipewire-pulse.socket pipewire.ser
 
 info "Setting up git"
 (
-git config --global user.name "Sourajyoti Basak"
-git config --global user.email "wiz28@protonmail.com"
-git config --global user.signingkey 51481E2CB03BF45A
-git config --global commit.gpgsign true
-git config --global merge.conflictstyle diff3
-git config --global merge.tool vim_mergetool
-git config --global mergetool.vim_mergetool.cmd 'nvim -c "MergetoolStart" "$MERGED" "$BASE" "$LOCAL" "$REMOTE"'
-git config --global help.autocorrect 5
-# Aliases
-git config --global alias.logline "log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit"
 # Setup remote
 cd ~/dotfiles || exit
 git remote set-url origin git@github.com:wizard-28/dotfiles.git
