@@ -153,7 +153,6 @@ sudo curl -sfLo /usr/local/bin/grimshot https://raw.githubusercontent.com/swaywm
 sudo chmod +x /usr/local/bin/grimshot
 ) &
 (
-notify-send --urgency critical "Poetry installation"
 curl -sSL https://install.python-poetry.org | python3 - > /dev/null
 ) &
 
