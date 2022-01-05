@@ -36,4 +36,5 @@ opt.cursorline = true			-- Highlight cursor horizontally
 opt.spell = true			-- Spell checking
 opt.undofile = true			-- Unlimited undoes
 opt.tabstop = 4
+opt.shiftwidth = 4
 -- =============================================================================
