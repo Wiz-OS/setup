@@ -146,7 +146,7 @@ fc-cache -f
 
 # Application
 (
-curl -sS https://webinstall.dev/zoxide | bash
+curl -sS https://webinstall.dev/zoxide | bash > /dev/null
 ) &
 (
 sudo curl -sfLo /usr/local/bin/grimshot https://raw.githubusercontent.com/swaywm/sway/master/contrib/grimshot
