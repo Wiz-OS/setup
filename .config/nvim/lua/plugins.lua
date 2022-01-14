@@ -74,8 +74,7 @@ return require('packer').startup(function(use)
 		}
 	}
 	use {
-		"zeertzjq/which-key.nvim",
-		branch = "patch-1",
+		"folke/which-key.nvim",
 		event = 'VimEnter',
 		config = function()
 			require('bindings.init')
