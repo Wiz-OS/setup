@@ -17,7 +17,7 @@ if status --is-interactive
 # Startup commands
 # =============================================================================
 starship init fish | source &
-treefetch -xmas &
+treefetch --bonsai &
 zoxide init fish | source &
 # =============================================================================
 
