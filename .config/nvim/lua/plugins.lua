@@ -161,6 +161,7 @@ return require('packer').startup(function(use)
 -- =============================================================================
 -- Git
 -- =============================================================================
+	use 'ThePrimeagen/git-worktree.nvim'
 	use {
 		'lewis6991/gitsigns.nvim',
 		event = 'BufReadPost',
@@ -227,16 +228,6 @@ return require('packer').startup(function(use)
 			{
 				'ms-jpq/coq.artifacts',
 				branch= 'artifacts'
-			},
-			{
-				"ms-jpq/coq.thirdparty",
-				branch = "3p",
-				config = function()
-					require("coq_3p") {
-						{ src = "copilot", short_name = "COP", tmp_accept_key = "<c-r>" }
-					}
-				end,
-				requires = "github/copilot.vim"
 			},
 			{
 				'windwp/nvim-autopairs',

@@ -11,5 +11,8 @@ wk.register({
 	['<leader>fs'] = { '<cmd>Telescope spell_suggest<cr>', 'Find spell suggestions' },
 
 	['<leader>fv'] = { '<cmd>lua require("plugin.telescope").search_dotfiles()<cr>', 'Browse vim configuration' },
-	['<leader>fk'] = { '<cmd>lua require("telescope").extensions.file_browser.file_browser()<cr>', "File browser"}
+	['<leader>fk'] = { '<cmd>lua require("telescope").extensions.file_browser.file_browser()<cr>', "File browser"},
+
+	['<leader>fww'] = { '<cmd>lua require("telescope").extensions.git_worktree.git_worktrees()<cr>', 'Switch and edit worktrees'},
+	['<leader>fwc'] = { '<cmd>lua require("telescope").extensions.git_worktree.create_git_worktree()<cr>', 'Create worktrees'},
 })

@@ -149,10 +149,6 @@ fc-cache -f
 curl -sS https://webinstall.dev/zoxide | bash > /dev/null
 ) &
 (
-curl https://raw.githubusercontent.com/oh-my-fish/oh-my-fish/master/bin/install | fish > /dev/null
-fish --command "omf install https://github.com/wfxr/forgit" > /dev/null
-) &
-(
 sudo curl -sfLo /usr/local/bin/grimshot https://raw.githubusercontent.com/swaywm/sway/master/contrib/grimshot
 sudo chmod +x /usr/local/bin/grimshot
 ) &
