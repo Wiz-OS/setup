@@ -101,12 +101,12 @@ chmod +x ./pacstall-install.sh
 yes | sudo ./pacstall-install.sh > /dev/null 2>&1
 rm ./pacstall-install.sh
 pacstall -U pacstall develop > /dev/null
-pacstall -PI librewolf-app bemenu-git shfmt-bin treefetch-bin git-delta-deb > /dev/null 2>&1
+pacstall -PI librewolf-app bemenu-git shfmt-bin dunst treefetch-bin git-delta-deb > /dev/null 2>&1
 
 info "Installing APT applications"
 sudo apt-get install -o Dpkg::Options::="--force-overwrite" -y \
 	lua5.3 bat ripgrep fd-find fzf zram-config zram-tools gnome-tweaks gstreamer1.0-plugins-bad \
-	libnotify-bin jq light grim slurp playerctl htop wl-clipboard mako-notifier xwayland libgdk-pixbuf2.0-common libgdk-pixbuf2.0-bin gir1.2-gdkpixbuf-2.0 python3-pip \
+	libnotify-bin jq light grim slurp playerctl htop wl-clipboard xwayland libgdk-pixbuf2.0-common libgdk-pixbuf2.0-bin gir1.2-gdkpixbuf-2.0 python3-pip \
 	sway swayidle sway-backgrounds azote \
 	waybar fonts-font-awesome \
 	shellcheck \
