@@ -228,7 +228,7 @@ bindsym Mod1+b exec librewolf
 # Startup Applications
 exec GDK_BACKEND=wayland
 exec CLUTTER_BACKEND=wayland
-exec mako
+exec dunst
 exec mpd
 exec wl-paste -t text --watch clipman store
 exec clipman restore
