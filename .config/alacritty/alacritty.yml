@@ -17,11 +17,11 @@ colors:
 
 font:
   normal:
-    family: JetBrainsMonoNL Nerd Font Mono
+    family: JetBrainsMonoNL Nerd Font
     style: Regular
 
   italic:
-    family: JetBrainsMonoNL Nerd Font Mono
+    family: JetBrainsMonoNL Nerd Font
     style: Italic
 
   # Point size

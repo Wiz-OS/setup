@@ -8,7 +8,7 @@
 #        \/          \/      \/
 # faststrap.sh --- Fast bootstrapping script
 # Copyright (c) 2021-present Sourajyoti Basak
-# Author: Sourajyoti Basak < wiz28@protonmail.com >
+# Author: Sourajyoti Basak <wiz28@protonmail.com>
 # URL: https://github.com/wizard-28/dotfiles/
 # License: MIT
 # =============================================================================
@@ -139,8 +139,8 @@ sudo install -D /media/pop-os/SBASAK/ncmpcpp/ncmpcpp /usr/bin # Install ncmpcpp 
 info "Installing CURL applications"
 # Fonts
 (
-sudo curl -sfLo "/usr/share/fonts/truetype/JetBrains Mono NL Regular Nerd Font Complete Mono.ttf" https://github.com/ryanoasis/nerd-fonts/raw/master/patched-fonts/JetBrainsMono/NoLigatures/Regular/complete/JetBrains%20Mono%20NL%20Regular%20Nerd%20Font%20Complete%20Mono.ttf
-sudo curl -sfLo "/usr/share/fonts/truetype/JetBrains Mono NL Italic Nerd Font Complete Mono.ttf" https://github.com/ryanoasis/nerd-fonts/raw/master/patched-fonts/JetBrainsMono/NoLigatures/Italic/complete/JetBrains%20Mono%20NL%20Italic%20Nerd%20Font%20Complete%20Mono.ttf
+sudo curl -sfLo "/usr/share/fonts/truetype/JetBrains Mono NL Regular Nerd Font Complete.ttf" https://github.com/ryanoasis/nerd-fonts/raw/master/patched-fonts/JetBrainsMono/NoLigatures/Regular/complete/JetBrains%20Mono%20NL%20Regular%20Nerd%20Font%20Complete.ttf
+sudo curl -sfLo "/usr/share/fonts/truetype/JetBrains Mono NL Italic Nerd Font Complete.ttf" https://github.com/ryanoasis/nerd-fonts/raw/master/patched-fonts/JetBrainsMono/NoLigatures/Italic/complete/JetBrains%20Mono%20NL%20Italic%20Nerd%20Font%20Complete.ttf
 fc-cache -f
 ) &
 
