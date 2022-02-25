@@ -1,4 +1,4 @@
-;; =============================================================================
+;;; =============================================================================
 ;;;  __      __________   ______
 ;;; /  \    /  \_____  \ /  __  \
 ;;; \   \/\/   //  ____/ >      <
@@ -61,12 +61,7 @@
                                 {:run :make :after :plenary.nvim})]})
 
 ;; Pretty trouble management
-(use-package! :folke/trouble.nvim
-              {:cmd :TroubleToggle
-               :module :trouble
-               :config (fn []
-                         (local {: setup} (require :trouble))
-                         (setup {:icons false}))})
+(use-package! :folke/trouble.nvim {:module :trouble :config! :trouble})
 
 ;; Pretty notifications
 (use-package! :rcarriga/nvim-notify
