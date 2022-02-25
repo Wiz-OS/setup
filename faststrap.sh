@@ -74,16 +74,16 @@ sudo apt-get install apt -y > /dev/null || .../setup.sh
 info "Installing configuration files"
 sudo apt-get install xutils-dev -y > /dev/null || .../setup.sh
 (
-mkdir -p ~/.doom.d/ ~/.weechat/ ~/.SpaceVim.d/ ~/.librewolf/
-lndir -silent ~/dotfiles/.config/ ~/.config/
-lndir -silent ~/dotfiles/.doom.d/ ~/.doom.d/
-lndir -silent ~/dotfiles/.weechat/ ~/.weechat/
-lndir -silent ~/dotfiles/.SpaceVim.d/ ~/.SpaceVim.d/
-ln -sf ~/dotfiles/.bashrc ~/.bashrc
-ln -sf ~/dotfiles/.bash_aliases ~/.bash_aliases
-ln -sf ~/dotfiles/.config/starship/starship.toml ~/.config/starship.toml
-ln -sf ~/dotfiles/.azotebg ~/.azotebg
-ln -sf ~/dotfiles/.librewolf/librewolf.overrides.cfg ~/.librewolf/librewolf.overrides.cfg
+    mkdir -p ~/.doom.d/ ~/.weechat/ ~/.SpaceVim.d/ ~/.librewolf/
+    lndir -silent ~/dotfiles/.config/ ~/.config/
+    lndir -silent ~/dotfiles/.doom.d/ ~/.doom.d/
+    lndir -silent ~/dotfiles/.weechat/ ~/.weechat/
+    lndir -silent ~/dotfiles/.SpaceVim.d/ ~/.SpaceVim.d/
+    ln -sf ~/dotfiles/.bashrc ~/.bashrc
+    ln -sf ~/dotfiles/.bash_aliases ~/.bash_aliases
+    ln -sf ~/dotfiles/.config/starship/starship.toml ~/.config/starship.toml
+    ln -sf ~/dotfiles/.azotebg ~/.azotebg
+    ln -sf ~/dotfiles/.librewolf/librewolf.overrides.cfg ~/.librewolf/librewolf.overrides.cfg
 ) &
 
 info "Configuring environment variables"
@@ -130,42 +130,42 @@ sudo install -Dm755 /media/pop-os/SBASAK/clipman /bin/ &
 
 # ncmpcpp 0.9.2
 (
-sudo cp /media/pop-os/SBASAK/ncmpcpp/lib*.so* /usr/lib/x86_64-linux-gnu/ # Install libs
-sudo apt-get install -y /media/pop-os/SBASAK/ncmpcpp/libicu67_67.1-7_amd64.deb > /dev/null # Install deb dependency
-sudo install -D /media/pop-os/SBASAK/ncmpcpp/ncmpcpp /usr/bin # Install ncmpcpp binary
+    sudo cp /media/pop-os/SBASAK/ncmpcpp/lib*.so* /usr/lib/x86_64-linux-gnu/ # Install libs
+    sudo apt-get install -y /media/pop-os/SBASAK/ncmpcpp/libicu67_67.1-7_amd64.deb > /dev/null # Install deb dependency
+    sudo install -D /media/pop-os/SBASAK/ncmpcpp/ncmpcpp /usr/bin # Install ncmpcpp binary
 ) &
 
 
 info "Installing CURL applications"
 # Fonts
 (
-sudo curl -sfLo "/usr/share/fonts/truetype/JetBrains Mono NL Regular Nerd Font Complete.ttf" https://github.com/ryanoasis/nerd-fonts/raw/master/patched-fonts/JetBrainsMono/NoLigatures/Regular/complete/JetBrains%20Mono%20NL%20Regular%20Nerd%20Font%20Complete.ttf
-sudo curl -sfLo "/usr/share/fonts/truetype/JetBrains Mono NL Italic Nerd Font Complete.ttf" https://github.com/ryanoasis/nerd-fonts/raw/master/patched-fonts/JetBrainsMono/NoLigatures/Italic/complete/JetBrains%20Mono%20NL%20Italic%20Nerd%20Font%20Complete.ttf
-fc-cache -f
+    sudo curl -sfLo "/usr/share/fonts/truetype/JetBrains Mono NL Regular Nerd Font Complete.ttf" https://github.com/ryanoasis/nerd-fonts/raw/master/patched-fonts/JetBrainsMono/NoLigatures/Regular/complete/JetBrains%20Mono%20NL%20Regular%20Nerd%20Font%20Complete.ttf
+    sudo curl -sfLo "/usr/share/fonts/truetype/JetBrains Mono NL Italic Nerd Font Complete.ttf" https://github.com/ryanoasis/nerd-fonts/raw/master/patched-fonts/JetBrainsMono/NoLigatures/Italic/complete/JetBrains%20Mono%20NL%20Italic%20Nerd%20Font%20Complete.ttf
+    fc-cache -f
 ) &
 
 # Application
 (
-curl -sS https://webinstall.dev/zoxide | bash > /dev/null
+    curl -sS https://webinstall.dev/zoxide | bash > /dev/null
 ) &
 (
-sudo curl -sfLo /usr/local/bin/grimshot https://raw.githubusercontent.com/swaywm/sway/master/contrib/grimshot
-sudo chmod +x /usr/local/bin/grimshot
+    sudo curl -sfLo /usr/local/bin/grimshot https://raw.githubusercontent.com/swaywm/sway/master/contrib/grimshot
+    sudo chmod +x /usr/local/bin/grimshot
 ) &
 (
-curl -sSL https://install.python-poetry.org | python3 - > /dev/null
+    curl -sSL https://install.python-poetry.org | python3 - > /dev/null
 ) &
 
 (
-mkdir exa/
-cd exa/ || exit
-curl -s https://api.github.com/repos/ogham/exa/releases/latest | grep "browser_download_url" | grep "exa-linux-x86_64-v" | cut -d '"' -f 4 | wget -qi -
-unzip -q exa*
-sudo mv bin/exa /usr/local/bin
-sudo mv man/exa.1 /usr/share/man/man1/
-sudo mv completions/exa.fish /usr/share/fish/vendor_completions.d/
-sudo mv completions/exa.bash /etc/bash_completion.d/
-cd .. && rm -r exa/
+    mkdir exa/
+    cd exa/ || exit
+    curl -s https://api.github.com/repos/ogham/exa/releases/latest | grep "browser_download_url" | grep "exa-linux-x86_64-v" | cut -d '"' -f 4 | wget -qi -
+    unzip -q exa*
+    sudo mv bin/exa /usr/local/bin
+    sudo mv man/exa.1 /usr/share/man/man1/
+    sudo mv completions/exa.fish /usr/share/fish/vendor_completions.d/
+    sudo mv completions/exa.bash /etc/bash_completion.d/
+    cd .. && rm -r exa/
 ) &
 
 notify-send --urgency critical "Interaction required"
@@ -180,8 +180,8 @@ stage "Purging bloat..."
 
 info "Purging APT bloat"
 (
-sudo apt-get purge firefox libreoffice-common geary totem suckless-tools -y > /dev/null
-sudo apt-get autoremove --purge -y > /dev/null
+    sudo apt-get purge firefox libreoffice-common geary totem suckless-tools -y > /dev/null
+    sudo apt-get autoremove --purge -y > /dev/null
 ) &
 # =============================================================================
 
@@ -192,38 +192,38 @@ stage "Starting postconfigurations..."
 
 info "Adding bat symlink"
 (
-mkdir -p ~/.local/bin
-ln -s /usr/bin/batcat ~/.local/bin/bat
+    mkdir -p ~/.local/bin
+    ln -s /usr/bin/batcat ~/.local/bin/bat
 ) &
 
 info "Changing default shell"
 (
-yes "$(cat /media/pop-os/SBASAK/passwd)" | sudo passwd "$(logname)" > /dev/null 2>&1
-yes "$(cat /media/pop-os/SBASAK/passwd)" | chsh -s /usr/bin/fish > /dev/null 2>&1
+    yes "$(cat /media/pop-os/SBASAK/passwd)" | sudo passwd "$(logname)" > /dev/null 2>&1
+    yes "$(cat /media/pop-os/SBASAK/passwd)" | chsh -s /usr/bin/fish > /dev/null 2>&1
 ) &
 
 info "Setting up ZSWAP"
 (
-sudo swapoff -a > /dev/null
-sudo zramctl /dev/zram0 --size 750M > /dev/null 2>&1
-sudo zramctl /dev/zram1 --size 750M > /dev/null 2>&1
-sudo zramctl /dev/zram2 --size 750M > /dev/null 2>&1
-sudo zramctl /dev/zram3 --size 750M > /dev/null 2>&1
-sudo zramswap start > /dev/null 2>&1
+    sudo swapoff -a > /dev/null
+    sudo zramctl /dev/zram0 --size 750M > /dev/null 2>&1
+    sudo zramctl /dev/zram1 --size 750M > /dev/null 2>&1
+    sudo zramctl /dev/zram2 --size 750M > /dev/null 2>&1
+    sudo zramctl /dev/zram3 --size 750M > /dev/null 2>&1
+    sudo zramswap start > /dev/null 2>&1
 ) &
 
 info "Setting up Pipewire"
 (
-systemctl --user --now disable pulseaudio.socket pulseaudio.service > /dev/null 2>&1
-systemctl --user mask pulseaudio > /dev/null 2>&1
-systemctl --user --now enable pipewire.socket pipewire-pulse.socket pipewire.service pipewire-pulse.service pipewire-media-session.service > /dev/null 2>&1
+    systemctl --user --now disable pulseaudio.socket pulseaudio.service > /dev/null 2>&1
+    systemctl --user mask pulseaudio > /dev/null 2>&1
+    systemctl --user --now enable pipewire.socket pipewire-pulse.socket pipewire.service pipewire-pulse.service pipewire-media-session.service > /dev/null 2>&1
 ) &
 
 info "Setting up git"
 (
-# Setup remote
-cd ~/dotfiles || exit
-git remote set-url origin git@github.com:wizard-28/dotfiles.git
+    # Setup remote
+    cd ~/dotfiles || exit
+    git remote set-url origin git@github.com:wizard-28/dotfiles.git
 ) &
 
 info "Setting up SSH and GPG keys"
