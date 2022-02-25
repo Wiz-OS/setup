@@ -74,11 +74,10 @@ sudo apt-get install apt -y > /dev/null || .../setup.sh
 info "Installing configuration files"
 sudo apt-get install xutils-dev -y > /dev/null || .../setup.sh
 (
-    mkdir -p ~/.doom.d/ ~/.weechat/ ~/.SpaceVim.d/ ~/.librewolf/
+    mkdir -p ~/.doom.d/ ~/.weechat/ ~/.librewolf/
     lndir -silent ~/dotfiles/.config/ ~/.config/
     lndir -silent ~/dotfiles/.doom.d/ ~/.doom.d/
     lndir -silent ~/dotfiles/.weechat/ ~/.weechat/
-    lndir -silent ~/dotfiles/.SpaceVim.d/ ~/.SpaceVim.d/
     ln -sf ~/dotfiles/.bashrc ~/.bashrc
     ln -sf ~/dotfiles/.bash_aliases ~/.bash_aliases
     ln -sf ~/dotfiles/.config/starship/starship.toml ~/.config/starship.toml
