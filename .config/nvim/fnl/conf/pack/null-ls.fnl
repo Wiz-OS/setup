@@ -18,6 +18,12 @@
 (local shell_sources [builtins.diagnostics.shellcheck
                       builtins.code_actions.shellcheck
                       builtins.formatting.shellharden
+                      (builtins.formatting.shfmt.with {:extra_args [:-i
+                                                                    :2
+                                                                    :-bn
+                                                                    :-ci
+                                                                    :-sr
+                                                                    :-s]})
                       builtins.formatting.fish_indent])
 
 (local python_sources
