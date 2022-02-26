@@ -1,17 +1,17 @@
-; ==============================================================================
-;;  __      __________   ______
-;; /  \    /  \_____  \ /  __  \
-;; \   \/\/   //  ____/ >      <
-;;  \        //       \/   --   \
-;;   \__/\  / \_______ \______  /
-;;        \/          \/      \/
-;; settings.fnl - settings for neovim
-;; Copyright (c) 2021-present Sourajyoti Basak
-;; Author: Sourajyoti Basak <wiz28@protonmail.com>
-;; URL: https://github.com/wizard-28/dotfiles/
-;; License: MIT
-;; =============================================================================
-(import-macros {: set! : let! : map!} :conf.macros)
+;;; ==============================================================================
+;;;  __      __________   ______
+;;; /  \    /  \_____  \ /  __  \
+;;; \   \/\/   //  ____/ >      <
+;;;  \        //       \/   --   \
+;;;   \__/\  / \_______ \______  /
+;;;        \/          \/      \/
+;;; settings.fnl --- settings for neovim
+;;; Copyright (c) 2021-present Sourajyoti Basak
+;;; Author: Sourajyoti Basak <wiz28@protonmail.com>
+;;; URL: https://github.com/wizard-28/dotfiles/
+;;; License: MIT
+;;; =============================================================================
+(import-macros {: set! : let!} :conf.macros)
 
 ;;; ============================================================================
 ;;; Disable unnecessary plugins
@@ -43,88 +43,82 @@
 ;;; ============================================================================
 (let! mapleader " ")
 
-; Map <leader> to <space>
+;; Map <leader> to <space>
 (let! maplocalleader ",")
 
-; Map <localleader> to ,
+;; Map <localleader> to ,
 (let! python3_host_prog :/bin/python3)
 
-; Set python3 host
+;; Set python3 host
 ;;; ============================================================================
 
 ;;; ============================================================================
 ;;; Settings
 ;;; ============================================================================
-;; Line numbers
+;;; Line numbers
+;; Show relative line numbers
 (set! relativenumber)
 
-; Show relative line numbers
+;; Show absolute line numbers
 (set! number true)
 
-; Show absolute line numbers
-
-;; Utility
+;;; Utility
+;; Smart searching
 (set! smartcase)
 
-; Smart searching
+;; Show white spaces as characters
 (set! list)
 
-; Show white spaces as characters
+;; Enable mouse support
 (set! mouse :a)
 
-; Enable mouse support
+;; Spell checking
 (set! spell)
 
-; Spell checking
+;; Highlight the text line of cursor
 (set! cursorline)
 
-; Highlight the text line of cursor
-
-;; Files
+;;; Files
+;; Use a undo file
 (set! undofile)
 
-; Use a undo file
+;; Disable swap file
 (set! noswapfile)
 
-; Disable swap file
+;; Disable write backup
 (set! nowritebackup)
 
-; Disable write backup
-
-;; Splits
+;;; Splits
+;; Horizontal splits will be below
 (set! splitbelow)
 
-; Horizontal splits will be below
+;; Vertical splits will be right
 (set! splitright)
 
-; Vertical splits will be right
-
-;; Tabs
+;;; Tabs
+;; Number of spaces a tab represents
 (set! tabstop 4)
 
-; Number of spaces a tab represents
+;; Number of spaces to use for indent
 (set! shiftwidth 4)
 
-; Number of spaces to use for indent
+;; Expand tabs to spaces
 (set! expandtab)
 
-; Expand tabs to spaces
-
-;; Misc
+;;; Misc
+;; Infinite signs, width auto adjusted
 (set! signcolumn "auto:9")
 
-; Infinite signs, width auto adjusted
+;; Disable line wrapping 
 (set! nowrap)
 
-; Disable line wrapping 
+;; Enable True Color support
 (set! termguicolors)
 
-; Enable True Color support
+;; Timeout for a mapped sequence
 (set! timeoutlen 500)
 
-; Timeout for a mapped sequence
+;; Faster macros (redraw screen after change)
 (set! lazyredraw)
-
-; Faster macros (redraw screen after change)
 ;;; ============================================================================
 ;; vim:set tw=2 sw=2:
