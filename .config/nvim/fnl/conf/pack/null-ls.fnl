@@ -18,12 +18,15 @@
 (local shell_sources [builtins.diagnostics.shellcheck
                       builtins.code_actions.shellcheck
                       builtins.formatting.shellharden
-                      (builtins.formatting.shfmt.with {:extra_args [:-i
-                                                                    :2
-                                                                    :-bn
-                                                                    :-ci
-                                                                    :-sr
-                                                                    :-s]})
+                      (builtins.formatting.shfmt.with {:extra_args (fn [params]
+                                                                    (and (and params.options
+                                                                              params.options.tabSize)
+                                                                         [:-i
+                                                                          params.options.tabSize
+                                                                          :-bn
+                                                                          :-ci
+                                                                          :-sr
+                                                                          :-s]))})
                       builtins.formatting.fish_indent])
 
 (local python_sources
