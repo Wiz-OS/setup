@@ -17,6 +17,7 @@
 
 (local shell_sources [builtins.diagnostics.shellcheck
                       builtins.code_actions.shellcheck
+                      builtins.formatting.shellharden
                       builtins.formatting.fish_indent])
 
 (local python_sources

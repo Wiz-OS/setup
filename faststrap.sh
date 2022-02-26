@@ -100,7 +100,7 @@ chmod +x ./pacstall-install.sh
 yes | sudo ./pacstall-install.sh > /dev/null 2>&1
 rm ./pacstall-install.sh
 pacstall -U pacstall develop > /dev/null
-pacstall -PI librewolf-app bemenu-git shfmt-bin dunst treefetch-bin git-delta-deb > /dev/null 2>&1
+pacstall -PI librewolf-app bemenu-git shfmt-bin shellharden-bin dunst treefetch-bin git-delta-deb > /dev/null 2>&1
 
 info "Installing APT applications"
 sudo apt-get install -o Dpkg::Options::="--force-overwrite" -y \
