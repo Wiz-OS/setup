@@ -18,6 +18,11 @@
 (local {: register} (require :which-key))
 
 (register {:<leader>t {:name :+Trouble}
-           :<leader>tt [":ToubleToggle<cr>" "Toggle Trouble"]})
+           :<leader>tt [":TroubleToggle<cr>" "Toggle Trouble"]
+           :<leader>tw [":Trouble workspace_diagnostics<cr>" "Trouble workspace diagnostics"]
+           :<leader>td [":Trouble document_diagnostics<cr>" "Trouble document diagnostics"]
+           :<leader>tl [":Trouble loclist<cr>" "Trouble loclist"]
+           :<leader>tq [":Trouble quickfix<cr>" "Trouble quickfix"]
+           :<leader>ts [":Trouble lsp_references<cr>" "Trouble LSP references"]})
 
 ;;; ============================================================================
