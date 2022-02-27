@@ -139,6 +139,9 @@
                           (pack :j-hui/fidget.nvim
                                 {:after :nvim-lspconfig :init :fidget})]})
 
+;; LSP UI
+(use-package! :tami5/lspsaga.nvim {:config! :lspsaga})
+
 ;; Custom LSPs
 (use-package! :jose-elias-alvarez/null-ls.nvim
               {:config! :null-ls :requires :nvim-lua/plenary.nvim})
