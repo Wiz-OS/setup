@@ -4,4 +4,4 @@
 
 This is a backup repository of my dotfiles! 
 
-[faststrap.sh](faststrap.sh) is a script that I use to setup my broken laptop everytime I boot it up (I am using a liveUSB to boot up).
+[faststrap.sh](faststrap.sh) is a script that I use to setup my broken laptop every time I boot it up (I am using a liveUSB to boot up).

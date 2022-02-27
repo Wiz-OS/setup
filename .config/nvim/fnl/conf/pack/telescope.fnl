@@ -26,7 +26,7 @@
                    :file_ignore_patterns [:$.git/*]
                    :mappings {:i {:<c-t> open_with_trouble}
                               :n {:<c-t> open_with_trouble}}}
-        :extentions {:fzf {:fuzzy true
+        :extensions {:fzf {:fuzzy true
                            :override_generic_sorter false
                            :override_file_sorter true}}})
 

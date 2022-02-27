@@ -80,3 +80,4 @@ LuaJIT
 lua
 Clojure
 clojure
+sqlite
