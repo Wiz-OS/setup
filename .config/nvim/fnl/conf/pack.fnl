@@ -68,6 +68,8 @@
               {:config (fn []
                          (set vim.notify (require :notify)))})
 
+(use-package! :lukas-reineke/indent-blankline.nvim {:config! :indent-blankline})
+
 ;;; ============================================================================
 ;;; File type plugins
 ;;; ============================================================================
