@@ -140,7 +140,7 @@
                                 {:after :nvim-lspconfig :init :fidget})]})
 
 ;; LSP UI
-(use-package! :tami5/lspsaga.nvim {:config! :lspsaga})
+(use-package! :tami5/lspsaga.nvim)
 
 ;; Custom LSPs
 (use-package! :jose-elias-alvarez/null-ls.nvim
