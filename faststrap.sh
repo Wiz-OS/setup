@@ -39,9 +39,9 @@ tput sgr0
 # =============================================================================
 
 # =============================================================================
-# Stage 1: Preconfigurations
+# Stage 1: Pre-configurations
 # =============================================================================
-stage "Starting preconfigurations..."
+stage "Starting pre-configurations..."
 
 info "Configuring timezone"
 sudo timedatectl set-timezone Asia/Kolkata &
