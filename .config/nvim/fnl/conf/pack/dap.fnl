@@ -31,7 +31,10 @@
                              "Step over"]
            :<localleader>di [(fn []
                                ((. (require :dap) :step_into)))
-                             "Step into"]})
+                             "Step into"]
+           :<localleader>dr [(fn []
+                               ((. (. (require :dap) :repl) :open)))
+                             "Open REPL"]})
 
 ;;; ===========================================================================
 ;;; DAP Python settings

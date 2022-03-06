@@ -160,7 +160,15 @@
                :requires :mfussenegger/nvim-dap-python})
 
 ;; DAP pretty UI
-(use-package! :rcarriga/nvim-dap-ui {:module :dapui :after :nvim-dap :init :dapui})
+(use-package! :rcarriga/nvim-dap-ui
+              {:module :dapui :after :nvim-dap :init :dapui})
+
+;;; ============================================================================
+;;; Tests
+;;; ============================================================================
+;; Test runner
+(use-package! :rcarriga/vim-ultest {:requires :vim-test/vim-test})
+;;; ============================================================================
 
 ;;; ============================================================================
 
