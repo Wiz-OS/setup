@@ -171,6 +171,12 @@
               {:requires :vim-test/vim-test :run ":UpdateRemotePlugins"})
 
 ;; :setup (fn []
+;;          (let! ultest_pass_sign "")
+;;          (let! ultest_fail_sign "")
+;;          (let! ultest_running_sign "")
+;;          (let! ultest_not_run_sign ""))})
+
+;; :setup (fn []
 ;;          (let! test#python#pytest#options :--color=yes))})
 
 ;;; ============================================================================
