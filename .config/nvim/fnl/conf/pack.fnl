@@ -167,7 +167,12 @@
 ;;; Tests
 ;;; ============================================================================
 ;; Test runner
-(use-package! :rcarriga/vim-ultest {:requires :vim-test/vim-test})
+(use-package! :rcarriga/vim-ultest
+              {:requires :vim-test/vim-test :run ":UpdateRemotePlugins"})
+
+;; :setup (fn []
+;;          (let! test#python#pytest#options :--color=yes))})
+
 ;;; ============================================================================
 
 ;;; ============================================================================
