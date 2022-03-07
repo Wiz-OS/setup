@@ -168,7 +168,9 @@
 ;;; ============================================================================
 ;; Test runner
 (use-package! :rcarriga/vim-ultest
-              {:requires :vim-test/vim-test :run ":UpdateRemotePlugins"})
+              {:requires :vim-test/vim-test
+               :run ":UpdateRemotePlugins"
+               :config! :ultest})
 
 ;; :setup (fn []
 ;;          (let! ultest_pass_sign "")
