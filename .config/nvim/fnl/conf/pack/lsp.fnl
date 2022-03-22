@@ -14,6 +14,17 @@
 
 (local config (require :lspconfig))
 
+(local {: register} (require :which-key))
+
+;;; ============================================================================
+;;; LSP independent bindings
+;;; ============================================================================
+(register {:<A-d> [":Lspsaga toggle_floaterm<cr>" "Toggle floating terminal"]})
+(register {:<A-d> ["<C-\\><C-n><cmd>Lspsaga toggle_floaterm<cr>"
+                   "Toggle floating terminal"]} {:mode :t})
+
+;;; ============================================================================
+
 (let [{: config : severity} vim.diagnostic
       {: sign_define} vim.fn]
   (config {:underline {:severity {:min severity.INFO}}
@@ -39,7 +50,6 @@
                         {:python {:analysis {:typeCheckingMode :strict}}}))})
 
 (fn on-attach [client buffer]
-  (local {: register} (require :which-key))
   (register {:<leader>g {:name :LSP}
              :<leader>gr [":Lspsaga rename<cr>" :Rename]
              :<leader>gx [":Lspsaga code_action<cr>" "Code action"]
@@ -64,5 +74,4 @@
                                      ((. enhance-server-opts server.name) opts))
                                    (set opts.capabilities
                                         ((. (require :cmp_nvim_lsp)
-                                            :update_capabilities) (vim.lsp.protocol.make_client_capabilities)))
-                                   (server:setup opts))))
+                                            :update_capabilities) (vim.lsp.protocol.make_client_capabilities (server:setup opts)))))))
