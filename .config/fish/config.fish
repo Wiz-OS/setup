@@ -55,6 +55,15 @@ if status --is-interactive
         end
     end
 
+    function pm
+        set -l paths
+        set -l pacscripts caprine-deb dust-bin emacs fennel hyperfine-bin i3-gaps libressl librewolf-app oil opera-deb qogir-gtk-theme-bin qogir-icon-theme-bin shfmt-bin telegram-bin tmpmail-bin uwufetch walc-app zentile-bin fnlfmt fennel-bin
+        for pacscript in $pacscripts
+            set -a paths "/media/pop-os/SBASAK/code/pacstall-programs/packages/$pacscript/$pacscript.pacscript"
+        end
+        pacup $paths
+    end
+
 
     # Jump around in code bases
     function dev
