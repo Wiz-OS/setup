@@ -1,19 +1,29 @@
 colors:
   # Default colors
   primary:
-    background: '#282c34'
-    foreground: '#bbc2cf'
+    background: "#0f111a"
+    foreground: "#bbc2cf"
 
   # Normal colors
   normal:
-    black:   '#282c34'
-    red:     '#ff6c6b'
-    green:   '#98be65'
-    yellow:  '#ecbe7b'
-    blue:    '#51afef'
-    magenta: '#c678dd'
-    cyan:    '#46d9ff'
-    white:   '#bbc2cf'
+    black:   "#000000"
+    red:     "#dc6068"
+    green:   "#abcf76"
+    yellow:  "#e6b455"
+    blue:    "#6e98eb"
+    magenta: "#b480d6"
+    cyan:    "#71c6e7"
+    white:   "#eeffff"
+
+  bright:
+    black: "#464b5d"
+    red: "#f07178"
+    green: "#c3e88d"
+    yellow: "#ffcb6b"
+    blue: "#82aaff"
+    magenta: "#c792ea"
+    cyan: "#89ddff"
+    white: "#eeffff"
 
 font:
   normal:
@@ -41,7 +51,7 @@ window:
 
 scrolling:
   # Maximum number of lines in the scrollback buffer.
-  # Specifying '0' will disable scrolling.
+  # Specifying "0" will disable scrolling.
   history: 10000
 
   # Number of lines the viewport will move for every line scrolled when
