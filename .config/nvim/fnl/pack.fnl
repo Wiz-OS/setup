@@ -41,7 +41,7 @@
 (use-package! :folke/which-key.nvim {:init :which-key})
 
 ;; Cool motion
-(use-package! :ggandor/lightspeed.nvim {:keys [:s :S]})
+(use-package! :ggandor/leap.nvim {:keys [:s :S]})
 
 ;; Create new directories automatically when writing to a new buffer
 (use-package! :jghauser/mkdir.nvim
