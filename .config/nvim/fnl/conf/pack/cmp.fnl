@@ -25,15 +25,6 @@
 (local {: insert} table)
 
 ;;; ============================================================================
-;;; Copilot
-;;; ============================================================================
-(cmd "imap <silent><script><expr> <M-c> copilot#Accept('<CR>')")
-(let! copilot_no_tab_map true)
-;; (let! copilot_assume_mapped true)
-;; (let! copilot_tab_fallback "<c-c>")
-;;; ============================================================================
-
-;;; ============================================================================
 ;;; Highlights
 ;;; ============================================================================
 (cmd "hi CmpItemAbbrMatch gui=bold guifg=#FAFAFA")
@@ -107,9 +98,12 @@
                   :<S-Tab> (mapping (mapping.select_prev_item {:behavior insert-behavior})
                                     [:i :s])
                   :<space> (mapping.confirm {:select false})}
+        :snippet {:expand (fn [args]
+                            ((. (require :luasnip) :lsp_expand) args.body))}
         :sources [{:name :copilot}
                   {:name :nvim_lsp}
                   {:name :nvim_lsp_signature_help}
+                  {:name :luasnip}
                   {:name :conjure}
                   {:name :path}
                   {:name :neorg}
