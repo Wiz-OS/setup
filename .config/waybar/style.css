@@ -1,23 +1,13 @@
 * {
 	font-size: 14px;
-	font-family: monospace;
+	font-family: JetBrainsMonoNL Nerd Font;
 }
 
 window#waybar {
-	background: #292b2e;
+	background: #1a212b;
 	color: #fdf6e3;
 }
 
-#custom-right-arrow-dark,
-#custom-left-arrow-dark {
-	color: #1a1a1a;
-}
-
-#custom-right-arrow-light,
-#custom-left-arrow-light {
-	color: #292b2e;
-	background: #1a1a1a;
-}
 
 #workspaces,
 #mode,
@@ -33,7 +23,13 @@ window#waybar {
 #battery,
 #tray,
 #mpd {
-	background: #1a1a1a;
+	color: #1a1d2a
+}
+
+#clock.1,
+#clock.2
+{
+    background: #e6b455;
 }
 
 #workspaces button {
@@ -66,7 +62,7 @@ window#waybar {
 }
 @keyframes wblink {
 	to {
-		color: #ffffff
+		background: #ffffff
 	}
 }
 
@@ -80,11 +76,11 @@ window#waybar {
 }
 
 #pulseaudio {
-	color: #268bd2;
+	background: #6e98eb
 }
 
 #memory {
-	color: #2aa198;
+	background: #abcf76
 }
 
 #memory.warning {
@@ -105,7 +101,7 @@ window#waybar {
 }
 
 #cpu {
-	color: #6c71c4;
+	background: #b480d6;
 }
 
 #cpu.warning {

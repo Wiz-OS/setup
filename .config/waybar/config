@@ -1,59 +1,24 @@
 {
 	"modules-left": [
 		"sway/workspaces",
-		"custom/right-arrow-dark",
-		"custom/right-arrow-light",
-		"mpd",
-		"custom/right-arrow-dark"
+		"mpd"
 	],
 	"modules-center": [
-		"custom/left-arrow-dark",
 		"clock#1",
-		"custom/left-arrow-light",
-		"custom/left-arrow-dark",
 		"idle_inhibitor",
 		"sway/mode",
 		"custom/weather",
-		"custom/right-arrow-dark",
-		"custom/right-arrow-light",
-		"clock#2",
-		"custom/right-arrow-dark"
+		"clock#2"
 	],
 	"modules-right": [
-		"custom/left-arrow-dark",
 		"network",
-		"custom/left-arrow-light",
-		"custom/left-arrow-dark",
 		"pulseaudio",
-		"custom/left-arrow-light",
-		"custom/left-arrow-dark",
 		"memory",
-		"custom/left-arrow-light",
-		"custom/left-arrow-dark",
 		"cpu",
-		"custom/left-arrow-light",
-		"custom/left-arrow-dark",
 		"battery",
-		"custom/left-arrow-light",
-		"custom/left-arrow-dark",
+        "clock",
 		"tray"
 	],
-	"custom/left-arrow-dark": {
-		"format": "",
-		"tooltip": false
-	},
-	"custom/left-arrow-light": {
-		"format": "",
-		"tooltip": false
-	},
-	"custom/right-arrow-dark": {
-		"format": "",
-		"tooltip": false
-	},
-	"custom/right-arrow-light": {
-		"format": "",
-		"tooltip": false
-	},
 	"network": {
 		"format": "{bandwidthUpBits} {bandwidthDownBits}",
 		"interval": 1,
