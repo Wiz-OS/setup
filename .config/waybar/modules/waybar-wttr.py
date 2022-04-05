@@ -89,7 +89,7 @@ def format_chances(hour: Dict[str, str]) -> str:
     return ", ".join(conditions)
 
 
-data["text"] = WEATHER_CODES[weather["current_condition"][0]["weatherCode"]]
+data["text"] = weather["current_condition"][0]["temp_C"]
 
 data[
     "tooltip"

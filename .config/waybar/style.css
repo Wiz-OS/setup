@@ -1,6 +1,8 @@
 * {
 	font-size: 14px;
 	font-family: JetBrainsMonoNL Nerd Font;
+    /* border-radius: 3px; */
+    padding: 2px
 }
 
 window#waybar {
@@ -13,7 +15,6 @@ window#waybar {
 #mode,
 #clock.1,
 #idle_inhibitor,
-#custom-weather,
 #clock.2,
 #pulseaudio,
 #memory,
@@ -23,12 +24,25 @@ window#waybar {
 #battery,
 #tray,
 #mpd {
-	color: #1a1d2a
+	color: #1a1d2a;
 }
 
+#custom-weather {
+    background: #1a212b;
+}
+
+#workspaces {
+    background: #38465c
+}
+
+#network {
+    background: #38465c;
+    color: #fdf6e3
+}
+
+
 #clock.1,
-#clock.2
-{
+#clock.2 {
     background: #e6b455;
 }
 

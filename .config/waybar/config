@@ -1,152 +1,149 @@
 {
-	"modules-left": [
-		"sway/workspaces",
-		"mpd"
-	],
-	"modules-center": [
-		"clock#1",
-		"idle_inhibitor",
-		"sway/mode",
-		"custom/weather",
-		"clock#2"
-	],
-	"modules-right": [
-		"network",
-		"pulseaudio",
-		"memory",
-		"cpu",
-		"battery",
-        "clock",
-		"tray"
-	],
-	"network": {
-		"format": "{bandwidthUpBits} {bandwidthDownBits}",
-		"interval": 1,
-		"tooltip": false
-	},
-	"clock#1": {
-		"format": "{:%a %e}",
-		"tooltip": false
-	},
-	"custom/weather": {
-		"format": "{}",
-		"restart-interval": 3600,
-		"exec": "~/.config/waybar/modules/waybar-wttr.py",
-		"return-type": "json"
-	},
-	"clock#2": {
-		"format": "{:%I:%M}",
-		"tooltip": false
-	},
-	"sway/mode": {
-		"format": "<span style=\"italic\"> {} </span>"
-	},
-	"idle_inhibitor": {
-		"format": "{icon}",
-		"format-icons": {
-			"activated": "",
-			"deactivated": ""
-		}
-	},
-	"tray": {
-		// "icon-size": 21,
-		"spacing": 10
-	},
-	"clock": {
-		// "timezone": "America/New_York",
-		"interval": 1,
-		"format": "{:%a %e %r}",
-		"tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>"
-	},
-	"cpu": {
-		"interval": 5,
-		"format": "{usage}% ",
-		"states": {
-			"warning" : 80,
-			"critical": 95
-		},
-		"on-click": "exec alacritty -e htop"
-	},
-	"memory": {
-		"interval": 5,
-		"format": "{}% ",
-		"states": {
-			"warning": 90,
-			"critical": 95
-		},
-		"on-click": "exec alacritty -e htop"
-	},
-	"temperature": {
-		"thermal-zone": 4,
-		"critical-threshold": 90,
-		"interval": 5,
-		"format": "{icon} {temperatureC}°C",
-		"format-icons": [
-			"", // Icon: temperature-empty
-			"", // Icon: temperature-quarter
-			"", // Icon: temperature-half
-			"", // Icon: temperature-three-quarters
-			""  // Icon: temperature-full
-		]
-	},
-	"battery": {
-		"interval": 30,
-		"states": {
-			"warning": 30,
-			"critical": 15
-		},
-		"format-charging": " {icon} {capacity}%", // Icon: bolt
-		"format": "{icon} {capacity}%",
-		"format-icons": [
-			"", // Icon: battery-empty
-			"", // Icon: battery-quarter
-			"", // Icon: battery-half
-			"", // Icon: battery-three-quarters
-			""  // Icon: battery-full
-		]
-	},
-	"pulseaudio": {
-		"format": "{volume}% {icon} {format_source}",
-		"format-bluetooth": "{volume}% {icon} {format_source}",
-		"format-bluetooth-muted": " {icon} {format_source}",
-		"format-muted": " {format_source}",
-		"format-source": "{volume}% ",
-		"format-source-muted": "",
-		"format-icons": {
-			"headphone": "",
-			"hands-free": "",
-			"headset": "",
-			"phone": "",
-			"portable": "",
-			"car": "",
-			"default": ["", "", ""]
-		},
-		"on-click": "pavucontrol"
-	},
-	"mpd": {
-		"max-length": 65,
-		"format": " {consumeIcon}{randomIcon}{repeatIcon}{singleIcon}{artist} - {title}",
-		"format-disconnected": "Disconnected ",
-		"format-stopped": "{consumeIcon}{randomIcon}{repeatIcon}{singleIcon}Stopped ",
-		"interval": 5,
-		"consume-icons": {
-			"on": " " // Icon shows only when "consume" is on
-		},
-		"random-icons": {
-			"on": " "
-		},
-		"repeat-icons": {
-			"on": " "
-		},
-		"single-icons": {
-			"on": "1 "
-		},
-		"state-icons": {
-			"paused": "",
-			"playing": ""
-		},
-		"tooltip-format": "Title: {title}\nArtist: {artist}\nAlbum: {album}\nAlbum Artist: {albumArtist}\nDate: {date}",
-		"tooltip-format-disconnected": "MPD (disconnected)"
-	}
+
+    "modules-left": [
+        "sway/workspaces"
+    ],
+    "modules-center": [
+        "idle_inhibitor",
+        "sway/mode",
+        "network",
+        "custom/weather"
+    ],
+    "modules-right": [
+        "pulseaudio",
+        "memory",
+        "cpu",
+        "battery",
+        "clock#1",
+        "clock#2",
+        "tray"
+    ],
+    "network": {
+        "format": "{bandwidthUpBits} {bandwidthDownBits}",
+        "interval": 1,
+        "tooltip": false
+    },
+    "clock#1": {
+        "format": "{:%a %e} ",
+        "spacing": 10,
+        "tooltip": false
+    },
+    "custom/weather": {
+        "format": "{}",
+        "restart-interval": 3600,
+        "exec": "~/.config/waybar/modules/waybar-wttr.py",
+        "return-type": "json"
+    },
+    "clock#2": {
+        "interval": 1,
+        "format": "{:%I:%M:%S} ",
+        "tooltip": false
+    },
+    "sway/mode": {
+        "format": "<span style=\"italic\"> {} </span>"
+    },
+    "idle_inhibitor": {
+        "format": "{icon}",
+        "format-icons": {
+            "activated": "",
+            "deactivated": ""
+        }
+    },
+    "clock": {
+        "interval": 1,
+        "format": "{:%a %e %r}",
+        "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>"
+    },
+    "cpu": {
+        "interval": 5,
+        "format": "{usage}% ",
+        "spacing": 40000,
+        "states": {
+            "warning" : 80,
+            "critical": 95
+        },
+        "on-click": "exec alacritty -e htop"
+    },
+    "memory": {
+        "interval": 5,
+        "format": "{}% ",
+        "states": {
+            "warning": 90,
+            "critical": 95
+        },
+        "on-click": "exec alacritty -e htop"
+    },
+    "temperature": {
+        "thermal-zone": 4,
+        "critical-threshold": 90,
+        "interval": 5,
+        "format": "{icon} {temperatureC}°C",
+        "format-icons": [
+            "", // Icon: temperature-empty
+        "", // Icon: temperature-quarter
+        "", // Icon: temperature-half
+        "", // Icon: temperature-three-quarters
+        ""  // Icon: temperature-full
+        ]
+    },
+    "battery": {
+        "interval": 30,
+        "states": {
+            "warning": 30,
+            "critical": 15
+        },
+        "format-charging": " {icon} {capacity}%", // Icon: bolt
+        "format": "{icon} {capacity}%",
+        "format-icons": [
+            "", // Icon: battery-empty
+        "", // Icon: battery-quarter
+        "", // Icon: battery-half
+        "", // Icon: battery-three-quarters
+        ""  // Icon: battery-full
+        ]
+    },
+    "pulseaudio": {
+        "format": "{volume}% {icon} {format_source}",
+        "format-bluetooth": "{volume}% {icon} {format_source}",
+        "format-bluetooth-muted": " {icon} {format_source}",
+        "format-muted": " {format_source}",
+        "format-source": "{volume}% ",
+        "format-source-muted": "",
+        "format-icons": {
+            "headphone": "",
+            "hands-free": "",
+            "headset": "",
+            "phone": "",
+            "portable": "",
+            "car": "",
+            "default": ["", "", ""]
+        },
+        "on-click": "pavucontrol"
+    },
+    "mpd": {
+        "max-length": 65,
+        "format": " {consumeIcon}{randomIcon}{repeatIcon}{singleIcon}{artist} - {title}",
+        "format-disconnected": "Disconnected ",
+        "format-stopped": "{consumeIcon}{randomIcon}{repeatIcon}{singleIcon}Stopped ",
+        "interval": 5,
+        "consume-icons": {
+            "on": " " // Icon shows only when "consume" is on
+        },
+        "random-icons": {
+            "on": " "
+        },
+        "repeat-icons": {
+            "on": " "
+        },
+        "single-icons": {
+            "on": "1 "
+        },
+        "state-icons": {
+            "paused": "",
+            "playing": ""
+        },
+        "tooltip-format": "Title: {title}\nArtist: {artist}\nAlbum: {album}\nAlbum Artist: {albumArtist}\nDate: {date}",
+        "tooltip-format-disconnected": "MPD (disconnected)"
+    }
 
 }
