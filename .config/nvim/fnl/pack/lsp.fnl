@@ -56,15 +56,24 @@
              ;; BUG: https://github.com/tami5/lspsaga.nvim/issues/90
              :K [":Lspsaga hover_doc<cr>" "Hover doc"]
              :<leader>go [":Lspsaga show_line_diagnostics<cr>"
-                          "Show line diagnostics"]})
-  (register {:<leader>g {:name :LSP}
-             :<leader>gx [":Lspsaga range_code_action<cr>" "Code action"]}
-            {:mode :x})
-  ;; FIXME: These bindings don't work properly
-  (register {:<C-u> [":lua require('lspsaga.action').smart_scroll_with_saga(-1, '<c-u>')<cr>"
-                     "Smart scroll up"]
-             :<C-d> [":lua require('lspsaga.action').smart_scroll_with_saga(1, '<c-d>')<cr>"
-                     "Smart scroll down"]} {:noremap false}))
+                          "Show line diagnostics"]
+             :<leader>gd [":lua vim.lsp.buf.declaration()<cr>"
+                          "Jump to declaration"]
+             :<leader>gD [":lua vim.lsp.buf.definition()<cr>"
+                          "Jump to definition"]
+             :<leader>gi [":lua vim.lsp.buf.implementation()<cr>"
+                          "Jump to implementation"]
+             :<leader>gf [":lua vim.lsp.buf.formatting()<cr>" "Format buffer"]}))
+
+(register {:<leader>g {:name :LSP}
+           :<leader>gx [":Lspsaga range_code_action<cr>" "Code action"]}
+          {:mode :x})
+
+;; FIXME: These bindings don't work properly
+(register {:<C-u> [":lua require('lspsaga.action').smart_scroll_with_saga(-1, '<c-u>')<cr>"
+                   "Smart scroll up"]
+           :<C-d> [":lua require('lspsaga.action').smart_scroll_with_saga(1, '<c-d>')<cr>"
+                   "Smart scroll down"]} {:noremap false})
 
 (local lsp_installer (require :nvim-lsp-installer))
 (lsp_installer.on_server_ready (fn [server]
