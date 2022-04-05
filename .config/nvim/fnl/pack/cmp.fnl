@@ -12,7 +12,7 @@
 ;;; License: MIT
 ;;; ============================================================================
 
-(import-macros {: set! : let! : map! : cmd} :conf.macros)
+(import-macros {: set! : let! : map! : cmd} :macros)
 
 (local {: setup
         : mapping

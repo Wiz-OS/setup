@@ -12,7 +12,7 @@
 ;;; License: MIT
 ;;; ============================================================================
 
-(import-macros {: set!} :conf.macros)
+(import-macros {: set!} :macros)
 (local {: setup} (require :nvim-treesitter.configs))
 
 ;;; ===========================================================================

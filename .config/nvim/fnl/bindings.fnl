@@ -12,7 +12,7 @@
 ;;; License: MIT
 ;;; ============================================================================
 
-(import-macros {: map!} :conf.macros)
+(import-macros {: map!} :macros)
 (local {: register} (require :which-key))
 
 ;;; ============================================================================
@@ -74,9 +74,10 @@
                         "Find LSP diagnostics"]
            :<leader>fs [":Telescope spell_suggest<cr>"
                         "Find spell suggestions"]
-           :<leader>fv [(fn []
-                          ((. (require :plugin.telescope) search_dotfiles)))
-                        "Browse vim configuration"]})
+;           :<leader>fv [(fn []
+;                          ((. (require :plugin.telescope) search_dotfiles)))
+;                        "Browse vim configuration"]})
+})
 
 ;;; ============================================================================
 

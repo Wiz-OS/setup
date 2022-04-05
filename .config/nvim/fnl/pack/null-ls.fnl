@@ -12,7 +12,7 @@
 ;;; License: MIT
 ;;; ============================================================================
 
-(import-macros {: cmd} :conf.macros)
+(import-macros {: cmd} :macros)
 (local {: setup : builtins} (require :null-ls))
 
 (local shell_sources [builtins.diagnostics.shellcheck

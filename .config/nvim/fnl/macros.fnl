@@ -119,7 +119,7 @@
   (let [options (or ?options {})
         options (collect [k v (pairs options)]
                   (if (= k :config!)
-                      (values :config (format "require('conf.pack.%s')" v))
+                      (values :config (format "require('pack.%s')" v))
                       (= k :init)
                       (values :config (format "require('%s').setup()" v))
                       (values k v)))]

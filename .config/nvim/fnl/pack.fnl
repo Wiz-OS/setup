@@ -11,7 +11,8 @@
 ;;; URL: https://github.com/wizard-28/dotfiles/
 ;;; License: MIT
 ;;; ============================================================================
-(import-macros {: pack : let! : cmd : use-package! : unpack!} :conf.macros)
+(import-macros {: pack : let! : cmd : use-package! : unpack!} :macros)
+(local use (. (require :packer) :use))
 
 ;;; ============================================================================
 ;;; Bootstraped plugins

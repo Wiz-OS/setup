@@ -11,7 +11,7 @@
 ;;; URL: https://github.com/wizard-28/dotfiles/
 ;;; License: MIT
 ;;; =============================================================================
-(import-macros {: set! : let!} :conf.macros)
+(import-macros {: set! : let!} :macros)
 
 ;;; ============================================================================
 ;;; Disable unnecessary plugins

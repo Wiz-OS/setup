@@ -13,10 +13,10 @@
 ;;; ============================================================================
 
 ;; Neovim settings
-(require :conf.settings)
+(require :settings)
 
 ;; Plugins
-(require :conf.pack)
+(require :pack)
 
 ;; Bindings
-(require :conf.bindings)
+(require :bindings)
