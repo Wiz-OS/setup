@@ -28,8 +28,6 @@
 (let [{: config : severity} vim.diagnostic
       {: sign_define} vim.fn]
   (config {:underline {:severity {:min severity.INFO}}
-           :signs {:severity {:min severity.INFO}}
-           :virtual_text {:severity {:min severity.INFO}}
            :update_in_insert false
            :severity_sort true
            :float {:show_header false :border :single}})
