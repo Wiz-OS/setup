@@ -107,10 +107,10 @@
                   :<S-Tab> (mapping (mapping.select_prev_item {:behavior insert-behavior})
                                     [:i :s])
                   :<space> (mapping.confirm {:select false})}
-        :sources [{:name :nvim_lsp}
+        :sources [{:name :copilot}
+                  {:name :nvim_lsp}
                   {:name :nvim_lsp_signature_help}
                   {:name :conjure}
-                  {:name :copilot}
                   {:name :path}
                   {:name :neorg}
                   {:name :treesitter}

@@ -127,10 +127,14 @@
                                 {:after :nvim-cmp})
                           (pack :PaterJason/cmp-conjure {:after :nvim-cmp})
                           (pack :hrsh7th/cmp-path {:after :nvim-cmp})
-                          (pack :hrsh7th/cmp-copilot {:after :nvim-cmp})
+                          (pack :zbirenbaum/copilot-cmp
+                                {:after [:nvim-cmp :copilot.lua]
+                                 :config (fn []
+                                           (vim.schedule (fn []
+                                                           (require :copilot))))})
                           (pack :ray-x/cmp-treesitter {:after :nvim-cmp})
                           (pack :hrsh7th/cmp-buffer {:after :nvim-cmp})
-                          (pack :github/copilot.vim {:event :InsertCharPre})
+                          (pack :zbirenbaum/copilot.lua {:event :InsertCharPre})
                           (pack :lukas-reineke/cmp-under-comparator
                                 {:module :cmp-under-comparator
                                  :event :InsertCharPre})]})
