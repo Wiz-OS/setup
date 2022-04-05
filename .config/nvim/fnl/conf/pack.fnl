@@ -141,6 +141,7 @@
 
 (use-package! :neovim/nvim-lspconfig
               {:config! :lsp
+               :run ":LspInstall pyright bashls"
                :requires [:williamboman/nvim-lsp-installer
                           (pack :j-hui/fidget.nvim
                                 {:after :nvim-lspconfig :init :fidget})]})
