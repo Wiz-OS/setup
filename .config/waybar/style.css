@@ -27,15 +27,14 @@ window#waybar {
 	color: #1a1d2a;
 }
 
-#custom-weather {
-    background: #1a212b;
-}
 
 #workspaces {
     background: #38465c
 }
 
-#network {
+#network,
+#custom-weather
+{
     background: #38465c;
     color: #fdf6e3
 }

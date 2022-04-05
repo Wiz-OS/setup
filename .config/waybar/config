@@ -6,10 +6,10 @@
     "modules-center": [
         "idle_inhibitor",
         "sway/mode",
-        "network",
-        "custom/weather"
+        "network"
     ],
     "modules-right": [
+        "custom/weather",
         "pulseaudio",
         "memory",
         "cpu",
