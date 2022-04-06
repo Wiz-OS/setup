@@ -3,9 +3,10 @@
         "sway/workspaces"
     ],
     "modules-center": [
-        "idle_inhibitor",
         "sway/mode",
-        "network"
+        "network#1",
+        "idle_inhibitor",
+        "network#2"
     ],
     "modules-right": [
         "custom/weather",
@@ -17,15 +18,20 @@
         "clock#2",
         "tray"
     ],
-    "network": {
-        "format": "{bandwidthUpBits} \ufa51 {bandwidthDownBits} \uf6d9",
+    "network#1": {
+        "format": "{bandwidthUpBits} \ufa51",
         "interval": 1,
-        "tooltip-format": "ESSID: {essid}\nInterface: {ifname}\nIP: {ipaddr}\nNetmask: {netmask}\n"
+        "tooltip-format": "ESSID: {essid}\nInterface: {ifname}\nIP: {ipaddr}\nNetmask: {netmask}\nStrength: {signalStrength}% {signaldBm}dBm"
+    },
+    "network#2": {
+        "format": "{bandwidthDownBits} \uf6d9",
+        "interval": 1,
+        "tooltip-format": "ESSID: {essid}\nInterface: {ifname}\nIP: {ipaddr}\nNetmask: {netmask}\nStrength: {signalStrength}% {signaldBm}dBm"
     },
     "clock#1": {
         "format": "{:%a %e} \uf5f5",
         "spacing": 10,
-        "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>\n"
+        "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>"
     },
     "custom/weather": {
         "format": "{}",

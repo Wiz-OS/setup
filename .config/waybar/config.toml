@@ -1,0 +1,152 @@
+modules-left = [ "sway/workspaces" ]
+modules-center = [ "sway/mode", "network#1", "idle_inhibitor", "network#2" ]
+modules-right = [
+    "custom/weather",
+    "pulseaudio",
+    "memory",
+    "cpu",
+    "battery",
+    "clock#1",
+    "clock#2",
+    "tray"
+]
+
+
+["network#1"]
+format = "{bandwidthUpBits} 祝"
+interval = 1
+tooltip-format = """
+ESSID: {essid}
+Interface: {ifname}
+IP: {ipaddr}
+Netmask: {netmask}
+Strength: {signalStrength}% {signaldBm}dBm"""
+
+["network#2"]
+format = "{bandwidthDownBits} "
+interval = 1
+tooltip-format = """
+ESSID: {essid}
+Interface: {ifname}
+IP: {ipaddr}
+Netmask: {netmask}
+Strength: {signalStrength}% {signaldBm}dBm"""
+
+["clock#1"]
+format = "{:%a %e} "
+spacing = 10
+tooltip-format = """
+<big>{:%Y %B}</big>
+<tt><small>{calendar}</small></tt>"""
+
+["custom/weather"]
+format = "{}"
+restart-interval = 3_600
+exec = "~/.config/waybar/modules/waybar-wttr.py"
+return-type = "json"
+
+["clock#2"]
+interval = 1
+format = "{:%I:%M:%S} "
+tooltip = false
+
+["sway/mode"]
+format = '<span style="italic"> {} </span>'
+
+[idle_inhibitor]
+format = "{icon}"
+
+[idle_inhibitor.format-icons]
+activated = ""
+deactivated = ""
+
+[clock]
+interval = 1
+format = "{:%a %e %r}"
+tooltip-format = """
+<big>{:%Y %B}</big>
+<tt><small>{calendar}</small></tt>"""
+
+[cpu]
+interval = 5
+format = "{usage}% "
+spacing = 40_000
+on-click = "exec alacritty -e htop"
+
+[cpu.states]
+warning = 80
+critical = 95
+
+[memory]
+interval = 5
+format = "{}% "
+on-click = "exec alacritty -e htop"
+
+[memory.states]
+warning = 90
+critical = 95
+
+[temperature]
+thermal-zone = 4
+critical-threshold = 90
+interval = 5
+format = "{icon} {temperatureC}°C"
+format-icons = [ "", "", "", "", "" ]
+
+[battery]
+interval = 30
+format-charging = " {icon} {capacity}%"
+format = "{icon} {capacity}%"
+format-icons = [ "", "", "", "", "" ]
+
+[battery.states]
+warning = 30
+critical = 15
+
+[pulseaudio]
+format = "{volume}% {icon} {format_source}"
+format-bluetooth = "{volume}% {icon} {format_source}"
+format-bluetooth-muted = " {icon} {format_source}"
+format-muted = " {format_source}"
+format-source = "{volume}% "
+format-source-muted = ""
+on-click = "pavucontrol"
+
+[pulseaudio.format-icons]
+headphone = ""
+hands-free = ""
+headset = ""
+phone = ""
+portable = ""
+car = ""
+default = [ "", "", "" ]
+
+[mpd]
+max-length = 65
+format = " {consumeIcon}{randomIcon}{repeatIcon}{singleIcon}{artist} - {title}"
+format-disconnected = "Disconnected "
+format-stopped = "{consumeIcon}{randomIcon}{repeatIcon}{singleIcon}Stopped "
+interval = 5
+tooltip-format = """
+Title: {title}
+Artist: {artist}
+Album: {album}
+Album Artist: {albumArtist}
+Date: {date}"""
+tooltip-format-disconnected = "MPD (disconnected)"
+
+[mpd.consume-icons]
+on = " "
+
+[mpd.random-icons]
+on = " "
+
+[mpd.repeat-icons]
+on = " "
+
+[mpd.single-icons]
+on = "1 "
+
+[mpd.state-icons]
+paused = ""
+playing = ""
