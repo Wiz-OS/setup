@@ -130,9 +130,7 @@
                           (pack :hrsh7th/cmp-path {:after :nvim-cmp})
                           (pack :zbirenbaum/copilot-cmp
                                 {:after [:nvim-cmp :copilot.lua]
-                                 :config (fn []
-                                           (vim.schedule (fn []
-                                                           (require :copilot))))})
+                                 :init :copilot})
                           (pack :ray-x/cmp-treesitter {:after :nvim-cmp})
                           (pack :hrsh7th/cmp-buffer {:after :nvim-cmp})
                           (pack :zbirenbaum/copilot.lua {:event :InsertCharPre})
