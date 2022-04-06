@@ -1,6 +1,5 @@
 {
     "height": 35,
-    "spacing": 4,
     "margin-top": 5,
     "modules-left": [
         "sway/workspaces"
@@ -23,7 +22,7 @@
         "format": "{name}: {icon}",
         "format-icons": {
             "1": "\uf120",
-            "2": "\uf268",
+            "2": "\uf269",
             "3": "\uf121",
             "4": "\uf1bc",
             "5": "\uf075",

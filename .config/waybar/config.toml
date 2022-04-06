@@ -23,7 +23,7 @@ format = "{name}: {icon}"
 
   ["sway/workspaces".format-icons]
   1 = ""
-  2 = ""
+  2 = ""
   3 = ""
   4 = ""
   5 = ""
