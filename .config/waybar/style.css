@@ -1,20 +1,18 @@
 * {
-	font-size: 14px;
-	font-family: JetBrainsMonoNL Nerd Font;
+    font-size: 14px;
+    font-family: JetBrainsMonoNL Nerd Font;
     /* border-radius: 3px; */
-    padding: 2px
+    padding: 2px;
 }
 
 window#waybar {
-	background: #1a212b;
-	color: #fdf6e3;
+    background: #1a212b;
+    color: #fdf6e3;
 }
-
 
 #workspaces,
 #mode,
 #clock.1,
-#idle_inhibitor,
 #clock.2,
 #pulseaudio,
 #memory,
@@ -24,21 +22,19 @@ window#waybar {
 #battery,
 #tray,
 #mpd {
-	color: #1a1d2a;
+    color: #1a1d2a;
 }
 
-
 #workspaces {
-    background: #38465c
+    background: #38465c;
 }
 
 #network,
-#custom-weather
-{
+#idle_inhibitor,
+#custom-weather {
     background: #38465c;
-    color: #fdf6e3
+    color: #fdf6e3;
 }
-
 
 #clock.1,
 #clock.2 {
@@ -46,109 +42,108 @@ window#waybar {
 }
 
 #workspaces button {
-	padding: 0 2px;
-	color: #fdf6e3;
+    padding: 0 2px;
+    color: #fdf6e3;
 }
 
 #workspaces button.focused {
-	color: #268bd2;
+    color: #268bd2;
 }
 
 #workspaces button:hover {
-	background: #1a1a1a;
-	border: #1a1a1a;
-	padding: 0 3px;
-	box-shadow: inherit;
-	text-shadow: inherit;
+    background: #1a1a1a;
+    border: #1a1a1a;
+    padding: 0 3px;
+    box-shadow: inherit;
+    text-shadow: inherit;
 }
 
 #mode {
-	color: #ffff00;
+    color: #ffff00;
 }
-
 
 @keyframes cblink {
-	to {
-		background-color:#f53c3c;
-		color: #ffffff;
-	}
+    to {
+        background-color: #f53c3c;
+        color: #ffffff;
+    }
 }
 @keyframes wblink {
-	to {
-		background: #ffffff
-	}
+    to {
+        background: #ffffff;
+    }
 }
 
 #mpd.playing {
-	animation-name: wblink;
-	animation-duration: 0.5s;
-	animation-timing-function: linear;
-	animation-iteration-count: infinite;
-	animation-direction: alternate;
-	color: #d400ff;
+    animation-name: wblink;
+    animation-duration: 0.5s;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+    color: #d400ff;
 }
 
 #pulseaudio {
-	background: #6e98eb
+    background: #6e98eb;
 }
 
 #memory {
-	background: #abcf76
+    background: #abcf76;
 }
 
 #memory.warning {
-	animation-name: wblink;
-	animation-duration: 0.5s;
-	animation-timing-function: linear;
-	animation-iteration-count: infinite;
-	animation-direction: alternate;
+    animation-name: wblink;
+    animation-duration: 0.5s;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
 }
 
 #memory.critical {
-	color: #f53c3c;
-	animation-name: cblink;
-	animation-duration: 0.5s;
-	animation-timing-function: linear;
-	animation-iteration-count: infinite;
-	animation-direction: alternate;
+    color: #f53c3c;
+    animation-name: cblink;
+    animation-duration: 0.5s;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
 }
 
 #cpu {
-	background: #b480d6;
+    background: #b480d6;
 }
 
 #cpu.warning {
-	animation-name: wblink;
-	animation-duration: 0.5s;
-	animation-timing-function: linear;
-	animation-iteration-count: infinite;
-	animation-direction: alternate;
+    animation-name: wblink;
+    animation-duration: 0.5s;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
 }
 
 #cpu.critical {
-	color: #f53c3c;
-	animation-name: cblink;
-	animation-duration: 0.5s;
-	animation-timing-function: linear;
-	animation-iteration-count: infinite;
-	animation-direction: alternate;
+    color: #f53c3c;
+    animation-name: cblink;
+    animation-duration: 0.5s;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
 }
 
 #temperature {
-	color: #ffa500;
+    color: #ffa500;
 }
 
 #battery {
-	color: #859900;
+    color: #859900;
 }
 
 #battery.critical:not(.charging) {
-	color: #f53c3c;
-	animation-name: cblink;
-	animation-duration: 0.5s;
-	animation-timing-function: linear;
-	animation-iteration-count: infinite;
-	animation-direction: alternate;
+    color: #f53c3c;
+    animation-name: cblink;
+    animation-duration: 0.5s;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
 }
 
 #pulseaudio,
@@ -158,13 +153,12 @@ window#waybar {
 #network,
 #battery,
 #disk {
-	padding: 0 10px;
+    padding: 0 10px;
 }
 
 #clock.1,
 #idle_inhibitor,
 #custom-weather,
 #clock.2 {
-	padding: 0 5px;
+    padding: 0 5px;
 }
-

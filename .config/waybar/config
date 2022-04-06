@@ -1,5 +1,4 @@
 {
-
     "modules-left": [
         "sway/workspaces"
     ],
@@ -19,14 +18,14 @@
         "tray"
     ],
     "network": {
-        "format": "{bandwidthUpBits} {bandwidthDownBits}",
+        "format": "{bandwidthUpBits} \ufa51 {bandwidthDownBits} \uf6d9",
         "interval": 1,
-        "tooltip": false
+        "tooltip-format": "ESSID: {essid}\nInterface: {ifname}\nIP: {ipaddr}\nNetmask: {netmask}\n"
     },
     "clock#1": {
-        "format": "{:%a %e} ",
+        "format": "{:%a %e} \uf5f5",
         "spacing": 10,
-        "tooltip": false
+        "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>\n"
     },
     "custom/weather": {
         "format": "{}",
@@ -36,7 +35,7 @@
     },
     "clock#2": {
         "interval": 1,
-        "format": "{:%I:%M:%S} ",
+        "format": "{:%I:%M:%S} \uf64f",
         "tooltip": false
     },
     "sway/mode": {
@@ -45,8 +44,8 @@
     "idle_inhibitor": {
         "format": "{icon}",
         "format-icons": {
-            "activated": "",
-            "deactivated": ""
+            "activated": "\uf06e",
+            "deactivated": "\uf070"
         }
     },
     "clock": {
@@ -56,94 +55,97 @@
     },
     "cpu": {
         "interval": 5,
-        "format": "{usage}% ",
+        "format": "{usage}% \uf2db",
         "spacing": 40000,
+        "on-click": "exec alacritty -e htop",
         "states": {
-            "warning" : 80,
+            "warning": 80,
             "critical": 95
-        },
-        "on-click": "exec alacritty -e htop"
+        }
     },
     "memory": {
         "interval": 5,
-        "format": "{}% ",
+        "format": "{}% \uf0c9",
+        "on-click": "exec alacritty -e htop",
         "states": {
             "warning": 90,
             "critical": 95
-        },
-        "on-click": "exec alacritty -e htop"
+        }
     },
     "temperature": {
         "thermal-zone": 4,
         "critical-threshold": 90,
         "interval": 5,
-        "format": "{icon} {temperatureC}°C",
+        "format": "{icon} {temperatureC}\u00b0C",
         "format-icons": [
-            "", // Icon: temperature-empty
-        "", // Icon: temperature-quarter
-        "", // Icon: temperature-half
-        "", // Icon: temperature-three-quarters
-        ""  // Icon: temperature-full
+            "\uf2cb",
+            "\uf2ca",
+            "\uf2c9",
+            "\uf2c8",
+            "\uf2c8"
         ]
     },
     "battery": {
         "interval": 30,
+        "format-charging": "\uf0e7 {icon} {capacity}%",
+        "format": "{icon} {capacity}%",
+        "format-icons": [
+            "\uf244",
+            "\uf243",
+            "\uf242",
+            "\uf241",
+            "\uf240"
+        ],
         "states": {
             "warning": 30,
             "critical": 15
-        },
-        "format-charging": " {icon} {capacity}%", // Icon: bolt
-        "format": "{icon} {capacity}%",
-        "format-icons": [
-            "", // Icon: battery-empty
-        "", // Icon: battery-quarter
-        "", // Icon: battery-half
-        "", // Icon: battery-three-quarters
-        ""  // Icon: battery-full
-        ]
+        }
     },
     "pulseaudio": {
         "format": "{volume}% {icon} {format_source}",
-        "format-bluetooth": "{volume}% {icon} {format_source}",
-        "format-bluetooth-muted": " {icon} {format_source}",
-        "format-muted": " {format_source}",
-        "format-source": "{volume}% ",
-        "format-source-muted": "",
+        "format-bluetooth": "{volume}% {icon}\uf294 {format_source}",
+        "format-bluetooth-muted": "\uf6a9 {icon}\uf294 {format_source}",
+        "format-muted": "\uf6a9 {format_source}",
+        "format-source": "{volume}% \uf130",
+        "format-source-muted": "\uf131",
+        "on-click": "pavucontrol",
         "format-icons": {
-            "headphone": "",
-            "hands-free": "",
-            "headset": "",
-            "phone": "",
-            "portable": "",
-            "car": "",
-            "default": ["", "", ""]
-        },
-        "on-click": "pavucontrol"
+            "headphone": "\uf025",
+            "hands-free": "\uf590",
+            "headset": "\uf590",
+            "phone": "\uf095",
+            "portable": "\uf095",
+            "car": "\uf1b9",
+            "default": [
+                "\uf026",
+                "\uf027",
+                "\uf028"
+            ]
+        }
     },
     "mpd": {
         "max-length": 65,
-        "format": " {consumeIcon}{randomIcon}{repeatIcon}{singleIcon}{artist} - {title}",
-        "format-disconnected": "Disconnected ",
-        "format-stopped": "{consumeIcon}{randomIcon}{repeatIcon}{singleIcon}Stopped ",
+        "format": "\uf001 {consumeIcon}{randomIcon}{repeatIcon}{singleIcon}{artist} - {title}",
+        "format-disconnected": "Disconnected \uf001",
+        "format-stopped": "{consumeIcon}{randomIcon}{repeatIcon}{singleIcon}Stopped \uf001",
         "interval": 5,
+        "tooltip-format": "Title: {title}\nArtist: {artist}\nAlbum: {album}\nAlbum Artist: {albumArtist}\nDate: {date}",
+        "tooltip-format-disconnected": "MPD (disconnected)",
         "consume-icons": {
-            "on": " " // Icon shows only when "consume" is on
+            "on": "\uf0c4 "
         },
         "random-icons": {
-            "on": " "
+            "on": "\uf074 "
         },
         "repeat-icons": {
-            "on": " "
+            "on": "\uf01e "
         },
         "single-icons": {
-            "on": "1 "
+            "on": "\uf01e1 "
         },
         "state-icons": {
-            "paused": "",
-            "playing": ""
-        },
-        "tooltip-format": "Title: {title}\nArtist: {artist}\nAlbum: {album}\nAlbum Artist: {albumArtist}\nDate: {date}",
-        "tooltip-format-disconnected": "MPD (disconnected)"
+            "paused": "\uf04c",
+            "playing": "\uf04b"
+        }
     }
-
 }
