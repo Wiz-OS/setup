@@ -1,152 +1,144 @@
-modules-left = [ "sway/workspaces" ]
-modules-center = [ "sway/mode", "network#1", "idle_inhibitor", "network#2" ]
+layer = "top"
+position = "top"
+height = 35
+spacing = 4
+margin-top = 5
+modules-left = [
+    "sway/workspaces"
+]
 modules-right = [
-    "custom/weather",
-    "pulseaudio",
-    "memory",
-    "cpu",
-    "battery",
-    "clock#1",
-    "clock#2",
-    "tray"
+  "idle_inhibitor",
+  "pulseaudio",
+  "cpu",
+  "memory",
+  "temperature",
+  "backlight",
+  "battery",
+  "network",
+  "tray",
+  "clock"
 ]
 
+["sway/workspaces"]
+disable-scroll = true
+all-outputs = true
+format = "{name}: {icon}"
 
-["network#1"]
-format = "{bandwidthUpBits} 祝"
-interval = 1
-tooltip-format = """
-ESSID: {essid}
-Interface: {ifname}
-IP: {ipaddr}
-Netmask: {netmask}
-Strength: {signalStrength}% {signaldBm}dBm"""
+  ["sway/workspaces".format-icons]
+  1 = ""
+  2 = ""
+  3 = ""
+  4 = ""
+  5 = ""
+  urgent = ""
+  focused = ""
+  default = ""
 
-["network#2"]
-format = "{bandwidthDownBits} "
-interval = 1
-tooltip-format = """
-ESSID: {essid}
-Interface: {ifname}
-IP: {ipaddr}
-Netmask: {netmask}
-Strength: {signalStrength}% {signaldBm}dBm"""
-
-["clock#1"]
-format = "{:%a %e} "
-spacing = 10
-tooltip-format = """
-<big>{:%Y %B}</big>
-<tt><small>{calendar}</small></tt>"""
-
-["custom/weather"]
-format = "{}"
-restart-interval = 3_600
-exec = "~/.config/waybar/modules/waybar-wttr.py"
-return-type = "json"
-
-["clock#2"]
-interval = 1
-format = "{:%I:%M:%S} "
-tooltip = false
-
-["sway/mode"]
-format = '<span style="italic"> {} </span>'
+  ["sway/workspaces".persistent_workspaces]
+  1 = []
+  2 = []
+  3 = []
+  4 = []
+  5 = []
 
 [idle_inhibitor]
 format = "{icon}"
 
-[idle_inhibitor.format-icons]
-activated = ""
-deactivated = ""
+  [idle_inhibitor.format-icons]
+  activated = ""
+  deactivated = ""
+
+[tray]
+icon-size = 20
+spacing = 10
 
 [clock]
-interval = 1
-format = "{:%a %e %r}"
 tooltip-format = """
 <big>{:%Y %B}</big>
 <tt><small>{calendar}</small></tt>"""
+format-alt = "{:%Y-%m-%d}"
 
 [cpu]
-interval = 5
 format = "{usage}% "
-spacing = 40_000
-on-click = "exec alacritty -e htop"
-
-[cpu.states]
-warning = 80
-critical = 95
+tooltip = false
 
 [memory]
-interval = 5
 format = "{}% "
-on-click = "exec alacritty -e htop"
-
-[memory.states]
-warning = 90
-critical = 95
 
 [temperature]
-thermal-zone = 4
-critical-threshold = 90
-interval = 5
-format = "{icon} {temperatureC}°C"
-format-icons = [ "", "", "", "", "" ]
+critical-threshold = 80
+format = "{temperatureC}°C {icon}"
+format-icons = [ "", "", "" ]
+
+[backlight]
+format = "{percent}% {icon}"
+format-icons = [ "", "" ]
 
 [battery]
-interval = 30
-format-charging = " {icon} {capacity}%"
-format = "{icon} {capacity}%"
+format = "{capacity}% {icon}"
+format-charging = "{capacity}% "
+format-plugged = "{capacity}% "
+format-alt = "{time} {icon}"
 format-icons = [ "", "", "", "", "" ]
 
-[battery.states]
-warning = 30
-critical = 15
+  [battery.states]
+  warning = 30
+  critical = 15
+
+["battery#bat2"]
+bat = "BAT2"
+
+[network]
+format-wifi = "{essid} ({signalStrength}%) "
+format-ethernet = "Connected  "
+tooltip-format = "{ifname} via {gwaddr} "
+format-linked = "{ifname} (No IP) "
+format-disconnected = "Disconnected ⚠"
+format-alt = "{ifname}: {ipaddr}/{cidr}"
+on-click-right = "bash ~/.config/rofi/wifi_menu/rofi_wifi_menu"
 
 [pulseaudio]
-format = "{volume}% {icon} {format_source}"
-format-bluetooth = "{volume}% {icon} {format_source}"
-format-bluetooth-muted = " {icon} {format_source}"
-format-muted = " {format_source}"
-format-source = "{volume}% "
+format = "{volume}% {icon}"
+format-bluetooth = "{volume}% {icon}"
+format-bluetooth-muted = "{icon} {format_source}"
+format-muted = "{format_source}"
+format-source = ""
 format-source-muted = ""
 on-click = "pavucontrol"
 
-[pulseaudio.format-icons]
-headphone = ""
-hands-free = ""
-headset = ""
-phone = ""
-portable = ""
-car = ""
-default = [ "", "", "" ]
+  [pulseaudio.format-icons]
+  headphone = ""
+  hands-free = ""
+  headset = ""
+  phone = ""
+  portable = ""
+  car = ""
+  default = [ "", "", "" ]
 
-[mpd]
-max-length = 65
-format = " {consumeIcon}{randomIcon}{repeatIcon}{singleIcon}{artist} - {title}"
-format-disconnected = "Disconnected "
-format-stopped = "{consumeIcon}{randomIcon}{repeatIcon}{singleIcon}Stopped "
-interval = 5
-tooltip-format = """
-Title: {title}
-Artist: {artist}
-Album: {album}
-Album Artist: {albumArtist}
-Date: {date}"""
-tooltip-format-disconnected = "MPD (disconnected)"
+["custom/media"]
+format = "{icon} {}"
+return-type = "json"
+max-length = 20
+escape = true
+exec = "$HOME/.config/system_scripts/mediaplayer.py 2> /dev/null"
+on-click = "playerctl play-pause"
 
-[mpd.consume-icons]
-on = " "
+  ["custom/media".format-icons]
+  spotify = " "
+  default = " "
 
-[mpd.random-icons]
-on = " "
+["custom/launcher"]
+format = ""
+on-click = "rofi -show drun -theme ~/.config/rofi/wayfire/config2.rasi"
+on-click-right = "killall rofi"
 
-[mpd.repeat-icons]
-on = " "
+["custom/layout"]
+format = " "
+on-click = "bash ~/.config/system_scripts/layout.sh"
 
-[mpd.single-icons]
-on = "1 "
-
-[mpd.state-icons]
-paused = ""
-playing = ""
+["custom/updater"]
+format = "  {} Updates"
+exec = "checkupdates | wc -l"
+exec-if = "[[ $(checkupdates | wc -l) != 0 ]]"
+interval = 15
+on-click = "alacritty -e yay -Syu"

@@ -1,51 +1,45 @@
 {
+    "layer": "top",
+    "position": "top",
+    "height": 35,
+    "spacing": 4,
+    "margin-top": 5,
     "modules-left": [
         "sway/workspaces"
     ],
-    "modules-center": [
-        "sway/mode",
-        "network#1",
-        "idle_inhibitor",
-        "network#2"
-    ],
     "modules-right": [
-        "custom/weather",
+        "idle_inhibitor",
         "pulseaudio",
-        "memory",
         "cpu",
+        "memory",
+        "temperature",
+        "backlight",
         "battery",
-        "clock#1",
-        "clock#2",
-        "tray"
+        "network",
+        "tray",
+        "clock"
     ],
-    "network#1": {
-        "format": "{bandwidthUpBits} \ufa51",
-        "interval": 1,
-        "tooltip-format": "ESSID: {essid}\nInterface: {ifname}\nIP: {ipaddr}\nNetmask: {netmask}\nStrength: {signalStrength}% {signaldBm}dBm"
-    },
-    "network#2": {
-        "format": "{bandwidthDownBits} \uf6d9",
-        "interval": 1,
-        "tooltip-format": "ESSID: {essid}\nInterface: {ifname}\nIP: {ipaddr}\nNetmask: {netmask}\nStrength: {signalStrength}% {signaldBm}dBm"
-    },
-    "clock#1": {
-        "format": "{:%a %e} \uf5f5",
-        "spacing": 10,
-        "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>"
-    },
-    "custom/weather": {
-        "format": "{}",
-        "restart-interval": 3600,
-        "exec": "~/.config/waybar/modules/waybar-wttr.py",
-        "return-type": "json"
-    },
-    "clock#2": {
-        "interval": 1,
-        "format": "{:%I:%M:%S} \uf64f",
-        "tooltip": false
-    },
-    "sway/mode": {
-        "format": "<span style=\"italic\"> {} </span>"
+    "sway/workspaces": {
+        "disable-scroll": true,
+        "all-outputs": true,
+        "format": "{name}: {icon}",
+        "format-icons": {
+            "1": "\uf120",
+            "2": "\uf268",
+            "3": "\uf121",
+            "4": "\uf1bc",
+            "5": "\uf075",
+            "urgent": "\uf06a",
+            "focused": "\uf192",
+            "default": "\uf111"
+        },
+        "persistent_workspaces": {
+            "1": [],
+            "2": [],
+            "3": [],
+            "4": [],
+            "5": []
+        }
     },
     "idle_inhibitor": {
         "format": "{icon}",
@@ -54,47 +48,42 @@
             "deactivated": "\uf070"
         }
     },
+    "tray": {
+        "icon-size": 20,
+        "spacing": 10
+    },
     "clock": {
-        "interval": 1,
-        "format": "{:%a %e %r}",
-        "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>"
+        "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
+        "format-alt": "{:%Y-%m-%d}"
     },
     "cpu": {
-        "interval": 5,
         "format": "{usage}% \uf2db",
-        "spacing": 40000,
-        "on-click": "exec alacritty -e htop",
-        "states": {
-            "warning": 80,
-            "critical": 95
-        }
+        "tooltip": false
     },
     "memory": {
-        "interval": 5,
-        "format": "{}% \uf0c9",
-        "on-click": "exec alacritty -e htop",
-        "states": {
-            "warning": 90,
-            "critical": 95
-        }
+        "format": "{}% \uf0c9"
     },
     "temperature": {
-        "thermal-zone": 4,
-        "critical-threshold": 90,
-        "interval": 5,
-        "format": "{icon} {temperatureC}\u00b0C",
+        "critical-threshold": 80,
+        "format": "{temperatureC}\u00b0C {icon}",
         "format-icons": [
-            "\uf2cb",
-            "\uf2ca",
+            "\uf76b",
             "\uf2c9",
-            "\uf2c8",
-            "\uf2c8"
+            "\uf769"
+        ]
+    },
+    "backlight": {
+        "format": "{percent}% {icon}",
+        "format-icons": [
+            "\uf185",
+            "\uf111"
         ]
     },
     "battery": {
-        "interval": 30,
-        "format-charging": "\uf0e7 {icon} {capacity}%",
-        "format": "{icon} {capacity}%",
+        "format": "{capacity}% {icon}",
+        "format-charging": "{capacity}% \uf5e7",
+        "format-plugged": "{capacity}% \uf1e6",
+        "format-alt": "{time} {icon}",
         "format-icons": [
             "\uf244",
             "\uf243",
@@ -107,12 +96,24 @@
             "critical": 15
         }
     },
+    "battery#bat2": {
+        "bat": "BAT2"
+    },
+    "network": {
+        "format-wifi": "{essid} ({signalStrength}%) \uf1eb",
+        "format-ethernet": "Connected \uf0c1 ",
+        "tooltip-format": "{ifname} via {gwaddr} \uf796",
+        "format-linked": "{ifname} (No IP) \uf796",
+        "format-disconnected": "Disconnected \u26a0",
+        "format-alt": "{ifname}: {ipaddr}/{cidr}",
+        "on-click-right": "bash ~/.config/rofi/wifi_menu/rofi_wifi_menu"
+    },
     "pulseaudio": {
-        "format": "{volume}% {icon} {format_source}",
-        "format-bluetooth": "{volume}% {icon}\uf294 {format_source}",
-        "format-bluetooth-muted": "\uf6a9 {icon}\uf294 {format_source}",
-        "format-muted": "\uf6a9 {format_source}",
-        "format-source": "{volume}% \uf130",
+        "format": "{volume}% {icon}",
+        "format-bluetooth": "{volume}% {icon}\uf294",
+        "format-bluetooth-muted": "{icon}\uf294 {format_source}",
+        "format-muted": "{format_source}",
+        "format-source": "\uf026",
         "format-source-muted": "\uf131",
         "on-click": "pavucontrol",
         "format-icons": {
@@ -129,29 +130,32 @@
             ]
         }
     },
-    "mpd": {
-        "max-length": 65,
-        "format": "\uf001 {consumeIcon}{randomIcon}{repeatIcon}{singleIcon}{artist} - {title}",
-        "format-disconnected": "Disconnected \uf001",
-        "format-stopped": "{consumeIcon}{randomIcon}{repeatIcon}{singleIcon}Stopped \uf001",
-        "interval": 5,
-        "tooltip-format": "Title: {title}\nArtist: {artist}\nAlbum: {album}\nAlbum Artist: {albumArtist}\nDate: {date}",
-        "tooltip-format-disconnected": "MPD (disconnected)",
-        "consume-icons": {
-            "on": "\uf0c4 "
-        },
-        "random-icons": {
-            "on": "\uf074 "
-        },
-        "repeat-icons": {
-            "on": "\uf01e "
-        },
-        "single-icons": {
-            "on": "\uf01e1 "
-        },
-        "state-icons": {
-            "paused": "\uf04c",
-            "playing": "\uf04b"
+    "custom/media": {
+        "format": "{icon} {}",
+        "return-type": "json",
+        "max-length": 20,
+        "escape": true,
+        "exec": "$HOME/.config/system_scripts/mediaplayer.py 2> /dev/null",
+        "on-click": "playerctl play-pause",
+        "format-icons": {
+            "spotify": "\uf1bc ",
+            "default": "\uf885 "
         }
+    },
+    "custom/launcher": {
+        "format": "\uf2d6",
+        "on-click": "rofi -show drun -theme ~/.config/rofi/wayfire/config2.rasi",
+        "on-click-right": "killall rofi"
+    },
+    "custom/layout": {
+        "format": "\uf53d ",
+        "on-click": "bash ~/.config/system_scripts/layout.sh"
+    },
+    "custom/updater": {
+        "format": "\uf8d3  {} Updates",
+        "exec": "checkupdates | wc -l",
+        "exec-if": "[[ $(checkupdates | wc -l) != 0 ]]",
+        "interval": 15,
+        "on-click": "alacritty -e yay -Syu"
     }
 }
