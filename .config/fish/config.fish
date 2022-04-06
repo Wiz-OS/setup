@@ -57,7 +57,7 @@ if status --is-interactive
 
     function pm
         set -l paths
-        set -l pacscripts caprine-deb dust-bin emacs fennel hyperfine-bin i3-gaps libressl librewolf-app oil opera-deb qogir-gtk-theme-bin qogir-icon-theme-bin shfmt-bin telegram-bin tmpmail-bin uwufetch walc-app zentile-bin fnlfmt fennel-bin
+        set -l pacscripts brop-bin caprine-deb dust-bin emacs fennel hyperfine-bin i3-gaps libressl librewolf-app oil opera-deb qogir-gtk-theme-bin qogir-icon-theme-bin shfmt-bin telegram-bin tmpmail-bin uwufetch walc-app zentile-bin fnlfmt fennel-bin
         for pacscript in $pacscripts
             set -a paths "/media/pop-os/SBASAK/code/bash/pacstall-programs/packages/$pacscript/$pacscript.pacscript"
         end
