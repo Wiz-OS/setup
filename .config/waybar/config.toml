@@ -1,7 +1,4 @@
-layer = "top"
-position = "top"
 height = 35
-spacing = 4
 margin-top = 5
 modules-left = [
     "sway/workspaces"
