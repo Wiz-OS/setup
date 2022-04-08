@@ -106,11 +106,11 @@
         "on-click-right": "bash ~/.config/rofi/wifi_menu/rofi_wifi_menu"
     },
     "pulseaudio": {
-        "format": "{volume}% {icon}",
+        "format": "{volume}% {icon} {format_source}",
         "format-bluetooth": "{volume}% {icon}\uf294",
         "format-bluetooth-muted": "{icon}\uf294 {format_source}",
         "format-muted": "{format_source}",
-        "format-source": "\uf026",
+        "format-source": "{volume}% \uf130",
         "format-source-muted": "\uf131",
         "on-click": "pavucontrol",
         "format-icons": {

@@ -95,11 +95,11 @@ format-alt = "{ifname}: {ipaddr}/{cidr}"
 on-click-right = "bash ~/.config/rofi/wifi_menu/rofi_wifi_menu"
 
 [pulseaudio]
-format = "{volume}% {icon}"
+format = "{volume}% {icon} {format_source}"
 format-bluetooth = "{volume}% {icon}"
 format-bluetooth-muted = "{icon} {format_source}"
 format-muted = "{format_source}"
-format-source = ""
+format-source = "{volume}% "
 format-source-muted = ""
 on-click = "pavucontrol"
 
