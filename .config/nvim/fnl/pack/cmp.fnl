@@ -16,6 +16,9 @@
 
 (local {: setup
         : mapping
+        : select_next_item
+        : visible
+        : complete
         :config {: compare : disable}
         :SelectBehavior {:Insert insert-behavior :Select select-behavior}
         : event} (require :cmp))
@@ -23,6 +26,15 @@
 (local types (require :cmp.types))
 (local under-compare (require :cmp-under-comparator))
 (local {: insert} table)
+
+(local luasnip (require :luasnip))
+
+(fn has-words-before []
+  (let [(line col) (unpack (vim.api.nvim_win_get_cursor 0))]
+    (and (not= col 0) (= (: (: (. (vim.api.nvim_buf_get_lines 0 (- line 1) line
+                                                              true)
+                                  1) :sub col
+                               col) :match "%s") nil))))
 
 ;;; ============================================================================
 ;;; Highlights
@@ -94,9 +106,17 @@
                   :<C-e> (mapping.abort)
                   :<up> disable
                   :<down> disable
-                  :<Tab> (mapping (mapping.select_next_item {:behavior insert-behavior})
+                  :<Tab> (mapping (fn [fallback]
+                                    (if (visible) (select_next_item)
+                                        (luasnip.expand_or_jumpable)
+                                        (luasnip.expand_or_jump)
+                                        (has-words-before)
+                                        (complete {:select false}) (fallback)))
                                   [:i :s])
-                  :<S-Tab> (mapping (mapping.select_prev_item {:behavior insert-behavior})
+                  :<S-Tab> (mapping (fn [fallback]
+                                      (if (visible) (mapping.select_prev_item)
+                                          (luasnip.jumpable (- 1)) (luasnip.jump (- 1))
+                                          (fallback)))
                                     [:i :s])
                   :<space> (mapping.confirm {:select false})}
         :snippet {:expand (fn [args]
