@@ -57,7 +57,8 @@
                                         :treesitter :trs
                                         :copilot :cop
                                         :buffer :buf
-                                        :conjure :cj}
+                                        :conjure :cj
+                                        :luasnip :snp}
                                        entry.source.name))
                                (set vim-item.kind
                                     (. {:Text ""

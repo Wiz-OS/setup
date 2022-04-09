@@ -134,12 +134,11 @@
                           (pack :ray-x/cmp-treesitter {:after :nvim-cmp})
                           (pack :hrsh7th/cmp-buffer {:after :nvim-cmp})
                           (pack :zbirenbaum/copilot.lua {:event :InsertCharPre})
-                          (pack :rafamadriz/friendly-snippets)
                           (pack :L3MON4D3/LuaSnip
                                 {:config (fn []
-                                           (. (require :luasnip.loaders.from_vscode)
-                                              :lazy_load))
-                                 :after :friendly-snippets})
+                                           ((. (require :luasnip.loaders.from_vscode)
+                                               :lazy_load)))
+                                 :requires [(pack :rafamadriz/friendly-snippets)]})
                           (pack :saadparwaiz1/cmp_luasnip
                                 {:after [:nvim-cmp :LuaSnip]})
                           (pack :lukas-reineke/cmp-under-comparator
