@@ -50,10 +50,11 @@ icon-size = 20
 spacing = 10
 
 [clock]
+format = "{:%I:%M}"
+format-alt = "{:%Y-%m-%d}"
 tooltip-format = """
 <big>{:%Y %B}</big>
 <tt><small>{calendar}</small></tt>"""
-format-alt = "{:%Y-%m-%d}"
 
 [cpu]
 format = "{usage}% "
