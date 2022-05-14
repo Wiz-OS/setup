@@ -84,6 +84,11 @@
                :requires :hrsh7th/nvim-cmp
                :after [:nvim-treesitter :nvim-cmp]})
 
+;;  Treesitter grammar for Justfiles
+(use-package! :IndianBoy42/tree-sitter-just
+              {:config (fn []
+                         ((. (require :tree-sitter-just) :setup) {}))})
+
 ;;; ============================================================================
 
 ;;; ============================================================================
