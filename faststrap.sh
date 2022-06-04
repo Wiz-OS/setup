@@ -112,7 +112,7 @@ echo '%sudo ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers
 stage "Installing applications..."
 
 info "Installing Pacstall applications."
-sudo -u wizard bash -c 'curl -fsSL https://git.io/Jue3Z > pacstall-install.sh # Pacstall (develop branch installer)
+sudo -u wizard bash -c 'cd /tmp && curl -fsSL https://git.io/Jue3Z > pacstall-install.sh # Pacstall (develop branch installer)
 chmod +x ./pacstall-install.sh
 yes | sudo ./pacstall-install.sh > /dev/null 2>&1
 rm ./pacstall-install.sh
