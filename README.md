@@ -1,7 +1,3 @@
 # dotfiles
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![CodeFactor](https://www.codefactor.io/repository/github/wizard-28/dotfiles/badge)](https://www.codefactor.io/repository/github/wizard-28/dotfiles)
 
-This is a backup repository of my dotfiles! 
-
-[faststrap.sh](faststrap.sh) is a script that I use to setup my broken laptop every time I boot it up (I am using a liveUSB to boot up).
+Adapted from https://github.com/wizard-28/dotfiles/ in order to work with Cubic

@@ -43,55 +43,72 @@ tput sgr0
 # =============================================================================
 stage "Starting pre-configurations..."
 
+info "Installing base packages"
+apt-get update
+apt-get install sudo git curl gpg software-properties-common -y
+
 info "Configuring timezone"
-sudo timedatectl set-timezone Asia/Kolkata &
+ln -sf /usr/share/zoneinfo/Asia/Kolkata /etc/localtime
 
 info "Setting up SysRq"
-sudo sysctl -w kernel.sysrq=1 > /dev/null &
+echo 'kernel.sysrq = 1' >> /etc/sysctl.conf
 
 info "Optimizing APT sources"
-echo "deb mirror://mirrors.ubuntu.com/mirrors.txt focal main restricted universe multiverse
-deb mirror://mirrors.ubuntu.com/mirrors.txt focal-updates main restricted universe multiverse
-deb mirror://mirrors.ubuntu.com/mirrors.txt focal-backports main restricted universe multiverse
-deb mirror://mirrors.ubuntu.com/mirrors.txt focal-security main restricted universe multiverse
-deb cdrom:[Pop_OS 20.04 _Focal Fossa_ - Release amd64 (20200702)]/ focal main restricted
-deb http://apt.pop-os.org/proprietary focal main" | sudo tee /etc/apt/sources.list > /dev/null
+echo "deb mirror://mirrors.ubuntu.com/mirrors.txt jammy main restricted universe multiverse
+deb mirror://mirrors.ubuntu.com/mirrors.txt jammy-updates main restricted universe multiverse
+deb mirror://mirrors.ubuntu.com/mirrors.txt jammy-backports main restricted universe multiverse
+deb mirror://mirrors.ubuntu.com/mirrors.txt jammy-security main restricted universe multiverse
+deb cdrom:[Pop_OS 20.04 _Focal Fossa_ - Release amd64 (20200702)]/ jammy main restricted
+deb http://apt.pop-os.org/proprietary jammy main" | tee /etc/apt/sources.list > /dev/null
 
 info "Adding PPAs"
-echo 'deb http://download.opensuse.org/repositories/home:/Head_on_a_Stick:/azote/xUbuntu_20.04/ /' | sudo tee /etc/apt/sources.list.d/home:Head_on_a_Stick:azote.list > /dev/null
-curl -fsSL https://download.opensuse.org/repositories/home:Head_on_a_Stick:azote/xUbuntu_20.04/Release.key | gpg --dearmor | sudo tee /etc/apt/trusted.gpg.d/home_Head_on_a_Stick_azote.gpg > /dev/null || ../setup.sh
-sudo add-apt-repository ppa:git-core/ppa -yn > /dev/null || ../setup.sh
-sudo add-apt-repository ppa:nschloe/sway-backports -yn > /dev/null || ../setup.sh
-sudo add-apt-repository ppa:nschloe/waybar -yn > /dev/null || ../setup.sh
-sudo add-apt-repository ppa:dtl131/mpdbackport -yn > /dev/null || ../setup.sh
-sudo apt-add-repository ppa:fish-shell/release-3 -yn > /dev/null || ../setup.sh
-sudo add-apt-repository ppa:neovim-ppa/unstable -yn > /dev/null || ../setup.sh
-sudo add-apt-repository ppa:pipewire-debian/pipewire-upstream -y > /dev/null || ../setup.sh
+echo 'deb http://download.opensuse.org/repositories/home:/Head_on_a_Stick:/azote/xUbuntu_20.04/ /' | tee /etc/apt/sources.list.d/home:Head_on_a_Stick:azote.list > /dev/null
+curl -fsSL https://download.opensuse.org/repositories/home:Head_on_a_Stick:azote/xUbuntu_20.04/Release.key | gpg --dearmor | tee /etc/apt/trusted.gpg.d/home_Head_on_a_Stick_azote.gpg > /dev/null
+add-apt-repository ppa:git-core/ppa -yn > /dev/null
+add-apt-repository ppa:nschloe/sway-backports -yn > /dev/null
+add-apt-repository ppa:nschloe/waybar -yn > /dev/null
+add-apt-repository ppa:dtl131/mpdbackport -yn > /dev/null
+apt-add-repository ppa:fish-shell/release-3 -yn > /dev/null
+add-apt-repository ppa:neovim-ppa/unstable -yn > /dev/null
+add-apt-repository ppa:pipewire-debian/pipewire-upstream -y > /dev/null
 
 info "Updating APT"
-sudo apt-get install apt -y > /dev/null || .../setup.sh
+apt-get install apt -y > /dev/null
 
 info "Installing configuration files"
-sudo apt-get install xutils-dev -y > /dev/null || .../setup.sh
+apt-get install xutils-dev -y > /dev/null
 (
-    mkdir -p ~/.doom.d/ ~/.weechat/ ~/.librewolf/
-    lndir -silent ~/dotfiles/.config/ ~/.config/
-    lndir -silent ~/dotfiles/.doom.d/ ~/.doom.d/
-    lndir -silent ~/dotfiles/.weechat/ ~/.weechat/
-    ln -sf ~/dotfiles/.bashrc ~/.bashrc
-    ln -sf ~/dotfiles/.bash_aliases ~/.bash_aliases
-    ln -sf ~/dotfiles/.config/starship/starship.toml ~/.config/starship.toml
-    ln -sf ~/dotfiles/.azotebg ~/.azotebg
-    ln -sf ~/dotfiles/.librewolf/librewolf.overrides.cfg ~/.librewolf/librewolf.overrides.cfg
+    cd /etc/skel
+    git clone https://github.com/Wiz-OS/setup
+    mkdir -p .doom.d/ .weechat/ .librewolf/
+    cp -r setup/.config .config
+    cp -r setup/.doom.d/ .doom.d/
+    cp -r setup/.weechat/ .weechat/
+    cp setup/.bashrc .bashrc
+    cp setup/.bash_profile .bash_profile
+    cp setup/.azotebg .azotebg
+    cp setup/.librewolf/librewolf.overrides.cfg .librewolf/librewolf.overrides.cfg
 ) &
 
 info "Configuring environment variables"
-echo 'EDITOR="nvim"\nMOZ_ENABLE_WAYLAND=1' | sudo tee -a /etc/environment > /dev/null &
+echo 'EDITOR="nvim"\nMOZ_ENABLE_WAYLAND=1' | tee -a /etc/environment > /dev/null &
 # =============================================================================
 
 # =============================================================================
-# Stage 2: Install applications
+# Stage 2: Create user
 # =============================================================================
+
+stage "Creating user..."
+
+adduser --disabled-password --gecos '' wizard
+adduser wizard sudo
+echo '%sudo ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers
+# =============================================================================
+
+# =============================================================================
+# Stage 3: Install applications
+# =============================================================================
+
 stage "Installing applications..."
 
 info "Installing Pacstall applications."
@@ -112,9 +129,9 @@ sudo apt-get install -o Dpkg::Options::="--force-overwrite" -y \
     alacritty \
     fish \
     newsboat \
-    neovim python3.8-venv universal-ctags \
+    neovim universal-ctags \
     mpd mpc ncmpcpp \
-    libfdk-aac1 libldacbt-abr2 libldacbt-enc2 libopenaptx0 \
+    libldacbt-abr2 libldacbt-enc2 libopenaptx0 \
     gstreamer1.0-pipewire libpipewire-0.3-0 libpipewire-0.3-dev libpipewire-0.3-modules libspa-0.2-bluetooth libspa-0.2-dev libspa-0.2-jack libspa-0.2-modules pipewire pipewire-audio-client-libraries pipewire-bin pipewire-locales pipewire-tests > /dev/null
 
 info "Installing PIP applications"
@@ -123,16 +140,16 @@ sudo pip3 install \
     pynvim black \
     cmake > /dev/null &
 
-info "Installing applications from USB"
-sudo install -Dm6755 /media/pop-os/SBASAK/swaylock /usr/local/bin/ &
-sudo install -Dm755 /media/pop-os/SBASAK/clipman /bin/ &
+# info "Installing applications from USB"
+# sudo install -Dm6755 /media/pop-os/SBASAK/swaylock /usr/local/bin/ &
+# sudo install -Dm755 /media/pop-os/SBASAK/clipman /bin/ &
 
 # ncmpcpp 0.9.2
-(
-    sudo cp /media/pop-os/SBASAK/ncmpcpp/lib*.so* /usr/lib/x86_64-linux-gnu/                   # Install libs
-    sudo apt-get install -y /media/pop-os/SBASAK/ncmpcpp/libicu67_67.1-7_amd64.deb > /dev/null # Install deb dependency
-    sudo install -D /media/pop-os/SBASAK/ncmpcpp/ncmpcpp /usr/bin                              # Install ncmpcpp binary
-) &
+# (
+#     sudo cp /media/pop-os/SBASAK/ncmpcpp/lib*.so* /usr/lib/x86_64-linux-gnu/                   # Install libs
+#     sudo apt-get install -y /media/pop-os/SBASAK/ncmpcpp/libicu67_67.1-7_amd64.deb > /dev/null # Install deb dependency
+#     sudo install -D /media/pop-os/SBASAK/ncmpcpp/ncmpcpp /usr/bin                              # Install ncmpcpp binary
+# ) &
 
 info "Installing CURL applications"
 # Fonts
@@ -172,7 +189,7 @@ curl -fsSL https://starship.rs/install.sh | sudo sh
 # =============================================================================
 
 # =============================================================================
-# Stage 3: Purge bloat
+# Stage 4: Purge bloat
 # =============================================================================
 stage "Purging bloat..."
 
@@ -184,7 +201,7 @@ info "Purging APT bloat"
 # =============================================================================
 
 # =============================================================================
-# Stage 4: Postconfigurations
+# Stage 5: Postconfigurations
 # =============================================================================
 stage "Starting postconfigurations..."
 
@@ -196,8 +213,7 @@ info "Adding bat symlink"
 
 info "Changing default shell"
 (
-    yes "$(cat /media/pop-os/SBASAK/passwd)" | sudo passwd "$(logname)" > /dev/null 2>&1
-    yes "$(cat /media/pop-os/SBASAK/passwd)" | chsh -s /usr/bin/fish > /dev/null 2>&1
+    sudo chsh -s /usr/bin/fish
 ) &
 
 info "Setting up ZSWAP"
@@ -207,7 +223,7 @@ info "Setting up ZSWAP"
     sudo zramctl /dev/zram1 --size 750M > /dev/null 2>&1
     sudo zramctl /dev/zram2 --size 750M > /dev/null 2>&1
     sudo zramctl /dev/zram3 --size 750M > /dev/null 2>&1
-    sudo zramswap start > /dev/null 2>&1
+    # sudo zramswap start > /dev/null 2>&1
 ) &
 
 info "Setting up Pipewire"
@@ -217,31 +233,18 @@ info "Setting up Pipewire"
     systemctl --user --now enable pipewire.socket pipewire-pulse.socket pipewire.service pipewire-pulse.service pipewire-media-session.service > /dev/null 2>&1
 ) &
 
-info "Setting up git"
-(
-    # Setup remote
-    cd ~/dotfiles || exit
-    git remote set-url origin git@github.com:wizard-28/dotfiles.git
-) &
-
-info "Setting up SSH and GPG keys"
-sudo cp -r /media/pop-os/SBASAK/.ssh/ ~
-sudo chown "$USER":"$USER" ~/.ssh/id_ed25519*
-chmod 600 ~/.ssh/id_ed25519
-chmod 644 ~/.ssh/id_ed25519.pub
-eval "$(ssh-agent)" > /dev/null
-
-notify-send "Enter password for SSH and GPG key"
-xclip -selection c < /media/pop-os/SBASAK/SSH
-ssh-add ~/.ssh/id_ed25519
-xclip -selection c < /media/pop-os/SBASAK/GPG
-gpg --import /media/pop-os/SBASAK/GPG.asc
+# info "Setting up SSH and GPG keys"
+# sudo cp -r /media/pop-os/SBASAK/.ssh/ ~
+# sudo chown "$USER":"$USER" ~/.ssh/id_ed25519*
+# chmod 600 ~/.ssh/id_ed25519
+# chmod 644 ~/.ssh/id_ed25519.pub
+# eval "$(ssh-agent)" > /dev/null
+#
+# notify-send "Enter password for SSH and GPG key"
+# xclip -selection c < /media/pop-os/SBASAK/SSH
+# ssh-add ~/.ssh/id_ed25519
+# xclip -selection c < /media/pop-os/SBASAK/GPG
+# gpg --import /media/pop-os/SBASAK/GPG.asc
 
 wait
-# =============================================================================
-# Finish up
-# =============================================================================
-notify-send --urgency critical "Logging out in 10 secs"
-sleep 10
-sudo service gdm3 stop
 # =============================================================================
