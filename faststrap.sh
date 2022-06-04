@@ -112,7 +112,7 @@ echo '%sudo ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers
 stage "Installing applications..."
 
 info "Installing Pacstall applications."
-curl -fsSL https://git.io/Jue3Z > pacstall-install.sh # Pacstall (develop branch installer)
+sudo -u wizard bash -c 'curl -fsSL https://git.io/Jue3Z > pacstall-install.sh # Pacstall (develop branch installer)
 chmod +x ./pacstall-install.sh
 yes | sudo ./pacstall-install.sh > /dev/null 2>&1
 rm ./pacstall-install.sh
@@ -138,7 +138,7 @@ info "Installing PIP applications"
 sudo pip3 install \
     autotiling \
     pynvim black \
-    cmake > /dev/null &
+    cmake > /dev/null &'
 
 # info "Installing applications from USB"
 # sudo install -Dm6755 /media/pop-os/SBASAK/swaylock /usr/local/bin/ &
@@ -161,14 +161,14 @@ info "Installing CURL applications"
 
 # Application
 (
-    curl -sS https://webinstall.dev/zoxide | bash > /dev/null
+    sudo -u wizard bash -c 'curl -sS https://webinstall.dev/zoxide | bash > /dev/null'
 ) &
 (
     sudo curl -sfLo /usr/local/bin/grimshot https://raw.githubusercontent.com/swaywm/sway/master/contrib/grimshot
     sudo chmod +x /usr/local/bin/grimshot
 ) &
 (
-    curl -sSL https://install.python-poetry.org | python3 - > /dev/null
+    sudo -u wizard bash -c 'curl -sSL https://install.python-poetry.org | python3 - > /dev/null'
 ) &
 
 (
@@ -183,7 +183,6 @@ info "Installing CURL applications"
     cd .. && rm -r exa/
 ) &
 
-notify-send --urgency critical "Interaction required"
 curl -sL install-node.now.sh/lts | sudo bash
 curl -fsSL https://starship.rs/install.sh | sudo sh
 # =============================================================================
@@ -195,8 +194,8 @@ stage "Purging bloat..."
 
 info "Purging APT bloat"
 (
-    sudo apt-get purge firefox libreoffice-common geary totem suckless-tools -y > /dev/null
-    sudo apt-get autoremove --purge -y > /dev/null
+    apt-get purge firefox libreoffice-common geary totem suckless-tools -y > /dev/null
+    apt-get autoremove --purge -y > /dev/null
 ) &
 # =============================================================================
 
@@ -207,8 +206,8 @@ stage "Starting postconfigurations..."
 
 info "Adding bat symlink"
 (
-    mkdir -p ~/.local/bin
-    ln -s /usr/bin/batcat ~/.local/bin/bat
+    mkdir -p /etc/skel/.local/bin
+    ln -s /usr/bin/batcat /etc/skel/.local/bin/bat
 ) &
 
 info "Changing default shell"
