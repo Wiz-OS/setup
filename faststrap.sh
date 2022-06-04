@@ -77,7 +77,7 @@ apt-get install apt -y > /dev/null
 
 info "Installing configuration files"
 apt-get install xutils-dev -y > /dev/null
-(
+(   
     cd /etc/skel
     git clone https://github.com/Wiz-OS/setup
     mkdir -p .doom.d/ .weechat/ .librewolf/
@@ -112,33 +112,36 @@ echo '%sudo ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers
 stage "Installing applications..."
 
 info "Installing Pacstall applications."
-sudo -u wizard bash -c 'cd /tmp && curl -fsSL https://git.io/Jue3Z > pacstall-install.sh # Pacstall (develop branch installer)
-chmod +x ./pacstall-install.sh
-yes | sudo ./pacstall-install.sh > /dev/null 2>&1
-rm ./pacstall-install.sh
-pacstall -U pacstall develop > /dev/null
-pacstall -PI librewolf-app bemenu-git shfmt-bin shellharden-bin dunst treefetch-bin git-delta-deb > /dev/null 2>&1
+(   
+    sudo su wizard
+    cd /tmp && curl -fsSL https://git.io/Jue3Z > pacstall-install.sh # Pacstall (develop branch installer)
+    chmod +x ./pacstall-install.sh
+    yes | sudo ./pacstall-install.sh
+    rm ./pacstall-install.sh
+    pacstall -U pacstall develop
+    pacstall -PI librewolf-app bemenu-git shfmt-bin shellharden-bin dunst treefetch-bin git-delta-deb
 
-info "Installing APT applications"
-sudo apt-get install -o Dpkg::Options::="--force-overwrite" -y \
-    lua5.3 bat ripgrep fd-find fzf zram-config zram-tools gnome-tweaks gstreamer1.0-plugins-bad \
-    libnotify-bin jq light grim slurp playerctl htop wl-clipboard xwayland libgdk-pixbuf2.0-common libgdk-pixbuf2.0-bin gir1.2-gdkpixbuf-2.0 python3-pip \
-    sway swayidle sway-backgrounds azote \
-    waybar fonts-font-awesome \
-    shellcheck \
-    alacritty \
-    fish \
-    newsboat \
-    neovim universal-ctags \
-    mpd mpc ncmpcpp \
-    libldacbt-abr2 libldacbt-enc2 libopenaptx0 \
-    gstreamer1.0-pipewire libpipewire-0.3-0 libpipewire-0.3-dev libpipewire-0.3-modules libspa-0.2-bluetooth libspa-0.2-dev libspa-0.2-jack libspa-0.2-modules pipewire pipewire-audio-client-libraries pipewire-bin pipewire-locales pipewire-tests > /dev/null
+    info "Installing APT applications"
+    sudo apt-get install -o Dpkg::Options::="--force-overwrite" -y \
+        lua5.3 bat ripgrep fd-find fzf zram-config zram-tools gnome-tweaks gstreamer1.0-plugins-bad \
+        libnotify-bin jq light grim slurp playerctl htop wl-clipboard xwayland libgdk-pixbuf2.0-common libgdk-pixbuf2.0-bin gir1.2-gdkpixbuf-2.0 python3-pip \
+        sway swayidle sway-backgrounds azote \
+        waybar fonts-font-awesome \
+        shellcheck \
+        alacritty \
+        fish \
+        newsboat \
+        neovim universal-ctags \
+        mpd mpc ncmpcpp \
+        libldacbt-abr2 libldacbt-enc2 libopenaptx0 \
+        gstreamer1.0-pipewire libpipewire-0.3-0 libpipewire-0.3-dev libpipewire-0.3-modules libspa-0.2-bluetooth libspa-0.2-dev libspa-0.2-jack libspa-0.2-modules pipewire pipewire-audio-client-libraries pipewire-bin pipewire-locales pipewire-tests > /dev/null
 
-info "Installing PIP applications"
-sudo pip3 install \
-    autotiling \
-    pynvim black \
-    cmake > /dev/null &'
+  info "Installing PIP applications"
+  sudo pip3 install \
+      autotiling \
+      pynvim black \
+      cmake > /dev/null
+)
 
 # info "Installing applications from USB"
 # sudo install -Dm6755 /media/pop-os/SBASAK/swaylock /usr/local/bin/ &
@@ -153,25 +156,25 @@ sudo pip3 install \
 
 info "Installing CURL applications"
 # Fonts
-(
+(   
     sudo curl -sfLo "/usr/share/fonts/truetype/JetBrains Mono NL Regular Nerd Font Complete.ttf" https://github.com/ryanoasis/nerd-fonts/raw/master/patched-fonts/JetBrainsMono/NoLigatures/Regular/complete/JetBrains%20Mono%20NL%20Regular%20Nerd%20Font%20Complete.ttf
     sudo curl -sfLo "/usr/share/fonts/truetype/JetBrains Mono NL Italic Nerd Font Complete.ttf" https://github.com/ryanoasis/nerd-fonts/raw/master/patched-fonts/JetBrainsMono/NoLigatures/Italic/complete/JetBrains%20Mono%20NL%20Italic%20Nerd%20Font%20Complete.ttf
     fc-cache -f
 ) &
 
 # Application
-(
+(   
     sudo -u wizard bash -c 'curl -sS https://webinstall.dev/zoxide | bash > /dev/null'
 ) &
-(
+(   
     sudo curl -sfLo /usr/local/bin/grimshot https://raw.githubusercontent.com/swaywm/sway/master/contrib/grimshot
     sudo chmod +x /usr/local/bin/grimshot
 ) &
-(
+(   
     sudo -u wizard bash -c 'curl -sSL https://install.python-poetry.org | python3 - > /dev/null'
 ) &
 
-(
+(   
     mkdir exa/
     cd exa/ || exit
     curl -s https://api.github.com/repos/ogham/exa/releases/latest | grep "browser_download_url" | grep "exa-linux-x86_64-v" | cut -d '"' -f 4 | wget -qi -
@@ -193,7 +196,7 @@ curl -fsSL https://starship.rs/install.sh | sudo sh
 stage "Purging bloat..."
 
 info "Purging APT bloat"
-(
+(   
     apt-get purge firefox libreoffice-common geary totem suckless-tools -y > /dev/null
     apt-get autoremove --purge -y > /dev/null
 ) &
@@ -205,18 +208,18 @@ info "Purging APT bloat"
 stage "Starting postconfigurations..."
 
 info "Adding bat symlink"
-(
+(   
     mkdir -p /etc/skel/.local/bin
     ln -s /usr/bin/batcat /etc/skel/.local/bin/bat
 ) &
 
 info "Changing default shell"
-(
+(   
     sudo chsh -s /usr/bin/fish
 ) &
 
 info "Setting up ZSWAP"
-(
+(   
     sudo swapoff -a > /dev/null
     sudo zramctl /dev/zram0 --size 750M > /dev/null 2>&1
     sudo zramctl /dev/zram1 --size 750M > /dev/null 2>&1
@@ -226,7 +229,7 @@ info "Setting up ZSWAP"
 ) &
 
 info "Setting up Pipewire"
-(
+(   
     systemctl --user --now disable pulseaudio.socket pulseaudio.service > /dev/null 2>&1
     systemctl --user mask pulseaudio > /dev/null 2>&1
     systemctl --user --now enable pipewire.socket pipewire-pulse.socket pipewire.service pipewire-pulse.service pipewire-media-session.service > /dev/null 2>&1
