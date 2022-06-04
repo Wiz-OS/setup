@@ -113,11 +113,10 @@ stage "Installing applications..."
 
 info "Installing Pacstall applications."
 (   
-    sudo su wizard
-    cd /tmp && curl -fsSL https://git.io/Jue3Z > pacstall-install.sh # Pacstall (develop branch installer)
+    su wizard -c 'cd /tmp && curl -fsSL https://git.io/Jue3Z > pacstall-install.sh # Pacstall (develop branch installer)
     chmod +x ./pacstall-install.sh
     yes | sudo ./pacstall-install.sh
-    rm ./pacstall-install.sh
+    sudo rm ./pacstall-install.sh
     pacstall -U pacstall develop
     pacstall -PI librewolf-app bemenu-git shfmt-bin shellharden-bin dunst treefetch-bin git-delta-deb
 
@@ -140,7 +139,7 @@ info "Installing Pacstall applications."
   sudo pip3 install \
       autotiling \
       pynvim black \
-      cmake > /dev/null
+      cmake > /dev/null'
 )
 
 # info "Installing applications from USB"
@@ -163,16 +162,12 @@ info "Installing CURL applications"
 ) &
 
 # Application
-(   
-    sudo -u wizard bash -c 'curl -sS https://webinstall.dev/zoxide | bash > /dev/null'
-) &
+sudo -u wizard bash -c 'curl -sS https://webinstall.dev/zoxide | bash > /dev/null'
 (   
     sudo curl -sfLo /usr/local/bin/grimshot https://raw.githubusercontent.com/swaywm/sway/master/contrib/grimshot
     sudo chmod +x /usr/local/bin/grimshot
 ) &
-(   
-    sudo -u wizard bash -c 'curl -sSL https://install.python-poetry.org | python3 - > /dev/null'
-) &
+sudo -u wizard bash -c 'curl -sSL https://install.python-poetry.org | python3 - > /dev/null'
 
 (   
     mkdir exa/
