@@ -241,8 +241,8 @@ bindsym $mod+r mode "resize"
 # =============================================================================
 # Shortcuts
 # =============================================================================
-bindsym $mod+Shift+s exec $term -e $EDITOR ~/dotfiles/.config/sway/config
-bindsym $mod+Shift+w exec $term -e $EDITOR ~/dotfiles/.config/waybar/config
+bindsym $mod+Shift+s exec $term -e $EDITOR ~/.config/sway/config
+bindsym $mod+Shift+w exec $term -e $EDITOR ~/.config/waybar/config
 
 bindsym $mod+u exec ~/dotfiles/.config/sway/scripts/emoji/emoji.sh
 
