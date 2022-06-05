@@ -177,8 +177,8 @@ cd .. && rm -r exa/
 
 curl -sL install-node.now.sh/lts | sudo bash
 curl -fsSL https://starship.rs/install.sh | sudo sh
-curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
-rustup component add --toolchain nightly rustfmt
+sudo -u wizard bash -c 'curl --proto "=https" --tlsv1.2 -sSf https://sh.rustup.rs | sh
+rustup component add --toolchain nightly rustfmt'
 # =============================================================================
 
 # =============================================================================
