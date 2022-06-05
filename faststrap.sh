@@ -178,7 +178,8 @@ cd .. && rm -r exa/
 curl -sL install-node.now.sh/lts | sudo bash
 curl -fsSL https://starship.rs/install.sh | sudo sh
 sudo -u wizard bash -c 'curl --proto "=https" --tlsv1.2 -sSf https://sh.rustup.rs | sh
-rustup component add --toolchain nightly rustfmt'
+cd && source /home/wizard/.cargo/env
+rustup toolchain install nightly'
 # =============================================================================
 
 # =============================================================================
