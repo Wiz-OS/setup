@@ -190,8 +190,8 @@ apt-get autoremove --purge -y > /dev/null
 stage "Starting postconfigurations..."
 
 info "Adding bat symlink"
-mkdir -p /etc/skel/.local/bin
-ln -s /usr/bin/batcat /etc/skel/.local/bin/bat
+mkdir -p /home/wizard/.local/bin
+ln -s /usr/bin/batcat /home/wizard/.local/bin/bat
 
 info "Changing default shell"
 sudo chsh -s /usr/bin/fish
@@ -233,4 +233,7 @@ deb http://apt.pop-os.org/proprietary jammy main" | tee /etc/apt/sources.list > 
 # gpg --import /media/pop-os/SBASAK/GPG.asc
 
 wait
+cd /root
+# cleanup
+rm -r setup
 # =============================================================================
