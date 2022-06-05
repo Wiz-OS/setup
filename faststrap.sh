@@ -75,31 +75,30 @@ apt-get install apt -y > /dev/null
 
 info "Installing configuration files"
 apt-get install xutils-dev -y > /dev/null
-
-cd /etc/skel
-git clone https://github.com/Wiz-OS/setup
-mkdir -p .doom.d/ .weechat/ .librewolf/
-cp -r setup/.config .config
-cp -r setup/.doom.d/ .doom.d/
-cp -r setup/.weechat/ .weechat/
-cp setup/.bashrc .bashrc
-cp setup/.bash_aliases .bash_aliases
-cp setup/.azotebg .azotebg
-cp setup/.librewolf/librewolf.overrides.cfg .librewolf/librewolf.overrides.cfg
-
-info "Configuring environment variables"
-echo 'EDITOR="nvim"\nMOZ_ENABLE_WAYLAND=1' | tee -a /etc/environment > /dev/null &
 # =============================================================================
 
 # =============================================================================
 # Stage 2: Create user
 # =============================================================================
-
 stage "Creating user..."
 
 adduser --disabled-password --gecos '' wizard
 adduser wizard sudo
 echo '%sudo ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers
+
+su wizard -c 'cd && git clone https://github.com/Wiz-OS/setup
+mkdir -p ~/.doom.d/ ~/.weechat/ ~/.librewolf/
+lndir -silent ~/setup/.config/ ~/.config/
+lndir -silent ~/setup/.doom.d/ ~/.doom.d/
+lndir -silent ~/setup/.weechat/ ~/.weechat/
+ln -sf ~/setup/.bashrc ~/.bashrc
+ln -sf ~/setup/.bash_aliases ~/.bash_aliases
+ln -sf ~/setup/.config/starship/starship.toml ~/.config/starship.toml
+ln -sf ~/setup/.azotebg ~/.azotebg
+ln -sf ~/setup/.librewolf/librewolf.overrides.cfg ~/.librewolf/librewolf.overrides.cfg'
+
+info "Configuring environment variables"
+echo 'EDITOR="nvim"\nMOZ_ENABLE_WAYLAND=1' | tee -a /etc/environment > /dev/null &
 # =============================================================================
 
 # =============================================================================
