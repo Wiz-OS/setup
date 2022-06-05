@@ -137,10 +137,10 @@ sudo pip3 install \
     pynvim black \
     cmake > /dev/null
 info "Installing Xanmod kernel"
-wget -O- https://dl.xanmod.org/gpg.key | gpg --dearmor | tee /usr/share/keyrings/xanmod.gpg
-echo "deb [signed-by=/usr/share/keyrings/xanmod.gpg] http://deb.xanmod.org releases main" | tee /etc/apt/sources.list.d/xanmod-kernel.list
-apt-get update
-apt install linux-xanmod'
+wget -O- https://dl.xanmod.org/gpg.key | gpg --dearmor | sudo tee /usr/share/keyrings/xanmod.gpg
+echo "deb [signed-by=/usr/share/keyrings/xanmod.gpg] http://deb.xanmod.org releases main" | sudo tee /etc/apt/sources.list.d/xanmod-kernel.list
+sudo apt-get update
+sudo apt install linux-xanmod'
 
 # info "Installing applications from USB"
 # sudo install -Dm6755 /media/pop-os/SBASAK/swaylock /usr/local/bin/ &
