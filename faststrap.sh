@@ -86,16 +86,16 @@ adduser --disabled-password --gecos '' wizard
 adduser wizard sudo
 echo '%sudo ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers
 
-su wizard -c 'cd && git clone https://github.com/Wiz-OS/setup
+su wizard -c 'cd && git clone https://github.com/Wiz-OS/setup dotfiles
 mkdir -p ~/.doom.d/ ~/.weechat/ ~/.librewolf/ ~/.config
-lndir ~/setup/.config/ ~/.config/
-lndir ~/setup/.doom.d/ ~/.doom.d/
-lndir ~/setup/.weechat/ ~/.weechat/
-ln -sf ~/setup/.bashrc ~/.bashrc
-ln -sf ~/setup/.bash_aliases ~/.bash_aliases
-ln -sf ~/setup/.config/starship/starship.toml ~/.config/starship.toml
-ln -sf ~/setup/.azotebg ~/.azotebg
-ln -sf ~/setup/.librewolf/librewolf.overrides.cfg ~/.librewolf/librewolf.overrides.cfg'
+lndir ~/dotfiles/.config/ ~/.config/
+lndir ~/dotfiles/.doom.d/ ~/.doom.d/
+lndir ~/dotfiles/.weechat/ ~/.weechat/
+ln -sf ~/dotfiles/.bashrc ~/.bashrc
+ln -sf ~/dotfiles/.bash_aliases ~/.bash_aliases
+ln -sf ~/dotfiles/.config/starship/starship.toml ~/.config/starship.toml
+ln -sf ~/dotfiles/.azotebg ~/.azotebg
+ln -sf ~/dotfiles/.librewolf/librewolf.overrides.cfg ~/.librewolf/librewolf.overrides.cfg'
 
 info "Configuring environment variables"
 echo 'EDITOR="nvim"\nMOZ_ENABLE_WAYLAND=1' | tee -a /etc/environment > /dev/null
@@ -141,9 +141,9 @@ echo "deb [signed-by=/usr/share/keyrings/xanmod.gpg] http://deb.xanmod.org relea
 sudo apt-get update
 sudo apt install linux-xanmod'
 
-# info "Installing applications from USB"
-# sudo install -Dm6755 /media/pop-os/SBASAK/swaylock /usr/local/bin/ &
-# sudo install -Dm755 /media/pop-os/SBASAK/clipman /bin/ &
+info "Installing applications"
+install -Dm6755 binaries/swaylock /usr/local/bin/
+install -Dm755 binaries/clipman /bin/
 
 # ncmpcpp 0.9.2
 # (
@@ -154,8 +154,8 @@ sudo apt install linux-xanmod'
 
 info "Installing CURL applications"
 # Fonts
-sudo curl -sfLo "/usr/share/fonts/truetype/JetBrains Mono NL Regular Nerd Font Complete.ttf" https://github.com/ryanoasis/nerd-fonts/raw/master/patched-fonts/JetBrainsMono/NoLigatures/Regular/complete/JetBrains%20Mono%20NL%20Regular%20Nerd%20Font%20Complete.ttf
-sudo curl -sfLo "/usr/share/fonts/truetype/JetBrains Mono NL Italic Nerd Font Complete.ttf" https://github.com/ryanoasis/nerd-fonts/raw/master/patched-fonts/JetBrainsMono/NoLigatures/Italic/complete/JetBrains%20Mono%20NL%20Italic%20Nerd%20Font%20Complete.ttf
+curl -sfLo "/usr/share/fonts/truetype/JetBrains Mono NL Regular Nerd Font Complete.ttf" https://github.com/ryanoasis/nerd-fonts/raw/master/patched-fonts/JetBrainsMono/NoLigatures/Regular/complete/JetBrains%20Mono%20NL%20Regular%20Nerd%20Font%20Complete.ttf
+curl -sfLo "/usr/share/fonts/truetype/JetBrains Mono NL Italic Nerd Font Complete.ttf" https://github.com/ryanoasis/nerd-fonts/raw/master/patched-fonts/JetBrainsMono/NoLigatures/Italic/complete/JetBrains%20Mono%20NL%20Italic%20Nerd%20Font%20Complete.ttf
 fc-cache -f
 
 # Application
