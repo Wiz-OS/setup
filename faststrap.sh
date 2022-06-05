@@ -143,6 +143,7 @@ sudo apt install linux-xanmod'
 
 info "Installing applications"
 install -Dm6755 binaries/swaylock /usr/local/bin/
+chmod a+s /usr/local/bin/swaylock
 install -Dm755 binaries/clipman /bin/
 
 # ncmpcpp 0.9.2
@@ -176,6 +177,8 @@ cd .. && rm -r exa/
 
 curl -sL install-node.now.sh/lts | sudo bash
 curl -fsSL https://starship.rs/install.sh | sudo sh
+curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+rustup component add --toolchain nightly rustfmt
 # =============================================================================
 
 # =============================================================================
@@ -220,7 +223,6 @@ echo "deb mirror://mirrors.ubuntu.com/mirrors.txt jammy main restricted universe
 deb mirror://mirrors.ubuntu.com/mirrors.txt jammy-updates main restricted universe multiverse
 deb mirror://mirrors.ubuntu.com/mirrors.txt jammy-backports main restricted universe multiverse
 deb mirror://mirrors.ubuntu.com/mirrors.txt jammy-security main restricted universe multiverse
-deb cdrom:[Pop_OS 20.04 _Focal Fossa_ - Release amd64 (20200702)]/ jammy main restricted
 deb http://apt.pop-os.org/proprietary jammy main" | tee /etc/apt/sources.list > /dev/null
 
 info "Setting default session"
