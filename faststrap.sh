@@ -87,10 +87,10 @@ adduser wizard sudo
 echo '%sudo ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers
 
 su wizard -c 'cd && git clone https://github.com/Wiz-OS/setup
-mkdir -p ~/.doom.d/ ~/.weechat/ ~/.librewolf/
-lndir -silent ~/setup/.config/ ~/.config/
-lndir -silent ~/setup/.doom.d/ ~/.doom.d/
-lndir -silent ~/setup/.weechat/ ~/.weechat/
+mkdir -p ~/.doom.d/ ~/.weechat/ ~/.librewolf/ ~/.config
+lndir ~/setup/.config/ ~/.config/
+lndir ~/setup/.doom.d/ ~/.doom.d/
+lndir ~/setup/.weechat/ ~/.weechat/
 ln -sf ~/setup/.bashrc ~/.bashrc
 ln -sf ~/setup/.bash_aliases ~/.bash_aliases
 ln -sf ~/setup/.config/starship/starship.toml ~/.config/starship.toml
@@ -98,7 +98,7 @@ ln -sf ~/setup/.azotebg ~/.azotebg
 ln -sf ~/setup/.librewolf/librewolf.overrides.cfg ~/.librewolf/librewolf.overrides.cfg'
 
 info "Configuring environment variables"
-echo 'EDITOR="nvim"\nMOZ_ENABLE_WAYLAND=1' | tee -a /etc/environment > /dev/null &
+echo 'EDITOR="nvim"\nMOZ_ENABLE_WAYLAND=1' | tee -a /etc/environment > /dev/null
 # =============================================================================
 
 # =============================================================================
