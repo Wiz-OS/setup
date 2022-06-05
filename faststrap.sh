@@ -83,7 +83,7 @@ apt-get install xutils-dev -y > /dev/null
     cp -r setup/.doom.d/ .doom.d/
     cp -r setup/.weechat/ .weechat/
     cp setup/.bashrc .bashrc
-    cp setup/.bash_profile .bash_profile
+    cp setup/.bash_aliases .bash_aliases
     cp setup/.azotebg .azotebg
     cp setup/.librewolf/librewolf.overrides.cfg .librewolf/librewolf.overrides.cfg
 ) &
