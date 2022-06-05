@@ -184,7 +184,7 @@ curl -fsSL https://starship.rs/install.sh | sudo sh
 stage "Purging bloat..."
 
 info "Purging APT bloat"
-apt-get purge firefox libreoffice-common geary totem suckless-tools -y > /dev/null
+apt-get purge firefox libreoffice-common geary totem suckless-tools gnome-contacts gnome-weather gnome-calender gnome-remote-desktop gnome-accessibility-themes gnome-user-docs ubuntu-docs language-pack-de language-pack-es language-pack-fr language-pack-ru language-pack-ja language-pack-ar pop-installer -y > /dev/null
 apt-get autoremove --purge -y > /dev/null
 # =============================================================================
 
