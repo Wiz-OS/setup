@@ -198,7 +198,7 @@ mkdir -p /home/wizard/.local/bin
 ln -s /usr/bin/batcat /home/wizard/.local/bin/bat
 
 info "Changing default shell"
-sudo chsh -s /usr/bin/fish
+sudo chsh -s /usr/bin/fish wizard
 # CHANGE THIS WIZARD I BEG YOU
 yes $(echo "1234") | sudo passwd wizard
 

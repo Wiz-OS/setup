@@ -111,7 +111,7 @@ if ! shopt -oq posix; then
   fi
 fi
 
-treefetch -xmas &
+treefetch --xmas &
 eval "$(zoxide init bash)" &
 eval "$(starship init bash)"
 
