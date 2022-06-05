@@ -177,9 +177,9 @@ cd .. && rm -r exa/
 
 curl -sL install-node.now.sh/lts | sudo bash
 curl -fsSL https://starship.rs/install.sh | sudo sh
-sudo -u wizard bash -c 'curl --proto "=https" --tlsv1.2 -sSf https://sh.rustup.rs | sh
-cd && source /home/wizard/.cargo/env
-rustup toolchain install nightly'
+#sudo -u wizard bash -c 'curl --proto "=https" --tlsv1.2 -sSf https://sh.rustup.rs | sh
+#cd && source /home/wizard/.cargo/env
+#rustup toolchain install nightly'
 # =============================================================================
 
 # =============================================================================
@@ -188,7 +188,7 @@ rustup toolchain install nightly'
 stage "Purging bloat..."
 
 info "Purging APT bloat"
-apt-get purge firefox libreoffice-common geary totem suckless-tools gnome-contacts gnome-weather gnome-calendar gnome-remote-desktop gnome-accessibility-themes gnome-user-docs ubuntu-docs language-pack-de language-pack-es language-pack-fr language-pack-ru language-pack-ja language-pack-ar pop-installer -y > /dev/null
+apt-get purge firefox libreoffice-common geary totem suckless-tools gnome-contacts gnome-weather gnome-calendar gnome-remote-desktop gnome-accessibility-themes gnome-user-docs ubuntu-docs language-pack-de language-pack-es language-pack-fr language-pack-ru language-pack-ja language-pack-ar pop-installer flatpak -y > /dev/null
 apt-get autoremove --purge -y > /dev/null
 # =============================================================================
 
@@ -237,6 +237,21 @@ Type=Application
 DesktopNames=pop:GNOME
 X-GDM-SessionRegisters=true
 X-Ubuntu-Gettext-Domain=gnome-session-3.0
+EOF
+
+info "Modifying /etc/os-release"
+cat > /etc/os-release <<EOF
+NAME="WizOS"
+VERSION="22.04 LTS"
+ID=pop
+ID_LIKE="ubuntu debian"
+PRETTY_NAME="WizOS 22.04 LTS"
+VERSION_ID="22.04"
+HOME_URL="https://github.com/Wiz-OS"
+SUPPORT_URL="https://support.system76.com"
+BUG_REPORT_URL="https://github.com/pop-os/pop/issues"
+PRIVACY_POLICY_URL="https://system76.com/privacy"
+LOGO=distributor-logo-pop-os
 EOF
 
 # info "Setting up SSH and GPG keys"
