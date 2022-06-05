@@ -43,6 +43,12 @@ tput sgr0
 # =============================================================================
 stage "Starting pre-configurations..."
 
+echo "deb http://us.archive.ubuntu.com/ubuntu/ jammy main restricted universe multiverse
+deb http://us.archive.ubuntu.com/ubuntu/ jammy-updates main restricted universe multiverse
+deb http://us.archive.ubuntu.com/ubuntu/ jammy-backports main restricted universe multiverse
+deb http://us.archive.ubuntu.com/ubuntu/ jammy-security main restricted universe multiverse
+deb http://apt.pop-os.org/proprietary jammy main" | tee /etc/apt/sources.list > /dev/null
+
 info "Installing base packages"
 apt-get update
 apt-get install sudo git curl gpg software-properties-common -y
@@ -52,14 +58,6 @@ ln -sf /usr/share/zoneinfo/Asia/Kolkata /etc/localtime
 
 info "Setting up SysRq"
 echo 'kernel.sysrq = 1' >> /etc/sysctl.conf
-
-info "Optimizing APT sources"
-echo "deb mirror://mirrors.ubuntu.com/mirrors.txt jammy main restricted universe multiverse
-deb mirror://mirrors.ubuntu.com/mirrors.txt jammy-updates main restricted universe multiverse
-deb mirror://mirrors.ubuntu.com/mirrors.txt jammy-backports main restricted universe multiverse
-deb mirror://mirrors.ubuntu.com/mirrors.txt jammy-security main restricted universe multiverse
-deb cdrom:[Pop_OS 20.04 _Focal Fossa_ - Release amd64 (20200702)]/ jammy main restricted
-deb http://apt.pop-os.org/proprietary jammy main" | tee /etc/apt/sources.list > /dev/null
 
 info "Adding PPAs"
 echo 'deb http://download.opensuse.org/repositories/home:/Head_on_a_Stick:/azote/xUbuntu_20.04/ /' | tee /etc/apt/sources.list.d/home:Head_on_a_Stick:azote.list > /dev/null
@@ -211,6 +209,8 @@ info "Adding bat symlink"
 info "Changing default shell"
 (   
     sudo chsh -s /usr/bin/fish
+    # CHANGE THIS WIZARD I BEG YOU
+    yes $(echo "1234") | sudo passwd wizard
 ) &
 
 info "Setting up ZSWAP"
@@ -229,6 +229,14 @@ info "Setting up Pipewire"
     systemctl --user mask pulseaudio > /dev/null 2>&1
     systemctl --user --now enable pipewire.socket pipewire-pulse.socket pipewire.service pipewire-pulse.service pipewire-media-session.service > /dev/null 2>&1
 ) &
+
+info "Optimizing APT sources"
+echo "deb mirror://mirrors.ubuntu.com/mirrors.txt jammy main restricted universe multiverse
+deb mirror://mirrors.ubuntu.com/mirrors.txt jammy-updates main restricted universe multiverse
+deb mirror://mirrors.ubuntu.com/mirrors.txt jammy-backports main restricted universe multiverse
+deb mirror://mirrors.ubuntu.com/mirrors.txt jammy-security main restricted universe multiverse
+deb cdrom:[Pop_OS 20.04 _Focal Fossa_ - Release amd64 (20200702)]/ jammy main restricted
+deb http://apt.pop-os.org/proprietary jammy main" | tee /etc/apt/sources.list > /dev/null
 
 # info "Setting up SSH and GPG keys"
 # sudo cp -r /media/pop-os/SBASAK/.ssh/ ~
