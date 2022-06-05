@@ -135,7 +135,12 @@ info "Installing PIP applications"
 sudo pip3 install \
     autotiling \
     pynvim black \
-    cmake > /dev/null'
+    cmake > /dev/null
+info "Installing Xanmod kernel"
+wget -O- https://dl.xanmod.org/gpg.key | gpg --dearmor | tee /usr/share/keyrings/xanmod.gpg
+echo "deb [signed-by=/usr/share/keyrings/xanmod.gpg] http://deb.xanmod.org releases main" | tee /etc/apt/sources.list.d/xanmod-kernel.list
+apt-get update
+apt install linux-xanmod'
 
 # info "Installing applications from USB"
 # sudo install -Dm6755 /media/pop-os/SBASAK/swaylock /usr/local/bin/ &
@@ -218,6 +223,19 @@ deb mirror://mirrors.ubuntu.com/mirrors.txt jammy-backports main restricted univ
 deb mirror://mirrors.ubuntu.com/mirrors.txt jammy-security main restricted universe multiverse
 deb cdrom:[Pop_OS 20.04 _Focal Fossa_ - Release amd64 (20200702)]/ jammy main restricted
 deb http://apt.pop-os.org/proprietary jammy main" | tee /etc/apt/sources.list > /dev/null
+
+info "Setting default session"
+cat > /usr/share/xsessions/pop.desktop <<EOF
+[Desktop Entry]
+Name=Sway
+Comment=This session logs you into Sway
+Exec=/usr/bin/sway
+TryExec=/usr/bin/sway
+Type=Application
+DesktopNames=pop:GNOME
+X-GDM-SessionRegisters=true
+X-Ubuntu-Gettext-Domain=gnome-session-3.0
+EOF
 
 # info "Setting up SSH and GPG keys"
 # sudo cp -r /media/pop-os/SBASAK/.ssh/ ~
